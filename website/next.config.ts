@@ -50,6 +50,7 @@ const csp = [
     ...googleAnalytics,
     "https://va.vercel-scripts.com",
     "https://*.supabase.co",
+    "wss://*.supabase.co",
     "https://paddltir-web.vercel.app",
     "https://paddltir-web.vercel.app",
   ].join(" "),
