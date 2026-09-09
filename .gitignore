@@ -33,23 +33,12 @@ build/
 # Vite cache
 .vite/
 
-# Environment files (optional if you have API keys)
+# Environment / local tooling
 .env
 .env.local
 .env.*.local
+.env*
+.vercel
 
 # VSCode
 .vscode/
-
-# Supabase / local secrets
-.env
-.env.local
-.env.*.local
-
-# Never add Firebase project linkage in this fork
-.firebaserc
-firebase.json
-firestore.rules
-firebase-debug.log
-.vercel
-.env*

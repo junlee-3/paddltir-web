@@ -1,4 +1,4 @@
-/** App auth user shape — mirrors former Firebase User fields used by the UI. */
+/** Authenticated user fields used by the app shell. */
 export interface AuthUser {
   uid: string;
   email: string | null;
