@@ -227,6 +227,22 @@ body {
   }
 }
 
+/* --- Teams logo marquee --------------------------------------------------- */
+@keyframes teamMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.team-marquee {
+  animation: teamMarquee 42s linear infinite;
+}
+.team-marquee:hover {
+  animation-play-state: paused;
+}
+
 /* --- Reduced motion -------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   /* Match the specificity of the html:not(.lenis) rule above. */
@@ -247,5 +263,17 @@ body {
   .text-gradient-humans {
     animation: none;
     background-position: 40% 50%;
+  }
+  .team-marquee {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 56rem;
+    margin-inline: auto;
+    row-gap: 1.5rem;
+  }
+  .team-marquee ul:last-child {
+    display: none;
   }
 }

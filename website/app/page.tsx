@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Fragment } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ClosingCta } from "../components/site/ClosingCta";
+import { TeamsMarquee } from "../components/site/TeamsMarquee";
 import { HOME_FAQS } from "../lib/faqs";
 
 export const metadata: Metadata = {
@@ -33,29 +35,36 @@ const CORPUS_INDEX = [
   { num: "04", title: "Insights", sub: "gaps and risks surfaced before you push off" },
 ];
 
-const SESSION_TURNS = [
+const HOW_IT_WORKS = [
   {
-    graphic: "deductions" as const,
-    question: "How do I seat a balanced boat?",
-    answer:
-      "It weighs side balance and stroke position against your roster so no bench feels heavy. Each swap shows the knock-on effect before you commit.",
-    tool: "Balance planner",
+    num: "1",
+    title: "Build your roster",
+    body: "Add every paddler with weight, erg, preferred side, and role — one source of truth for race week.",
+    image: "/how-it-works/01-roster-v2.png",
+    imageAlt: "Paddltir roster table with paddler weights, power ratios, and sides",
   },
   {
-    graphic: "depreciation" as const,
-    question: "Who's in the boat for this heat?",
-    answer:
-      "Pull from your roster, lock in reservations, and export a crewlist your marshall can read at a glance. Changes stay in sync so nobody shows up to the wrong lane.",
-    tool: "Crewlist builder",
+    num: "2",
+    title: "Lock a crewlist",
+    body: "Pull athletes into a heat-ready crewlist by age division, boat size, and category.",
+    image: "/how-it-works/02-crewlist-v2.png",
+    imageAlt: "Paddltir crewlist with members selected for Nationals Open A",
   },
   {
-    graphic: "risk" as const,
-    question: "Are we trimmed for this heat?",
-    answer:
-      "It flags bow-heavy setups, uneven sides, and gaps against your target before you push off. You see where you sit — comfortably balanced or worth a last-minute swap.",
-    tool: "Trim check",
+    num: "3",
+    title: "Seat the boat",
+    body: "Drag paddlers into seats or run Autoconfig — drummer, twenty seats, and sweep in one layout.",
+    image: "/how-it-works/03-boat-v2.png",
+    imageAlt: "Paddltir crew layout boat with seated paddlers",
   },
-];
+  {
+    num: "4",
+    title: "Check trim & balance",
+    body: "See left/right weight, power, preferred-side fit, and bow/stern trim before you push off.",
+    image: "/how-it-works/04-insights-v2.png",
+    imageAlt: "Paddltir crew controls showing weight balance, power, and trim",
+  },
+] as const;
 
 const FAQS = HOME_FAQS;
 
@@ -105,166 +114,6 @@ const pageJsonLd = {
     },
   ],
 };
-
-/* ---------------------------------------------------------------------------
-   Session graphics — small, decorative SVGs in the Clinical style: hairline
-   zinc strokes, soft zinc fills, the vermillion accent used once each. They
-   visualise what the tool does, so the copy can stay short.
---------------------------------------------------------------------------- */
-
-const GRAPHIC_CLASS = "h-auto w-full max-w-[360px]";
-
-/** deduction_discovery — a taxonomy grid with a few categories "matched". */
-function DeductionsGraphic() {
-  const cols = 5;
-  const rows = 3;
-  const tw = 56;
-  const th = 40;
-  const gx = 16;
-  const gy = 16;
-  const ox = 10;
-  const oy = 10;
-  const filled = new Set([0, 1, 3, 4, 6, 8, 9, 11, 12]);
-  const matched = new Set([1, 4, 6, 9, 12]);
-  const width = ox * 2 + cols * tw + (cols - 1) * gx;
-  const height = oy * 2 + rows * th + (rows - 1) * gy;
-  const tiles = [];
-  for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < cols; c++) {
-      const idx = r * cols + c;
-      const x = ox + c * (tw + gx);
-      const y = oy + r * (th + gy);
-      const isFilled = filled.has(idx);
-      tiles.push(
-        <g key={idx}>
-          <rect
-            x={x}
-            y={y}
-            width={tw}
-            height={th}
-            rx="8"
-            fill={isFilled ? "#f4f4f5" : "none"}
-            stroke={isFilled ? "#d4d4d8" : "#e4e4e7"}
-            strokeWidth="1"
-          />
-          {matched.has(idx) && (
-            <circle cx={x + tw - 11} cy={y + 11} r="3" fill="#fa520f" />
-          )}
-        </g>,
-      );
-    }
-  }
-  return (
-    <svg
-      viewBox={`0 0 ${width} ${height}`}
-      className={GRAPHIC_CLASS}
-      fill="none"
-      aria-hidden="true"
-    >
-      {tiles}
-    </svg>
-  );
-}
-
-/** depreciation_helper — a diminishing-value step-down with a curve over it. */
-function DepreciationGraphic() {
-  const values = [100, 70, 49, 34, 24, 17];
-  const bw = 40;
-  const gap = 18;
-  const ox = 16;
-  const baseY = 150;
-  const maxH = 120;
-  const width = ox * 2 + values.length * bw + (values.length - 1) * gap;
-  const bars = values.map((v, i) => {
-    const h = (v / 100) * maxH;
-    const x = ox + i * (bw + gap);
-    const y = baseY - h;
-    return (
-      <g key={i}>
-        <rect
-          x={x}
-          y={y}
-          width={bw}
-          height={h}
-          rx="4"
-          fill="#f4f4f5"
-          stroke="#d4d4d8"
-          strokeWidth="1"
-        />
-        {i === 0 && <rect x={x} y={y} width={bw} height="3" rx="1.5" fill="#fa520f" />}
-      </g>
-    );
-  });
-  const curve = values
-    .map((v, i) => {
-      const h = (v / 100) * maxH;
-      const x = ox + i * (bw + gap) + bw / 2;
-      const y = baseY - h;
-      return `${i === 0 ? "M" : "L"} ${x} ${y}`;
-    })
-    .join(" ");
-  return (
-    <svg
-      viewBox={`0 0 ${width} 170`}
-      className={GRAPHIC_CLASS}
-      fill="none"
-      aria-hidden="true"
-    >
-      {bars}
-      <path d={curve} stroke="#d4d4d8" strokeWidth="1.5" strokeDasharray="3 4" />
-      <line
-        x1={ox - 4}
-        y1={baseY + 0.5}
-        x2={width - ox + 4}
-        y2={baseY + 0.5}
-        stroke="#e4e4e7"
-        strokeWidth="1"
-      />
-    </svg>
-  );
-}
-
-/** audit_risk_check — a LOW/MED/HIGH gauge with the marker resting on LOW. */
-function RiskGraphic() {
-  const x0 = 18;
-  const w = 324;
-  const y = 70;
-  const h = 14;
-  const seg = w / 3;
-  const markerX = x0 + seg / 2;
-  return (
-    <svg
-      viewBox="0 0 360 130"
-      className={GRAPHIC_CLASS}
-      fill="none"
-      aria-hidden="true"
-    >
-      {/* track */}
-      <rect x={x0} y={y} width={w} height={h} rx={h / 2} fill="#f4f4f5" />
-      {/* low band tinted */}
-      <path
-        d={`M ${x0 + h / 2} ${y} H ${x0 + seg} V ${y + h} H ${x0 + h / 2} A ${h / 2} ${h / 2} 0 0 1 ${x0 + h / 2} ${y} Z`}
-        fill="#fde8df"
-      />
-      {/* segment dividers */}
-      <line x1={x0 + seg} y1={y - 6} x2={x0 + seg} y2={y + h + 6} stroke="#e4e4e7" strokeWidth="1" />
-      <line x1={x0 + 2 * seg} y1={y - 6} x2={x0 + 2 * seg} y2={y + h + 6} stroke="#e4e4e7" strokeWidth="1" />
-      {/* marker on LOW */}
-      <line x1={markerX} y1={y - 14} x2={markerX} y2={y + h} stroke="#fa520f" strokeWidth="1.5" />
-      <circle cx={markerX} cy={y - 16} r="5" fill="#fa520f" />
-      {/* labels */}
-      <text x={markerX} y={y + h + 24} textAnchor="middle" className="font-mono" fontSize="11" fill="#fa520f">LOW</text>
-      <text x={x0 + 1.5 * seg} y={y + h + 24} textAnchor="middle" className="font-mono" fontSize="11" fill="#a1a1aa">MED</text>
-      <text x={x0 + 2.5 * seg} y={y + h + 24} textAnchor="middle" className="font-mono" fontSize="11" fill="#a1a1aa">HIGH</text>
-    </svg>
-  );
-}
-
-function SessionGraphic({ kind }: { kind: "deductions" | "depreciation" | "risk" }) {
-  if (kind === "deductions") return <DeductionsGraphic />;
-  if (kind === "depreciation") return <DepreciationGraphic />;
-  return <RiskGraphic />;
-}
 
 /** Trust strip over the dark video: white title/subtitle pairs + soft hairlines. */
 function HeroTrust({ className = "" }: { className?: string }) {
@@ -359,14 +208,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ------------------------------------------------ the session */}
+      {/* ------------------------------------------------ how it works */}
       <section
-        className="mx-auto max-w-6xl px-5 py-20 sm:py-24"
+        className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-28 lg:px-10"
         aria-labelledby="session-h"
       >
         <h2
           id="session-h"
-          className="mx-auto max-w-[20ch] text-center text-[clamp(2.15rem,4.2vw,3.15rem)] font-normal leading-[1.5] tracking-tight1 sm:max-w-[26ch]"
+          className="mx-auto max-w-[22ch] text-center text-[clamp(2.35rem,4.6vw,3.4rem)] font-normal leading-[1.45] tracking-tight1 sm:max-w-[28ch]"
         >
           Your athletes give you{" "}
           <em className="[font-family:var(--font-serif-accent)] text-[1.06em] leading-none [-webkit-text-stroke:0.35px_currentColor]">
@@ -379,42 +228,35 @@ export default function HomePage() {
           </em>{" "}
           for them.
         </h2>
+        <p className="mx-auto mt-5 max-w-xl text-center text-base leading-relaxed text-zinc-500 sm:text-[17px]">
+          Configure a perfect crew in minutes.
+        </p>
 
-        {/* Alternating wide rows: plain-language turn on one side, a graphic
-            of what the tool did on the other. Sides swap each turn. */}
-        <div className="mt-14 space-y-12 sm:mt-16 sm:space-y-20">
-          {SESSION_TURNS.map((turn, i) => (
-            <div
-              key={turn.question}
-              className="reveal-scroll grid items-center gap-6 sm:gap-14 lg:grid-cols-2"
-            >
-              {/* Graphic always follows the question on mobile (order-2); on
-                  desktop the sides alternate each turn. */}
-              <div className={`order-2 ${i % 2 === 1 ? "lg:order-2" : "lg:order-1"}`}>
-                <div className="tile flex min-h-[180px] items-center justify-center p-6 sm:min-h-[280px] sm:p-12">
-                  <SessionGraphic kind={turn.graphic} />
-                </div>
+        <ol className="mt-16 grid gap-12 sm:mt-20 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-14 lg:grid-cols-4 lg:gap-7">
+          {HOW_IT_WORKS.map((step) => (
+            <li key={step.num} className="reveal-scroll flex flex-col">
+              <div className="tile relative aspect-square overflow-hidden">
+                <Image
+                  src={step.image}
+                  alt={step.imageAlt}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className="object-cover"
+                />
               </div>
-              <div className={`order-1 ${i % 2 === 1 ? "lg:order-1" : "lg:order-2"}`}>
-                <h3 className="max-w-md text-[clamp(1.25rem,2.2vw,1.6rem)] font-normal leading-[1.15] tracking-tight1 text-zinc-900">
-                  {turn.question}
-                </h3>
-                <p className="mt-3 max-w-md text-[15px] leading-relaxed text-zinc-600 sm:text-base">
-                  {turn.answer}
-                </p>
-                <p className="mt-5 font-mono text-[0.6875rem] text-zinc-500">
-                  <Link
-                    href="/docs#toolsref-h"
-                    className="transition-colors duration-200 hover:text-zinc-600"
-                  >
-                    {turn.tool} →
-                  </Link>
-                </p>
-              </div>
-            </div>
+              <h3 className="mt-5 text-[1.15rem] font-medium tracking-tight1 text-zinc-900 sm:text-[1.25rem]">
+                {step.title}
+              </h3>
+              <p className="mt-2 text-[15px] leading-relaxed text-zinc-500 sm:text-base">
+                {step.body}
+              </p>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
+
+      {/* ------------------------------------------------ teams */}
+      <TeamsMarquee />
 
       {/* ------------------------------------------------ corpus */}
       {/* Contained in its own rounded card, matching the hero card chrome
