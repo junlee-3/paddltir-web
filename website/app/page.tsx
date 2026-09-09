@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Fragment } from "react";
-import { preload } from "react-dom";
 import Link from "next/link";
 import { ClosingCta } from "../components/site/ClosingCta";
 import { HOME_FAQS } from "../lib/faqs";
@@ -12,7 +11,7 @@ export const metadata: Metadata = {
 /* ---------------------------------------------------------------------------
    Landing page — Clinical system. Fully light: white sections alternating
    with zinc-50 bands, hairline borders, one vermillion accent reserved for
-   citation chips and small markers. The product demo card is the hero image.
+   citation chips and small markers. Hero is a looping dragon-boat video.
 --------------------------------------------------------------------------- */
 
 const HERO_TRUST = [
@@ -267,7 +266,7 @@ function SessionGraphic({ kind }: { kind: "deductions" | "depreciation" | "risk"
   return <RiskGraphic />;
 }
 
-/** heynox-style trust strip, light: title/subtitle pairs split by hairlines. */
+/** Trust strip over the dark video: white title/subtitle pairs + soft hairlines. */
 function HeroTrust({ className = "" }: { className?: string }) {
   return (
     <dl className={`flex flex-wrap items-center gap-x-6 gap-y-4 ${className}`}>
@@ -275,13 +274,13 @@ function HeroTrust({ className = "" }: { className?: string }) {
         <Fragment key={t.title}>
           {i > 0 && (
             <span
-              className="hidden h-9 w-px shrink-0 bg-zinc-200 sm:block"
+              className="hidden h-9 w-px shrink-0 bg-white/25 sm:block"
               aria-hidden="true"
             />
           )}
           <div>
-            <dt className="text-sm text-zinc-900">{t.title}</dt>
-            <dd className="text-sm text-zinc-500">{t.sub}</dd>
+            <dt className="text-sm text-white">{t.title}</dt>
+            <dd className="text-sm text-white/60">{t.sub}</dd>
           </div>
         </Fragment>
       ))}
@@ -290,9 +289,6 @@ function HeroTrust({ className = "" }: { className?: string }) {
 }
 
 export default function HomePage() {
-  // The hero landscape is a CSS background, invisible to the browser's
-  // preload scanner — hint it early so the card doesn't paint bare.
-  preload("/hero-outback.webp", { as: "image", fetchPriority: "high" });
   return (
     <main>
       <script
@@ -307,100 +303,33 @@ export default function HomePage() {
       <section className="relative -mt-16">
         {/* heynox card inset: 12px on all sides. */}
         <div className="relative p-3">
-          {/* Ambient bleed: a heavily blurred copy of the landscape behind the
-              card, peeking past its edges — the image's own light refracting
-              out of the glass onto the page. */}
-          <div
-            aria-hidden="true"
-            className="absolute bottom-2 left-2 right-4 top-6 rounded-[24px] bg-cover bg-right opacity-40 blur-[24px] saturate-150 max-lg:bottom-3 max-lg:left-3 max-lg:right-3 max-lg:opacity-25 max-lg:blur-[14px]"
-            style={{ backgroundImage: "url(/hero-outback.webp)" }}
-          />
-          <div className="hero-card glass-hero flex min-h-[calc(100svh-24px)] flex-col lg:flex-row lg:items-center">
-            {/* Liquid-glass distortion map (Chromium; others fall back to
-                plain frost). Recipe: turbulence -> soft map -> specular
-                lighting -> displacement. */}
-            <svg aria-hidden="true" className="absolute h-0 w-0">
-              <filter
-                id="glass-distortion"
-                x="0%"
-                y="0%"
-                width="100%"
-                height="100%"
-                filterUnits="objectBoundingBox"
-              >
-                <feTurbulence
-                  type="fractalNoise"
-                  baseFrequency="0.01 0.01"
-                  numOctaves="1"
-                  seed="5"
-                  result="turbulence"
-                />
-                <feGaussianBlur
-                  in="turbulence"
-                  stdDeviation="3"
-                  result="softMap"
-                />
-                <feSpecularLighting
-                  in="softMap"
-                  surfaceScale="5"
-                  specularConstant="1"
-                  specularExponent="100"
-                  lightingColor="white"
-                  result="specLight"
-                >
-                  <fePointLight x="-200" y="-200" z="300" />
-                </feSpecularLighting>
-                <feComposite
-                  in="specLight"
-                  operator="arithmetic"
-                  k1="0"
-                  k2="1"
-                  k3="1"
-                  k4="0"
-                  result="litImage"
-                />
-                <feDisplacementMap
-                  in="SourceGraphic"
-                  in2="softMap"
-                  scale="45"
-                  xChannelSelector="R"
-                  yChannelSelector="G"
-                />
-              </filter>
-            </svg>
-            {/* Base layer: the landscape, clipped by the card's corners.
-                Desktop: as shot (salt left, vermillion right). Mobile: rotated
-                90° via an oversized swapped-axis div so the vermillion sits
-                at the bottom and the image covers the portrait card. */}
-            <div
-              className="absolute inset-0 hidden bg-cover bg-right lg:block"
-              style={{ backgroundImage: "url(/hero-outback.webp)" }}
+          <div className="hero-card flex min-h-[calc(100svh-24px)] flex-col bg-zinc-950 lg:flex-row lg:items-center">
+            {/* Full-bleed looping video — fade is baked into the footage. */}
+            <video
+              className="absolute inset-0 h-full w-full object-cover"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
               aria-hidden="true"
-            />
-            <div
-              className="absolute left-1/2 top-1/2 h-[calc(100vw-24px)] w-[calc(100svh-24px)] min-w-full -translate-x-1/2 -translate-y-1/2 rotate-90 bg-cover bg-right lg:hidden"
-              style={{ backgroundImage: "url(/hero-outback.webp)" }}
-              aria-hidden="true"
-            />
-            {/* Glass pane over the image: effect (frost + refraction),
-                tint, shine — the liquidGlass layer stack */}
-            <span className="glass-hero-effect" aria-hidden="true" />
-            <span className="glass-hero-tint" aria-hidden="true" />
-            <span className="glass-hero-shine" aria-hidden="true" />
+            >
+              <source src="/hero-video.mov" type="video/quicktime" />
+            </video>
             <div className="relative z-10 flex w-full flex-1 flex-col px-[clamp(24px,7vw,88px)] py-16 sm:py-20 lg:grid lg:flex-none lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-12 lg:py-24">
               {/* Main hero block — centred stack on mobile (heynox-style),
-                  left-aligned beside the demo on desktop. */}
+                  left-aligned on desktop. */}
               <div className="flex flex-1 flex-col items-center justify-center pt-[34px] text-center lg:block lg:flex-none lg:text-left">
                 <h1
-                  className="reveal-lcp max-w-[16ch] text-[clamp(2.25rem,8.5vw,3.5rem)] font-normal leading-[1.08] tracking-tight2 text-zinc-900 sm:max-w-none sm:leading-[1.04]"
+                  className="reveal-lcp max-w-[16ch] text-[clamp(2.25rem,8.5vw,3.5rem)] font-normal leading-[1.08] tracking-tight2 text-white sm:max-w-none sm:leading-[1.04]"
                   style={{ "--reveal-delay": "0s" } as React.CSSProperties}
                 >
                   Build crews that
                   <br />
-                  <em className="pr-[0.04em] [font-family:var(--font-serif-accent)] text-[1.06em] leading-none [-webkit-text-stroke:0.35px_#18181b]">win</em> when it counts
+                  <em className="pr-[0.04em] [font-family:var(--font-serif-accent)] text-[1.06em] leading-none [-webkit-text-stroke:0.35px_#ffffff]">win</em> when it counts
                 </h1>
                 <p
-                  className="reveal mx-auto mt-2.5 max-w-sm text-[15px] leading-relaxed text-zinc-500 sm:max-w-xl lg:mx-0"
+                  className="reveal mx-auto mt-2.5 max-w-sm text-[15px] leading-relaxed text-white/70 sm:max-w-xl lg:mx-0"
                   style={{ "--reveal-delay": "0.16s" } as React.CSSProperties}
                 >
                   Configure, manage, and get real insights into your crew.
@@ -411,16 +340,16 @@ export default function HomePage() {
                 >
                   <a
                     href="/app"
-                    className="btn btn-primary w-full max-w-xs px-7 py-3.5 text-sm sm:w-auto sm:py-3"
+                    className="btn w-full max-w-xs bg-white px-7 py-3.5 text-sm text-zinc-900 hover:bg-white/90 sm:w-auto sm:py-3"
                   >
                     Open App
                   </a>
                 </div>
               </div>
 
-              {/* Right column intentionally empty on desktop — the image
-                  carries that side. Trust strip is desktop-only (pinned
-                  bottom-left below); mobile keeps just headline + CTA. */}
+              {/* Right column empty on desktop — video carries that side.
+                  Trust strip is desktop-only (pinned bottom-left below);
+                  mobile keeps just headline + CTA. */}
               <div className="relative hidden lg:block" />
             </div>
 
