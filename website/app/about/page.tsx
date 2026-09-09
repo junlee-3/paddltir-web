@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Image from "next/image";
 import { breadcrumbJsonLd } from "@/lib/breadcrumbs";
 import { personJsonLd } from "@/lib/schema";
 
@@ -11,6 +11,25 @@ export const metadata: Metadata = {
 };
 
 const SITE = "https://paddltir-web.vercel.app";
+
+const PEOPLE = [
+  {
+    name: "Jun Lee",
+    role: "Co-founder",
+    photo: "/about/jun.jpg",
+    photoAlt: "Portrait of Jun Lee",
+    bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    reverse: false,
+  },
+  {
+    name: "Tom Wicks",
+    role: "Co-founder",
+    photo: "/about/tom.jpg",
+    photoAlt: "Portrait of Tom Wicks",
+    bio: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    reverse: true,
+  },
+] as const;
 
 const pageJsonLd = {
   "@context": "https://schema.org",
@@ -28,151 +47,57 @@ const pageJsonLd = {
 
 export default function AboutPage() {
   return (
-    <main className="mx-auto min-h-screen max-w-5xl px-5 pb-24 pt-20">
+    <main className="pb-24">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(pageJsonLd) }}
       />
 
-      <div className="mx-auto max-w-3xl space-y-10">
-        <div className="space-y-3">
-          <h1 className="text-3xl font-normal tracking-tight1 text-zinc-900">
-            About Paddltir
-          </h1>
-          <p className="text-[15px] leading-relaxed text-zinc-500">
-            Crew management for dragon boat clubs, built by a paddler who got
-            tired of spreadsheets on race morning.
-          </p>
-        </div>
+      {/* ------------------------------------------------ hero */}
+      <section className="mx-auto flex min-h-[min(72svh,640px)] max-w-5xl flex-col items-center justify-center px-5 pb-16 pt-10 text-center sm:pt-14">
+        <h1
+          className="reveal-lcp max-w-[18ch] text-[clamp(2.25rem,7vw,3.75rem)] font-normal leading-[1.08] tracking-tight2 text-zinc-900 sm:max-w-none sm:leading-[1.05]"
+          style={{ ["--reveal-delay" as string]: "0.05s" }}
+        >
+          Behind every great product,
+          <br />
+          are great{" "}
+          <span className="text-gradient-humans">humans</span>.
+        </h1>
+      </section>
 
-        <section className="space-y-4">
-          <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-            What it is
-          </h2>
-          <p className="text-[15px] leading-relaxed text-zinc-700">
-            Paddltir helps coaches and crew managers seat boats, maintain
-            rosters, build crewlists for race weekends, and read trim and side
-            balance before you leave the bank. You keep one source of truth for
-            who paddles where, what they weigh, and which side they prefer.
-          </p>
-          <p className="text-[15px] leading-relaxed text-zinc-700">
-            It exists because race-day lineups are stressful. Names change,
-            people swap sides, heats multiply, and the spreadsheet that worked
-            last regatta is already out of date. Paddltir gives you a proper
-            tool for the job: seat the boat, spot gaps, compare heats, and
-            check balance without rebuilding everything from scratch.
-          </p>
-        </section>
-
-        <section className="space-y-4">
-          <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-            Who builds it
-          </h2>
-          <p className="text-[15px] leading-relaxed text-zinc-700">
-            Paddltir is designed, built and run by{" "}
-            <a
-              href="https://github.com/junlee-3"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-zinc-900 underline decoration-zinc-300 underline-offset-2 hover:decoration-zinc-900"
-            >
-              Jun Lee
-            </a>
-            , an Australian software developer and dragon boat paddler. It is a
-            small, independent product, not a company with a sales team, and
-            the site doesn&apos;t pretend otherwise: no invented testimonials,
-            no made-up user counts. The{" "}
-            <a
-              href="https://github.com/junlee-3/paddltir-web"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-zinc-900 underline decoration-zinc-300 underline-offset-2 hover:decoration-zinc-900"
-            >
-              source code is public
-            </a>
-            {" "}
-            so you can inspect what runs. Copyright and all rights stay with Jun
-            Lee — use, hosting, modification, distribution, and sale require
-            permission (including when you buy access from us).
-          </p>
-        </section>
-
-        <section className="space-y-4">
-          <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-            Why you can trust it
-          </h2>
-          <ul className="list-disc space-y-2 pl-5 text-[15px] leading-relaxed text-zinc-700">
-            <li>
-              Rosters, crewlists, and lineups live in one place. No more
-              reconciling three versions of the same heat across WhatsApp,
-              paper, and a shared sheet.
-            </li>
-            <li>
-              Trim and side-balance numbers come from the weights you enter,
-              not guesswork. You see fore-aft and left-right balance before
-              you confirm a lineup.
-            </li>
-            <li>
-              The source is public for inspection. Running, hosting, or selling
-              it without a licence from Jun Lee is not allowed.
-            </li>
-            <li>
-              Privacy is straightforward. The{" "}
-              <Link
-                href="/privacy"
-                className="text-zinc-900 underline decoration-zinc-300 underline-offset-2 hover:decoration-zinc-900"
-              >
-                privacy page
-              </Link>{" "}
-              lists exactly what we store about paddlers and crews.
-            </li>
-          </ul>
-          <p className="text-[15px] leading-relaxed text-zinc-700">
-            And the honest limit: Paddltir is a crew management tool, not a
-            substitute for your coach&apos;s judgement. It helps you seat boats
-            and spot problems; race strategy and selection calls are still
-            yours.
-          </p>
-        </section>
-
-        <section className="space-y-4">
-          <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-            Independence
-          </h2>
-          <p className="text-[15px] leading-relaxed text-zinc-700">
-            Paddltir is an independent project. It is not affiliated with,
-            endorsed by, or operated by any dragon boat governing body or
-            race organiser.
-          </p>
-        </section>
-
-        <section className="space-y-4">
-          <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-            Contact
-          </h2>
-          <p className="text-[15px] leading-relaxed text-zinc-700">
-            Product questions and bug reports:{" "}
-            <a
-              href="https://github.com/junlee-3/paddltir-web/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-zinc-900 underline decoration-zinc-300 underline-offset-2 hover:decoration-zinc-900"
-            >
-              GitHub issues
-            </a>
-            . Privacy and data requests:{" "}
-            <a
-              href="https://github.com/junlee-3/paddltir-web/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-zinc-900 underline decoration-zinc-300 underline-offset-2 hover:decoration-zinc-900"
-            >
-              GitHub issues
-            </a>
-            .
-          </p>
-        </section>
-      </div>
+      {/* ------------------------------------------------ people */}
+      <section className="mx-auto max-w-6xl space-y-20 px-5 sm:space-y-28 sm:px-8 lg:px-10">
+        {PEOPLE.map((person, i) => (
+          <article
+            key={person.name}
+            className={`reveal-scroll grid items-center gap-8 md:grid-cols-2 md:gap-12 lg:gap-16 ${
+              person.reverse ? "md:[&>*:first-child]:order-2" : ""
+            }`}
+            style={{ ["--reveal-delay" as string]: `${0.04 + i * 0.04}s` }}
+          >
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[15px] bg-zinc-100">
+              <Image
+                src={person.photo}
+                alt={person.photoAlt}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+                priority={i === 0}
+              />
+            </div>
+            <div className="max-w-md md:max-w-none">
+              <h2 className="text-[clamp(1.5rem,3vw,2rem)] font-normal leading-[1.15] tracking-tight1 text-zinc-900">
+                {person.name}
+              </h2>
+              <p className="mt-2 text-[15px] text-zinc-500">{person.role}</p>
+              <p className="mt-5 text-[15px] leading-relaxed text-zinc-700">
+                {person.bio}
+              </p>
+            </div>
+          </article>
+        ))}
+      </section>
     </main>
   );
 }
