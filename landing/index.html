@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CrewCoach — The Command Center for Dragon Boat Teams</title>
+  <meta name="description" content="Build rosters, optimize lineups, and race with confidence. CrewCoach is the modern tool for dragon boat crew management." />
+
+  <meta property="og:title" content="CrewCoach — Dragon Boat Crew Management" />
+  <meta property="og:description" content="Build rosters, optimize lineups, and race with confidence." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ───────── NAV ───────── -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo">CrewCoach</a>
+
+      <div class="nav__links" id="navLinks">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </div>
+
+      <a href="#" class="btn btn--sm nav__cta">Get Started</a>
+
+      <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="nav__mobile" id="mobileMenu">
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#" class="btn btn--sm" style="margin-top:.5rem;text-align:center;">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- ───────── HERO ───────── -->
+  <header class="hero">
+    <div class="container">
+      <p class="hero__tag reveal">Dragon boat crew management</p>
+      <h1 class="hero__title reveal reveal-delay-1">The command center<br/>for dragon boat <em>teams.</em></h1>
+      <p class="hero__sub reveal reveal-delay-2">
+        Build rosters, optimize lineups, and race with confidence.<br class="hide-mobile" />
+        One app for every seat decision.
+      </p>
+      <div class="hero__actions reveal reveal-delay-3">
+        <a href="#" class="btn">Get Started &mdash; Free</a>
+        <a href="#how-it-works" class="btn btn--outline">See How It Works</a>
+      </div>
+
+      <!-- App mockup matching actual CrewCoach UI -->
+      <div class="hero__visual reveal reveal-delay-4">
+        <div class="app-mockup">
+          <div class="app-mockup__chrome">
+            <span class="dot dot--red"></span>
+            <span class="dot dot--yellow"></span>
+            <span class="dot dot--green"></span>
+          </div>
+          <div class="app-mockup__content">
+            <!-- Top bar -->
+            <div class="app-mockup__topbar">
+              <div class="app-mockup__topbar-left">
+                <span class="app-mockup__crew-name">Auroras 2025</span>
+                <span class="app-mockup__crew-meta">16U &middot; Standard &middot; Mixed</span>
+              </div>
+              <div class="app-mockup__topbar-right">
+                <span class="app-mockup__heat-select">Heat 1 <small>&#9662;</small></span>
+                <span class="app-mockup__clear-btn">Clear Config</span>
+              </div>
+            </div>
+
+            <div class="app-mockup__panels">
+              <!-- Left panel: Crew Layout -->
+              <div class="app-mockup__panel-left">
+                <span class="app-mockup__panel-label">CREW LAYOUT</span>
+                <div class="app-mockup__drummer">
+                  <span class="app-mockup__seat app-mockup__seat--drummer">Alex <b>D</b> L 51</span>
+                </div>
+                <div class="app-mockup__bench-row">
+                  <span class="app-mockup__seat app-mockup__seat--left">Lily L 67</span>
+                  <span class="app-mockup__seat app-mockup__seat--right">Jade R 66</span>
+                </div>
+                <div class="app-mockup__bench-row">
+                  <span class="app-mockup__seat app-mockup__seat--left">Ethan L/R 69</span>
+                  <span class="app-mockup__seat app-mockup__seat--right">Phoebe L 60</span>
+                </div>
+                <div class="app-mockup__bench-row">
+                  <span class="app-mockup__seat app-mockup__seat--left">Joshua R 60</span>
+                  <span class="app-mockup__seat app-mockup__seat--right">Eli L/R 72</span>
+                </div>
+                <div class="app-mockup__bench-row">
+                  <span class="app-mockup__seat app-mockup__seat--left">Eva L/R 62</span>
+                  <span class="app-mockup__seat app-mockup__seat--right">Hana R 65</span>
+                </div>
+                <div class="app-mockup__bench-row">
+                  <span class="app-mockup__seat app-mockup__seat--left">Nicky L 105</span>
+                  <span class="app-mockup__seat app-mockup__seat--right">Hunter L/R 91</span>
+                </div>
+                <div class="app-mockup__bench-row">
+                  <span class="app-mockup__seat app-mockup__seat--left">Tsuyoshi L 60</span>
+                  <span class="app-mockup__seat app-mockup__seat--right">Maddy R 56</span>
+                </div>
+                <div class="app-mockup__bench-row">
+                  <span class="app-mockup__seat app-mockup__seat--left">Annabelle L 63</span>
+                  <span class="app-mockup__seat app-mockup__seat--right">Nyla R 64</span>
+                </div>
+                <div class="app-mockup__bench-row">
+                  <span class="app-mockup__seat app-mockup__seat--left">Benji <b>D</b> L/R 51</span>
+                  <span class="app-mockup__seat app-mockup__seat--right">Jakey R 59</span>
+                </div>
+              </div>
+
+              <!-- Right panel: Roster + Controls -->
+              <div class="app-mockup__panel-right">
+                <span class="app-mockup__panel-label">ROSTER</span>
+                <div class="app-mockup__search">Search by name...</div>
+                <div class="app-mockup__roster-chips">
+                  <span class="app-mockup__chip">Evanthi R 72</span>
+                  <span class="app-mockup__chip">Rio L 61</span>
+                </div>
+
+                <span class="app-mockup__panel-label" style="margin-top:14px;">CREW CONTROLS</span>
+                <div class="app-mockup__autoconfig-btn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
+                  Autoconfig
+                </div>
+                <div class="app-mockup__pref-btn">Place on Preferred Sides</div>
+
+                <div class="app-mockup__stats">
+                  <div class="app-mockup__stat-row">
+                    <div><span class="app-mockup__stat-label">Weight</span><br/><span class="app-mockup__stat-val">L: 670 kg &nbsp;|&nbsp; R: 669 kg</span></div>
+                    <div><span class="app-mockup__stat-label">Weight balance</span><br/><span class="app-mockup__stat-val app-mockup__stat-val--good">1 kg LEFT HEAVY</span></div>
+                  </div>
+                  <div class="app-mockup__stat-row">
+                    <div><span class="app-mockup__stat-label">Power (ratio sum)</span><br/><span class="app-mockup__stat-val">L: 5.76 &nbsp;|&nbsp; R: 6.00</span></div>
+                    <div><span class="app-mockup__stat-label">Power balance</span><br/><span class="app-mockup__stat-val app-mockup__stat-val--good">2% delta</span></div>
+                  </div>
+                  <div class="app-mockup__stat-row">
+                    <div><span class="app-mockup__stat-label">Preferred side</span><br/><span class="app-mockup__stat-val app-mockup__stat-val--good">18/20 (90%)</span></div>
+                    <div><span class="app-mockup__stat-label">Trim</span><br/><span class="app-mockup__stat-val app-mockup__stat-val--good">0 kg BACK HEAVY</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ───────── SOCIAL PROOF ───────── -->
+  <section class="proof">
+    <div class="container">
+      <p class="proof__text reveal">Trusted by coaches and paddlers across competitive dragon boat.</p>
+      <div class="proof__logos reveal reveal-delay-1">
+        <span class="proof__badge"><i data-lucide="trophy" class="proof__icon"></i> Race Ready</span>
+        <span class="proof__badge"><i data-lucide="shield-check" class="proof__icon"></i> Data Secure</span>
+        <span class="proof__badge"><i data-lucide="zap" class="proof__icon"></i> Instant Setup</span>
+        <span class="proof__badge"><i data-lucide="smartphone" class="proof__icon"></i> Works Everywhere</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── PROBLEM ───────── -->
+  <section class="problem">
+    <div class="container container--narrow">
+      <h2 class="section-title reveal">Race day shouldn't be <em>chaos.</em></h2>
+      <p class="section-body reveal reveal-delay-1">
+        Spreadsheets break. Group chats get lost. Last-minute substitutions turn into guesswork.
+        Your crew deserves better than a hastily printed lineup taped to the tent pole.
+        CrewCoach replaces the chaos with clarity &mdash; so you can focus on racing, not logistics.
+      </p>
+    </div>
+  </section>
+
+  <!-- ───────── FEATURES ───────── -->
+  <section class="features" id="features">
+    <div class="container">
+      <h2 class="section-title reveal">Everything you need. Nothing you <em>don't.</em></h2>
+      <p class="section-subtitle reveal reveal-delay-1">Four powerful tools, one simple workflow.</p>
+
+      <div class="features__grid">
+        <div class="card reveal">
+          <div class="card__icon"><i data-lucide="users"></i></div>
+          <h3 class="card__title">Smart Roster</h3>
+          <p class="card__body">Manage every paddler's weight, power, side preference, and role in one place. Power ratios computed automatically.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card__icon"><i data-lucide="sparkles"></i></div>
+          <h3 class="card__title">Auto Lineup</h3>
+          <p class="card__body">One click generates optimized seat configurations balanced for weight, power, and preference. Three strategies, best result wins.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card__icon"><i data-lucide="clipboard-list"></i></div>
+          <h3 class="card__title">Race Crewlists</h3>
+          <p class="card__body">Build crewlists for each race from your master roster. Filter by age division, category, and boat size.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card__icon"><i data-lucide="move"></i></div>
+          <h3 class="card__title">Drag &amp; Drop Editor</h3>
+          <p class="card__body">Fine-tune lineups with intuitive drag-and-drop. See real-time balance stats update as you move every seat.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── HOW IT WORKS ───────── -->
+  <section class="steps" id="how-it-works">
+    <div class="container">
+      <h2 class="section-title reveal">How it <em>works</em></h2>
+      <p class="section-subtitle reveal reveal-delay-1">From roster to race-ready in three steps.</p>
+
+      <div class="steps__grid">
+        <div class="step reveal">
+          <span class="step__num">1</span>
+          <h3 class="step__title">Build your roster</h3>
+          <p class="step__body">Add paddlers with their weight, erg score, preferred side, seat preference, and role. Import or enter manually.</p>
+        </div>
+        <div class="step reveal">
+          <span class="step__num">2</span>
+          <h3 class="step__title">Create a crewlist</h3>
+          <p class="step__body">Select paddlers from the roster for each race. Set age division, boat size, and category &mdash; metadata flows downstream.</p>
+        </div>
+        <div class="step reveal">
+          <span class="step__num">3</span>
+          <h3 class="step__title">Generate lineups</h3>
+          <p class="step__body">Run auto-config for an instant optimized lineup, or drag-and-drop to hand-craft every seat. Configure Heat 1, Heat 2, and Final independently.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── COMPARISON TABLE ───────── -->
+  <section class="compare">
+    <div class="container container--narrow">
+      <h2 class="section-title reveal">Spreadsheet vs <em>CrewCoach</em></h2>
+      <p class="section-subtitle reveal reveal-delay-1">See the difference for yourself.</p>
+
+      <div class="compare__table reveal reveal-delay-2">
+        <div class="compare__header">
+          <span></span>
+          <span>Spreadsheet</span>
+          <span>CrewCoach</span>
+        </div>
+        <div class="compare__row">
+          <span>Lineup setup time</span>
+          <span class="compare__old">30+ minutes</span>
+          <span class="compare__new">Under 10 seconds</span>
+        </div>
+        <div class="compare__row">
+          <span>Weight balance check</span>
+          <span class="compare__old">Manual math</span>
+          <span class="compare__new">Automatic &amp; real-time</span>
+        </div>
+        <div class="compare__row">
+          <span>Race-day substitutions</span>
+          <span class="compare__old">Panic &amp; erasing</span>
+          <span class="compare__new">Drag, drop, done</span>
+        </div>
+        <div class="compare__row">
+          <span>Multi-heat configs</span>
+          <span class="compare__old">Copy-paste tabs</span>
+          <span class="compare__new">Dedicated Heat 1 / 2 / Final</span>
+        </div>
+        <div class="compare__row">
+          <span>Side preference tracking</span>
+          <span class="compare__old">Memory / sticky notes</span>
+          <span class="compare__new">Built-in per paddler</span>
+        </div>
+        <div class="compare__row">
+          <span>Swap suggestions</span>
+          <span class="compare__old">Gut feeling</span>
+          <span class="compare__new">Algorithmic with priorities</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── DETAILED FEATURES ───────── -->
+  <section class="deep-features">
+    <div class="container">
+      <div class="deep-feature reveal">
+        <div class="deep-feature__text">
+          <h3>Multi-heat <em>support</em></h3>
+          <p>Heat 1, Heat 2, Final &mdash; configure each independently with different lineups. Switch between heats with a single tap and carry paddler data across all configurations.</p>
+        </div>
+        <div class="deep-feature__visual">
+          <div class="tab-mockup">
+            <span class="tab-mockup__tab tab-mockup__tab--active">Heat 1</span>
+            <span class="tab-mockup__tab">Heat 2</span>
+            <span class="tab-mockup__tab">Final</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="deep-feature deep-feature--reverse reveal">
+        <div class="deep-feature__text">
+          <h3>Balance <em>analytics</em></h3>
+          <p>Real-time weight differential, power ratio, trim stats, and preferred-side satisfaction displayed alongside your lineup. Every change updates the numbers instantly.</p>
+        </div>
+        <div class="deep-feature__visual">
+          <div class="stats-mockup">
+            <div class="stats-mockup__item">
+              <span class="stats-mockup__label">Weight Diff</span>
+              <span class="stats-mockup__value stats-mockup__value--good">3.2 kg</span>
+            </div>
+            <div class="stats-mockup__item">
+              <span class="stats-mockup__label">Power Balance</span>
+              <span class="stats-mockup__value stats-mockup__value--good">98.4%</span>
+            </div>
+            <div class="stats-mockup__item">
+              <span class="stats-mockup__label">Trim</span>
+              <span class="stats-mockup__value">+0.8 kg fwd</span>
+            </div>
+            <div class="stats-mockup__item">
+              <span class="stats-mockup__label">Side Pref</span>
+              <span class="stats-mockup__value stats-mockup__value--good">92%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="deep-feature reveal">
+        <div class="deep-feature__text">
+          <h3>Swap <em>suggestions</em></h3>
+          <p>Set your priorities &mdash; weight balance, power, trim, side preference, bench preference &mdash; and let the algorithm suggest the best seat swaps to improve your lineup.</p>
+        </div>
+        <div class="deep-feature__visual">
+          <div class="swap-mockup">
+            <div class="swap-mockup__row">
+              <span class="swap-mockup__name">A. Chen</span>
+              <span class="swap-mockup__arrow"><i data-lucide="arrow-right-left"></i></span>
+              <span class="swap-mockup__name">K. Müller</span>
+              <span class="swap-mockup__delta">-8.4 kg diff</span>
+            </div>
+            <div class="swap-mockup__row">
+              <span class="swap-mockup__name">J. Park</span>
+              <span class="swap-mockup__arrow"><i data-lucide="arrow-right-left"></i></span>
+              <span class="swap-mockup__name">T. Okafor</span>
+              <span class="swap-mockup__delta">+12% power</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── POWERING PODIUM FINISHES ───────── -->
+  <section class="podium" id="podium">
+    <div class="container">
+      <h2 class="section-title reveal">Powering podium <em>finishes</em></h2>
+      <p class="section-subtitle reveal reveal-delay-1">Top coaches and competitive crews rely on CrewCoach<br/>for precise crew configuration at every level of competition.</p>
+      <div class="logos-grid">
+        <div class="logo-item reveal">
+          <img src="https://vinsurancegroup.com/dragonboat/wp-content/uploads/sites/12/2019/12/AUSDBF-Logo.png" alt="AUSDBF" class="company-logo" />
+        </div>
+        <div class="logo-item reveal">
+          <img src="https://teamelite.com.au/cdn/shop/files/DBNSW_logo.png?v=1720401923" alt="DBNSW" class="company-logo" />
+        </div>
+        <div class="logo-item reveal">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqVmDY_1U71iHQTiQhQWBBZd93EDaaD0vUUQ&s" alt="Auroras" class="company-logo" />
+        </div>
+        <div class="logo-item reveal">
+          <img src="https://upload.wikimedia.org/wikipedia/en/d/dd/International_Dragon_Boat_Federation_logo.png" alt="IDBF" class="company-logo" />
+        </div>
+        <div class="logo-item reveal">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Canberra_Grammar_School_logo.svg/960px-Canberra_Grammar_School_logo.svg.png" alt="Canberra Grammar School" class="company-logo" />
+        </div>
+        <div class="logo-item reveal">
+          <img src="https://static.wixstatic.com/media/d80bc0_e4c2a548437f4b8a9ab572944b893268~mv2_d_2362_2362_s_2.png" alt="Saint Scholastica's" class="company-logo" />
+        </div>
+        <div class="logo-item reveal">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCev_WXYbyuSUu38E1hoTMPhJbJnLjrAb5mw&s" alt="Sydney Zodiacs" class="company-logo" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── PRICING ───────── -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <h2 class="section-title reveal">Simple pricing for <em>everyone.</em></h2>
+      <p class="section-subtitle reveal reveal-delay-1">Start free. Upgrade when you're ready.</p>
+
+      <div class="pricing__grid">
+        <div class="pricing-card reveal">
+          <h3 class="pricing-card__name">Free</h3>
+          <p class="pricing-card__desc">Everything you need to start</p>
+          <div class="pricing-card__price"><span class="pricing-card__amount">$0</span><span class="pricing-card__period">/ month</span></div>
+          <a href="#" class="btn btn--outline pricing-card__btn">Get Started</a>
+          <ul class="pricing-card__features">
+            <li><i data-lucide="check"></i> Up to 30 paddlers</li>
+            <li><i data-lucide="check"></i> 3 crewlists</li>
+            <li><i data-lucide="check"></i> Auto lineup generation</li>
+            <li><i data-lucide="check"></i> Drag &amp; drop editor</li>
+          </ul>
+        </div>
+
+        <div class="pricing-card pricing-card--featured reveal">
+          <span class="pricing-card__badge">Most Popular</span>
+          <h3 class="pricing-card__name">Pro</h3>
+          <p class="pricing-card__desc">For serious race teams</p>
+          <div class="pricing-card__price"><span class="pricing-card__amount">$60</span><span class="pricing-card__period">/ month</span></div>
+          <a href="#" class="btn pricing-card__btn">Start Free Trial</a>
+          <ul class="pricing-card__features">
+            <li><i data-lucide="check"></i> Unlimited paddlers</li>
+            <li><i data-lucide="check"></i> Unlimited crewlists</li>
+            <li><i data-lucide="check"></i> Multi-heat configs</li>
+            <li><i data-lucide="check"></i> Swap suggestions</li>
+            <li><i data-lucide="check"></i> Balance analytics</li>
+            <li><i data-lucide="check"></i> Priority support</li>
+          </ul>
+        </div>
+
+        <div class="pricing-card reveal">
+          <h3 class="pricing-card__name">Club</h3>
+          <p class="pricing-card__desc">For clubs &amp; federations</p>
+          <div class="pricing-card__price"><span class="pricing-card__amount">Custom</span><span class="pricing-card__period">per user</span></div>
+          <a href="#" class="btn btn--outline pricing-card__btn">Contact Us</a>
+          <ul class="pricing-card__features">
+            <li><i data-lucide="check"></i> Everything in Pro</li>
+            <li><i data-lucide="check"></i> Multiple coaches</li>
+            <li><i data-lucide="check"></i> Team management</li>
+            <li><i data-lucide="check"></i> Data export</li>
+            <li><i data-lucide="check"></i> Dedicated support</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── FAQ ───────── -->
+  <section class="faq" id="faq">
+    <div class="container container--narrow">
+      <h2 class="section-title reveal">Frequently asked <em>questions</em></h2>
+
+      <div class="faq__list">
+        <details class="faq__item reveal">
+          <summary class="faq__question">What is CrewCoach?</summary>
+          <div class="faq__answer">CrewCoach is a web application built for dragon boat teams. It lets coaches manage paddler rosters, build race-specific crewlists, and generate optimized seat configurations &mdash; all from one place. No spreadsheets, no guesswork.</div>
+        </details>
+        <details class="faq__item reveal">
+          <summary class="faq__question">Do I need an account?</summary>
+          <div class="faq__answer">Yes &mdash; a free account keeps your data secure and synced across devices. Sign up takes less than a minute with your email address.</div>
+        </details>
+        <details class="faq__item reveal">
+          <summary class="faq__question">What data do I need for each paddler?</summary>
+          <div class="faq__answer">At minimum, a name and weight. For best results, add erg score, preferred paddling side, seat preference (front / middle / back), gender, and role (paddler, drummer, sweep). The more data you provide, the smarter the auto-config becomes.</div>
+        </details>
+        <details class="faq__item reveal">
+          <summary class="faq__question">How does auto lineup work?</summary>
+          <div class="faq__answer">CrewCoach runs a greedy optimization algorithm that tries three different orderings &mdash; by weight, by power, and a combined score &mdash; then picks the lineup with the best overall balance. It accounts for left/right weight distribution, power ratios, and individual side and bench preferences.</div>
+        </details>
+        <details class="faq__item reveal">
+          <summary class="faq__question">Is my data private?</summary>
+          <div class="faq__answer">Absolutely. All data is stored securely in Firebase under your personal account. No one else can access your rosters, crewlists, or configurations unless you share them.</div>
+        </details>
+        <details class="faq__item reveal">
+          <summary class="faq__question">Does it work on mobile?</summary>
+          <div class="faq__answer">Yes. CrewCoach is fully responsive and works on phones, tablets, and desktops. The drag-and-drop editor supports touch input, so you can adjust lineups right at the dock.</div>
+        </details>
+        <details class="faq__item reveal">
+          <summary class="faq__question">Can I manage multiple boats or events?</summary>
+          <div class="faq__answer">Yes. Create as many crewlists and configurations as you need. Each crewlist can have its own age division, boat size, and category &mdash; perfect for festivals with multiple race categories.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── FINAL CTA ───────── -->
+  <section class="final-cta">
+    <div class="container">
+      <h2 class="final-cta__title reveal">Ready to optimize your <em>crew?</em></h2>
+      <p class="final-cta__sub reveal reveal-delay-1">Join coaches who have moved beyond spreadsheets.</p>
+      <a href="#" class="btn btn--lg reveal reveal-delay-2">Get Started &mdash; Free</a>
+    </div>
+  </section>
+
+  <!-- ───────── FOOTER ───────── -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">CrewCoach</span>
+        <p class="footer__tagline">The command center for dragon boat teams.</p>
+      </div>
+      <div class="footer__links">
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="mailto:hello@crewcoach.app">Contact</a>
+      </div>
+      <p class="footer__copy">&copy; 2026 CrewCoach. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
