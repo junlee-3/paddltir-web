@@ -100,7 +100,9 @@ export default function CrewlistDetail({ userId }: CrewlistDetailProps) {
           <h1 className="text-2xl font-semibold tracking-tight text-slate-900">{crewlist.name}</h1>
           <p className="text-sm text-slate-500 mt-1">
             {crewlist.ageDivision} · {crewlist.size === "standard" ? "Standard" : "Small"} ·{" "}
-            {crewlist.category.charAt(0).toUpperCase() + crewlist.category.slice(1)}
+            {crewlist.category
+              ? crewlist.category.charAt(0).toUpperCase() + crewlist.category.slice(1)
+              : ""}
           </p>
           {isSaving && (
             <p className="text-xs font-medium uppercase tracking-wider text-slate-400 mt-2">Saving...</p>

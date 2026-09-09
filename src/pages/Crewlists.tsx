@@ -17,7 +17,8 @@ function formatSize(size: string): string {
   return size === "standard" ? "Standard" : "Small";
 }
 
-function formatCategory(category: string): string {
+function formatCategory(category: string | null | undefined): string {
+  if (!category) return "";
   return category.charAt(0).toUpperCase() + category.slice(1);
 }
 

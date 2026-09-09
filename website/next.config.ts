@@ -35,15 +35,16 @@ const csp = [
   // Without those three, every page logs a CSP violation to the console the
   // moment Signals fires (it cost the site its Lighthouse best-practices score).
   [
-    "img-src 'self' data:",
+    "img-src 'self' data: blob:",
     "https://*.google-analytics.com",
     "https://*.googletagmanager.com",
     "https://*.g.doubleclick.net",
     "https://*.google.com",
     "https://*.google.com.au",
+    "https://*.supabase.co",
   ].join(" "),
-  "font-src 'self'",
-  "style-src 'self' 'unsafe-inline'",
+  "font-src 'self' https://fonts.gstatic.com",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://va.vercel-scripts.com",
   [
     "connect-src 'self'",
@@ -51,7 +52,6 @@ const csp = [
     "https://va.vercel-scripts.com",
     "https://*.supabase.co",
     "wss://*.supabase.co",
-    "https://paddltir-web.vercel.app",
     "https://paddltir-web.vercel.app",
   ].join(" "),
 ].join("; ");
@@ -146,13 +146,17 @@ const nextConfig: NextConfig = {
       { source: "/feed.xml", destination: "/about", permanent: true },
     ];
   },
-  // Vite SPA under /app — filesystem (assets) wins; missing paths → index.html
+  // Vite SPA under /app — public/assets are served as files; only app routes
+  // fall back to index.html (never rewrite /app/assets/* to HTML).
   async rewrites() {
-    return [
-      { source: "/app", destination: "/app/index.html" },
-      { source: "/app/", destination: "/app/index.html" },
-      { source: "/app/:path*", destination: "/app/index.html" },
-    ];
+    return {
+      fallback: [
+        { source: "/app", destination: "/app/index.html" },
+        { source: "/app/", destination: "/app/index.html" },
+        { source: "/app/:page", destination: "/app/index.html" },
+        { source: "/app/:page/:id", destination: "/app/index.html" },
+      ],
+    };
   },
 };
 
