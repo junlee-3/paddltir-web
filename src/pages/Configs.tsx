@@ -136,7 +136,7 @@ export default function Configs({ userId }: ConfigsProps) {
     } catch (err) {
       console.error("Config save error:", err);
       const msg = err instanceof Error ? err.message : String(err);
-      alert(`Failed to save config: ${msg}. If you see "permission-denied", run: firebase deploy --only firestore:rules`);
+      alert(`Failed to save config: ${msg}. If this is a permissions error, check Supabase RLS policies for the configs table.`);
     } finally {
       setIsSubmitting(false);
     }

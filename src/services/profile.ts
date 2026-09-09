@@ -1,6 +1,4 @@
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { updateProfile } from "firebase/auth";
-import { auth, storage } from "../firebase";
+import { supabase } from "../supabase";
 
 const MAX_FILE_SIZE_MB = 2;
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/gif", "image/webp"];
@@ -18,14 +16,25 @@ export async function uploadProfilePhoto(
 
   const ext = file.name.split(".").pop() || "jpg";
   const filename = `avatar_${Date.now()}.${ext}`;
-  const storageRef = ref(storage, `users/${userId}/${filename}`);
+  const path = `${userId}/${filename}`;
 
-  await uploadBytes(storageRef, file);
-  const downloadURL = await getDownloadURL(storageRef);
+  const { error: uploadError } = await supabase.storage
+    .from("avatars")
+    .upload(path, file, { upsert: true, contentType: file.type });
 
-  const currentUser = auth.currentUser;
-  if (!currentUser) {
+  if (uploadError) throw uploadError;
+
+  const { data } = supabase.storage.from("avatars").getPublicUrl(path);
+  const downloadURL = data.publicUrl;
+
+  const { data: sessionData, error: sessionError } = await supabase.auth.getUser();
+  if (sessionError) throw sessionError;
+  if (!sessionData.user) {
     throw new Error("Not authenticated");
   }
-  await updateProfile(currentUser, { photoURL: downloadURL });
+
+  const { error: updateError } = await supabase.auth.updateUser({
+    data: { photo_url: downloadURL },
+  });
+  if (updateError) throw updateError;
 }

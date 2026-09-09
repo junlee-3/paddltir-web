@@ -1,12 +1,11 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { signOut } from "firebase/auth";
-import type { User } from "firebase/auth";
 import { ClipboardList, Kayak, Camera, Menu, X } from "lucide-react";
 import Cropper from "react-easy-crop";
 import type { Area } from "react-easy-crop";
-import { auth } from "../firebase";
+import { supabase } from "../supabase";
 import { uploadProfilePhoto } from "../services/profile";
+import type { AuthUser } from "../types/auth";
 
 const HomeIcon = () => (
   <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
@@ -48,7 +47,7 @@ const BellIcon = () => (
 );
 
 interface LayoutProps {
-  user: User;
+  user: AuthUser;
 }
 
 const UPLOAD_TIMEOUT_MS = 30000;
@@ -114,7 +113,9 @@ export default function Layout({ user }: LayoutProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const lastObjectUrlRef = useRef<string | null>(null);
 
-  const handleLogout = () => signOut(auth);
+  const handleLogout = () => {
+    void supabase.auth.signOut();
+  };
 
   const initials = user.email
     ? user.email
@@ -215,7 +216,7 @@ export default function Layout({ user }: LayoutProps) {
 
       withTimeout(uploadProfilePhoto(user.uid, file), UPLOAD_TIMEOUT_MS)
         .then(() => {
-          // When Firebase updates the photoURL, the avatarPreview will sync via useEffect.
+          // When auth metadata updates photoURL, the avatarPreview will sync via useEffect.
         })
         .catch((err) => {
           alert(err instanceof Error ? err.message : "Failed to upload photo");

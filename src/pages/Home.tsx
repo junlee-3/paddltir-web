@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import type { User } from "firebase/auth";
 import { Users, Kayak } from "lucide-react";
+import type { AuthUser } from "../types/auth";
 
 interface HomeProps {
-  user: User;
+  user: AuthUser;
 }
 
 export default function Home({ user }: HomeProps) {

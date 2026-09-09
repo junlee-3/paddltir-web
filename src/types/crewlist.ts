@@ -1,4 +1,3 @@
-import type { Timestamp } from "firebase/firestore";
 import type { ConfigSize, ConfigCategory } from "./config";
 
 export interface Crewlist {
@@ -8,7 +7,7 @@ export interface Crewlist {
   size: ConfigSize;
   category: ConfigCategory;
   memberIds: string[];
-  createdAt?: Timestamp;
+  createdAt?: string;
 }
 
 export interface CrewlistFormData {

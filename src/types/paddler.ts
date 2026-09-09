@@ -1,5 +1,3 @@
-import type { Timestamp } from "firebase/firestore";
-
 export type PreferredSide = "Left" | "Right" | "Both";
 export type Gender = "Male" | "Female";
 export type SeatPreference = "Stroke" | "Pace" | "Engine" | "Sprint";
@@ -15,7 +13,7 @@ export interface Paddler {
   gender: Gender;
   seatPreference: SeatPreference;
   role: Role;
-  createdAt?: Timestamp;
+  createdAt?: string;
 }
 
 export interface PaddlerFormData {

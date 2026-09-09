@@ -1,5 +1,3 @@
-import type { Timestamp } from "firebase/firestore";
-
 export type ConfigSize = "small" | "standard";
 export type ConfigCategory = "open" | "women" | "mixed";
 
@@ -28,7 +26,7 @@ export interface Config {
   reservedHeat1Ids?: string[];
   reservedHeat2Ids?: string[];
   reservedFinalIds?: string[];
-  createdAt?: Timestamp;
+  createdAt?: string;
 }
 
 export function reservedIdsKey(
