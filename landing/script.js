@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════
-   CrewCoach Landing Page — Interactions
+   Paddltir Landing Page — Interactions
    ═══════════════════════════════════════════ */
 
 (function () {

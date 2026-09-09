@@ -254,7 +254,7 @@ export default function Layout({ user }: LayoutProps) {
         `}
       >
         <div className="h-14 shrink-0 flex items-center justify-between px-6 border-b border-slate-200">
-           <span className="text-xs font-bold uppercase tracking-widest text-slate-900">CrewCoach</span>
+           <span className="text-xs font-bold uppercase tracking-widest text-slate-900">Paddltir</span>
            <button 
              onClick={() => setMobileMenuOpen(false)}
              className="p-1 -mr-2 text-slate-500 hover:text-slate-900 lg:hidden"
@@ -299,7 +299,7 @@ export default function Layout({ user }: LayoutProps) {
             >
               <Menu className="w-5 h-5" />
             </button>
-            <span className="text-xs font-bold uppercase tracking-widest text-slate-900">CrewCoach</span>
+            <span className="text-xs font-bold uppercase tracking-widest text-slate-900">Paddltir</span>
           </div>
 
           <div className="flex items-center gap-4">
