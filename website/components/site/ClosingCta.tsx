@@ -33,7 +33,7 @@ export function ClosingCta() {
             Open App
           </a>
           <a
-            href="https://github.com/william-laverty/ato-mcp"
+            href="https://github.com/junlee-3/paddltir-web"
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-outline w-full px-7 py-3.5 text-sm sm:w-auto sm:py-3"

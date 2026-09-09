@@ -16,9 +16,9 @@ export const metadata: Metadata = {
 --------------------------------------------------------------------------- */
 
 const HERO_TRUST = [
-  { title: "Every answer cited", sub: "the section, the ruling, the page" },
-  { title: "34,500+ documents", sub: "refreshed monthly" },
-  { title: "Works with your agent", sub: "Claude, ChatGPT and more" },
+  { title: "Configure", sub: "seat every paddler with weight and side in mind" },
+  { title: "Manage", sub: "keep rosters and crewlists ready for race day" },
+  { title: "Insights", sub: "see trim, balance, and lineup gaps before you race" },
 ];
 
 const CORPUS_STATS = [
@@ -98,7 +98,7 @@ const pageJsonLd = {
       name: "ato-mcp client",
       description:
         "Open-source MCP client that bridges stdio hosts to the hosted Australian Tax MCP endpoint.",
-      codeRepository: "https://github.com/william-laverty/ato-mcp",
+      codeRepository: "https://github.com/junlee-3/paddltir-web",
       programmingLanguage: "TypeScript",
       runtimePlatform: "Node.js",
       license: "https://www.gnu.org/licenses/agpl-3.0.html",
@@ -403,15 +403,15 @@ export default function HomePage() {
                   className="reveal-lcp max-w-[16ch] text-[clamp(2.25rem,8.5vw,3.5rem)] font-normal leading-[1.08] tracking-tight2 text-zinc-900 sm:max-w-none sm:leading-[1.04]"
                   style={{ "--reveal-delay": "0s" } as React.CSSProperties}
                 >
-                  Your AI agent,
+                  Build crews that
                   <br />
-                  <em className="pr-[0.04em] [font-family:var(--font-serif-accent)] text-[1.06em] leading-none [-webkit-text-stroke:0.35px_#18181b]">fluent</em> in Australian tax
+                  <em className="pr-[0.04em] [font-family:var(--font-serif-accent)] text-[1.06em] leading-none [-webkit-text-stroke:0.35px_#18181b]">win</em> when it counts
                 </h1>
                 <p
                   className="reveal mx-auto mt-2.5 max-w-sm text-[15px] leading-relaxed text-zinc-500 sm:max-w-xl lg:mx-0"
                   style={{ "--reveal-delay": "0.16s" } as React.CSSProperties}
                 >
-                  The MCP server for Australian Taxation Office documents.
+                  Configure, manage, and get real insights into your crew.
                 </p>
                 <div
                   className="reveal mt-[18px] flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:justify-center lg:justify-start"

@@ -7,7 +7,7 @@
 export const SITE = "https://ato-mcp.com.au";
 
 export const ORG_ID = `${SITE}/#org`;
-export const PERSON_ID = `${SITE}/about#william`;
+export const PERSON_ID = `${SITE}/about#jun`;
 
 /** Compact author reference for BlogPosting/TechArticle nodes: keeps each
  *  page self-contained (type + name resolve locally) while the shared @id
@@ -16,7 +16,7 @@ export function personRef() {
   return {
     "@type": "Person",
     "@id": PERSON_ID,
-    name: "William Laverty",
+    name: "Jun Lee",
     url: `${SITE}/about`,
   };
 }
@@ -26,16 +26,16 @@ export function personJsonLd() {
   return {
     "@type": "Person",
     "@id": PERSON_ID,
-    name: "William Laverty",
+    name: "Jun Lee",
     url: `${SITE}/about`,
     jobTitle: "Software developer",
     worksFor: { "@id": ORG_ID },
-    sameAs: ["https://github.com/william-laverty"],
+    sameAs: ["https://github.com/junlee-3"],
     knowsAbout: [
-      "Australian tax law",
-      "Model Context Protocol",
-      "AI agent tooling",
-      "Information retrieval",
+      "Dragon boat racing",
+      "Crew management",
+      "Sports analytics",
+      "Boat configuration",
     ],
   };
 }

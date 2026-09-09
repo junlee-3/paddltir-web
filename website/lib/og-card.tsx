@@ -3,7 +3,7 @@ import { ImageResponse } from "next/og";
 /**
  * Shared OG-card renderer for the homepage, blog posts and guides: the
  * hero-card look (warm paper + vermillion glow bleeding from the upper
- * left), logo row, big Switzer title. No URL or chip labels (William,
+ * left), logo row, big Switzer title. No URL or chip labels.
  * review on #61). Callers (the per-route opengraph-image.tsx files, edge
  * runtime) pass their copy in.
  */

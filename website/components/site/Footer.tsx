@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { CurrentYear } from "./CurrentYear";
 
-const GITHUB = "https://github.com/william-laverty/ato-mcp";
+const GITHUB = "https://github.com/junlee-3/paddltir-web";
 
 function Mark({ size = 26 }: { size?: number }) {
   return (
@@ -76,7 +76,7 @@ export function Footer() {
 
           {/* Bottom bar */}
           <div className="mt-14 flex flex-col gap-4 border-t border-zinc-200 pt-7 text-[13px] text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
-            <p>© <CurrentYear /> William Laverty</p>
+            <p>© <CurrentYear /> Jun Lee</p>
             <p>ATO content remains subject to ATO publication terms.</p>
           </div>
         </div>

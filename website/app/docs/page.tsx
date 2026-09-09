@@ -115,12 +115,12 @@ export default function DocsPage() {
         Full reference documentation:{" "}
         <a
           className="inline-flex items-center gap-1.5 text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900"
-          href="https://github.com/william-laverty/ato-mcp/blob/main/docs/tools.md"
+          href="https://github.com/junlee-3/paddltir-web"
           target="_blank"
           rel="noopener noreferrer"
         >
           <GitHubIcon size={15} />
-          github.com/william-laverty/ato-mcp/docs/tools.md
+          github.com/junlee-3/paddltir-web
         </a>
       </p>
 

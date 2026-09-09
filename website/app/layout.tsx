@@ -48,7 +48,7 @@ const GA_MEASUREMENT_ID = "G-1DFRLLC2CR";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
   // Site name for Google: WebSite JSON-LD name + og:site_name + applicationName
-  // all say "Australian Tax MCP" (never "ato-mcp" — William, 2026-07-23).
+  // all say "Australian Tax MCP" (never "ato-mcp").
   applicationName: "Australian Tax MCP",
   title: {
     default: "Australian Tax Knowledge for AI Agents",
@@ -67,8 +67,8 @@ export const metadata: Metadata = {
     "BAS checklist AI",
     "tax RAG Australia",
   ],
-  authors: [{ name: "William Laverty", url: "https://github.com/william-laverty" }],
-  creator: "William Laverty",
+  authors: [{ name: "Jun Lee", url: "https://github.com/junlee-3" }],
+  creator: "Jun Lee",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
@@ -110,8 +110,8 @@ const orgJsonLd = {
       foundingDate: "2026-05-26",
       founder: {
         "@type": "Person",
-        "@id": `${SITE}/about#william`,
-        name: "William Laverty",
+        "@id": `${SITE}/about#jun`,
+        name: "Jun Lee",
         url: `${SITE}/about`,
       },
       email: "privacy@ato-mcp.com.au",
@@ -123,9 +123,8 @@ const orgJsonLd = {
         "Model Context Protocol",
       ],
       sameAs: [
-        "https://github.com/william-laverty/ato-mcp",
-        "https://www.npmjs.com/package/ato-mcp",
-        "https://glama.ai/mcp/servers/william-laverty/ato-mcp",
+        "https://github.com/junlee-3/paddltir-web",
+        "https://github.com/junlee-3",
       ],
     },
     {

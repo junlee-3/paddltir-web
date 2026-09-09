@@ -72,12 +72,12 @@ export default function AboutPage() {
           <p className="text-[15px] leading-relaxed text-zinc-700">
             ato-mcp is designed, built and run by{" "}
             <a
-              href="https://github.com/william-laverty"
+              href="https://github.com/junlee-3"
               target="_blank"
               rel="noopener noreferrer"
               className="text-zinc-900 underline decoration-zinc-300 underline-offset-2 hover:decoration-zinc-900"
             >
-              William Laverty
+              Jun Lee
             </a>
             , an Australian software developer. It is a small, independent
             product, not a company with a sales team, and the site doesn&apos;t
@@ -86,7 +86,7 @@ export default function AboutPage() {
             registry count that includes mirrors and CI, so treat it as reach,
             not a user count). The corpus numbers on this site are real and the{" "}
             <a
-              href="https://github.com/william-laverty/ato-mcp"
+              href="https://github.com/junlee-3/paddltir-web"
               target="_blank"
               rel="noopener noreferrer"
               className="text-zinc-900 underline decoration-zinc-300 underline-offset-2 hover:decoration-zinc-900"
@@ -168,7 +168,7 @@ export default function AboutPage() {
           <p className="text-[15px] leading-relaxed text-zinc-700">
             Product questions and bug reports:{" "}
             <a
-              href="https://github.com/william-laverty/ato-mcp/issues"
+              href="https://github.com/junlee-3/paddltir-web/issues"
               target="_blank"
               rel="noopener noreferrer"
               className="text-zinc-900 underline decoration-zinc-300 underline-offset-2 hover:decoration-zinc-900"

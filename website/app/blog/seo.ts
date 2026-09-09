@@ -34,7 +34,7 @@ export function postMetadata(
       description: post.description,
       publishedTime: post.date,
       modifiedTime: post.date,
-      authors: ["William Laverty"],
+      authors: ["Jun Lee"],
     },
     twitter: {
       card: "summary_large_image",
