@@ -38,10 +38,10 @@ function Cross({ cx, cy }: { cx: number; cy: number }) {
 /** Deductions — a claims checklist: three real claims ticked, one refused. */
 export function DeductionsGraphic({ className = "h-auto w-full max-w-[300px]" }: { className?: string }) {
   const rows = [
-    { label: "Home office", note: "70c per hour", ok: true },
-    { label: "New laptop", note: "instant write-off", ok: true },
-    { label: "Car to client sites", note: "88c per km", ok: true },
-    { label: "Parking fines", note: "not deductible", ok: false },
+    { label: "Preferred side set", note: "left / right", ok: true },
+    { label: "Weight recorded", note: "for trim", ok: true },
+    { label: "Sweep assigned", note: "heat ready", ok: true },
+    { label: "Empty mid seats", note: "fill before load", ok: false },
   ];
   return (
     <svg viewBox="0 0 300 164" className={className} fill="none" aria-hidden="true">
