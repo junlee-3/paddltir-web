@@ -146,24 +146,8 @@ const nextConfig: NextConfig = {
       { source: "/feed.xml", destination: "/about", permanent: true },
     ];
   },
-  // Vite SPA under /app — never rewrite /app/assets/* (missing hashed files
-  // must 404 as real misses, not return index.html as "JavaScript").
-  async rewrites() {
-    return {
-      fallback: [
-        { source: "/app", destination: "/app/index.html" },
-        { source: "/app/", destination: "/app/index.html" },
-        {
-          source: "/app/:page((?!assets$)[^/]+)",
-          destination: "/app/index.html",
-        },
-        {
-          source: "/app/:page((?!assets$)[^/]+)/:id",
-          destination: "/app/index.html",
-        },
-      ],
-    };
-  },
+  // Vite SPA deep links are rewritten in middleware.ts so /app/assets/* is
+  // never turned into index.html.
 };
 
 export default nextConfig;
