@@ -29,6 +29,9 @@ node_modules/
 # Production build
 dist/
 build/
+website/.next/
+website/public/app/**
+!website/public/app/.gitkeep
 
 # Vite cache
 .vite/

@@ -1,0 +1,175 @@
+# ato-mcp — full site content for LLMs
+
+> The Australian tax knowledge base for AI agents: an MCP (Model Context Protocol)
+> service giving cited retrieval over 34,500+ ATO documents, the income tax and
+> GST Acts and 4,900+ public rulings, plus a personal-facts layer and four
+> deterministic tax workflow tools. Hosted-only: point any MCP client at
+> https://api.ato-mcp.com.au/mcp and sign in with your browser.
+> Not tax advice: every tool returns structured data plus resolvable ATO
+> citations for an agent to reason over.
+
+Canonical site: https://ato-mcp.com.au · Short index: https://ato-mcp.com.au/llms.txt
+
+## What ato-mcp is
+
+ato-mcp is an MCP server for Australian tax. It plugs into Claude, ChatGPT, Codex,
+Gemini CLI, Cursor, VS Code or any Model Context Protocol host and turns the
+Australian tax corpus into 13 tools an AI agent can call. Every answer is cited
+back to its source (ato.gov.au guidance, legislation, or an ATO public ruling).
+
+The corpus, in numbers:
+
+- 34,564 documents and 286,638 searchable passages
+- ato.gov.au guidance pages, the ITAA 1997, the ITAA 1936 and the GST Act
+  (6,468 sections of tax law plus 2,310 statutory definitions, including the
+  GST Act's s 195-1 dictionary)
+- 4,937 public rulings across ten series (TR, TD, GSTR, PCG and more), with
+  withdrawn rulings clearly flagged
+- 64,217 citation links tying rulings, guidance and legislation into one graph
+- Rebuilt on a monthly cycle from ato.gov.au, the Federal Register of
+  Legislation and law.ato.gov.au, and served fresh
+
+## Install (https://ato-mcp.com.au/install)
+
+One line, then sign in with your browser — your account is created on first
+sign-in, no token to copy.
+
+- Remote MCP endpoint: https://api.ato-mcp.com.au/mcp (streamable HTTP, OAuth)
+- Claude Code: `claude mcp add --scope user --transport http ato https://api.ato-mcp.com.au/mcp`
+- Cursor / VS Code / Codex / Gemini CLI / Claude.ai / ChatGPT: add the same
+  remote endpoint as an HTTP MCP server in the client's MCP settings — the
+  install picker at https://ato-mcp.com.au/install has the exact command or
+  config snippet per client
+- Stdio-only clients: the open-source npm package proxies the hosted server —
+  `npx -y ato-mcp` (Node 22+); first run opens your browser to sign in
+
+## The 13 tools (https://ato-mcp.com.au/docs)
+
+Retrieval:
+
+- `search` — hybrid keyword + semantic search over the whole corpus, rank-fused,
+  point-in-time aware. Example: `search({ query: "instant asset write-off eligibility", k: 5 })`
+- `get_chunks` — resolve chunk_ids to full passages with optional neighbouring
+  context. Example: `get_chunks({ chunk_ids: ["legis:…/8-1#0"], neighbours: 1 })`
+- `get_doc` — fetch a whole document: metadata, full text in reading order, and
+  its anchor list. Example: `get_doc({ doc_id: "legis:c2004a05138/8-1" })`
+- `get_doc_anchors` — the citation graph around a document: anchors, inbound and
+  outbound references. Example: `get_doc_anchors({ doc_id: "legis:c2004a05138/8-1" })`
+- `get_definition` — statutory definitions (ITAA 1997 Dictionary and friends),
+  point-in-time selectable. Example: `get_definition({ term: "depreciating asset" })`
+- `get_threshold` — time-keyed scalar facts: instant asset write-off limit, GST
+  registration threshold, CGT discount, super caps and more.
+  Example: `get_threshold({ name: "instant_asset_write_off" })`
+- `fetch` — live-fetch a page by URI scheme (ato:, ato-law:, legis:) when
+  freshness matters. Example: `fetch({ uri: "ato:tax-rates-and-codes/…" })`
+- `stats` — corpus snapshot: counts and schema version.
+
+Personal context:
+
+- `get_user_facts` — the user's onboarded tax profile (about 25 fields: business
+  structure, GST registration, residency and so on) that the agent reads once
+  per session instead of re-asking.
+
+Workflows (deterministic, cited, branch on the user's taxpayer structure):
+
+- `deduction_discovery` — every plausibly-applicable deduction category for the
+  user's taxpayer shape, cited and confidence-rated.
+- `depreciation_helper` — prime-cost / diminishing-value / instant-asset-write-off /
+  pool / Division 43 schedules, computed deterministically.
+- `bas_prep_checklist` — a tiered, cited BAS checklist for the user's reporting
+  period: labels, evidence, gotchas.
+- `audit_risk_check` — heuristic ATO red-flags over a draft return, risk-banded
+  with the guidance behind each flag.
+
+Full tool reference (schemas, examples, errors):
+https://github.com/william-laverty/ato-mcp/blob/main/docs/tools.md
+
+## FAQ
+
+**Is this tax advice?**
+No. ato-mcp retrieves published ATO material and runs fixed calculations, always
+with the source attached. Confidence ratings and risk bands are guides, not
+professional judgement. Your agent does the reasoning, and decisions that matter
+should still go past a registered tax agent.
+
+**What does ato-mcp store about me?**
+Your onboarding facts (business structure, GST registration and so on — about 25
+fields you control), your sign-in identity, and basic usage counts. Never tool
+names, never query content, never results: the database physically has nowhere
+to store them, and the privacy page is generated from that same schema so it
+can't drift.
+
+**Which agents does it work with?**
+Anything that speaks the Model Context Protocol: Claude, ChatGPT, Codex, Gemini
+CLI, Cursor, VS Code and more. One line to install, then sign in with your
+browser.
+
+**How current is the corpus?**
+The corpus is rebuilt from ato.gov.au, the Federal Register of Legislation and
+law.ato.gov.au on a monthly cycle and served fresh. The stats tool reports the
+live snapshot.
+
+**Is it open source?**
+Most clients connect directly to the hosted endpoint with no local code at all.
+The optional npm client is open source (AGPL-3.0) and public, so you can verify
+exactly what it does. The hosted retrieval platform and the corpus are
+maintained privately.
+
+**Is there an MCP server for Australian tax?**
+Yes. ato-mcp is an MCP server for Australian tax: it gives any agent that
+speaks the Model Context Protocol (Claude, ChatGPT, Codex, Gemini CLI, Cursor,
+VS Code) cited retrieval over 34,500+ ATO documents, the income tax and GST
+Acts and 4,900+ public rulings.
+
+**What is MCP (the Model Context Protocol)?**
+MCP is the open standard AI agents use to call outside tools and data sources.
+ato-mcp uses it to hand your agent 13 Australian tax tools: search over the
+corpus, statutory definitions, current rates and thresholds, and four workflow
+tools, with every answer carrying its ATO citation.
+
+**Do I need to be a developer?**
+No. If you can paste a command and sign in with your browser, you can connect
+ato-mcp. The install page (https://ato-mcp.com.au/install) walks through each
+client step by step.
+
+Full FAQ: https://ato-mcp.com.au/faq
+
+## Compared with the alternatives (https://ato-mcp.com.au/compare)
+
+Browsing ato.gov.au yourself: the answers exist but span thousands of pages,
+rulings and thresholds; one real question often takes an hour or more.
+Asking a chatbot on its own: fast but uncited, drawn from training data of
+uncertain age; thresholds go stale silently and you can't act on "probably".
+Your agent with ato-mcp: the same agent, grounded in the actual corpus, aware
+of your saved tax profile, running deterministic calculations, with the ATO
+source attached to every claim.
+
+## About (https://ato-mcp.com.au/about)
+
+ato-mcp is designed, built and run by William Laverty, an Australian software
+developer (https://github.com/william-laverty). It is a small, independent
+product: no invented testimonials, no made-up user counts, and the client code
+is public so you can check both. It is not affiliated with, endorsed by, or
+operated by the Australian Taxation Office. Contact: GitHub issues for product
+questions, privacy@ato-mcp.com.au for privacy and data requests.
+
+## Latest update (2026-07-04): The new ato-mcp
+
+https://ato-mcp.com.au/blogs/the-new-ato-mcp
+
+The biggest release yet: sign in with your browser (the token flow is gone), a
+personal tax-facts layer so your agent understands your situation, and a rebuilt
+corpus — 34,564 documents (up from ~29,900), 286,638 passages (+37% in one
+release), rulings coverage more than doubled to 4,937, the ITAA 1936 and GST Act
+added alongside the ITAA 1997, and 64,217 citation links tying it all together,
+with measurably better search.
+
+## Policies
+
+- Privacy (https://ato-mcp.com.au/privacy): generated from the database schema;
+  never stores queries, tool names or results. Last updated 26 May 2026.
+- Terms (https://ato-mcp.com.au/terms): independent service, not affiliated with
+  or endorsed by the Australian Taxation Office; not tax, legal or financial
+  advice. Last updated 26 May 2026.
+
+Operator: William Laverty (https://github.com/william-laverty).

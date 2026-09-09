@@ -1,0 +1,32 @@
+# ato-mcp
+
+> The Australian tax knowledge base for AI agents: an MCP (Model Context Protocol)
+> service giving cited retrieval over 34,500+ ATO documents, the income tax and
+> GST Acts and 4,900+ public rulings, plus a personal-facts layer and four
+> tax workflow tools (deduction_discovery, depreciation_helper, bas_prep_checklist,
+> audit_risk_check). Hosted: point your AI client at the remote MCP endpoint and
+> sign in with your browser — your account is created on first sign-in. The optional
+> npm client you run is open source (AGPL-3.0). Not tax advice: every tool returns
+> structured data plus resolvable ATO citations for an agent to reason over.
+
+## Docs
+
+- [llms-full.txt](https://ato-mcp.com.au/llms-full.txt): the full site content as a single markdown file
+- [Install](https://ato-mcp.com.au/install): one-line install for Claude Code, Codex, Gemini CLI, Cursor, VS Code, Claude.ai, ChatGPT and any MCP client
+- [Documentation](https://ato-mcp.com.au/docs): install, connect to Claude Code / any MCP host, all 13 tools
+- [FAQ](https://ato-mcp.com.au/faq): common questions (is it tax advice, what does it store, which agents work)
+- [Compare](https://ato-mcp.com.au/compare): ato-mcp vs browsing ato.gov.au vs asking a chatbot alone
+- [About](https://ato-mcp.com.au/about): who builds ato-mcp, trust signals, contact
+- [Full tool reference](https://github.com/william-laverty/ato-mcp/blob/main/docs/tools.md): input/output schemas, examples, errors
+- [README](https://github.com/william-laverty/ato-mcp/blob/main/README.md): corpus contents, architecture, privacy model
+
+## Install
+
+- Remote MCP endpoint: https://api.ato-mcp.com.au/mcp (streamable HTTP, OAuth — your browser opens to sign in with email or Google)
+- Claude Code: `claude mcp add --scope user --transport http ato https://api.ato-mcp.com.au/mcp`
+- Stdio-only clients: npm package ato-mcp (Node 22+) proxies the hosted server — `npx -y ato-mcp`; first run opens your browser to sign in
+
+## Policies
+
+- [Privacy](https://ato-mcp.com.au/privacy): generated from the database schema; never stores queries, tool names or results
+- [Terms](https://ato-mcp.com.au/terms)

@@ -5,7 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "dev:website": "npm run dev --prefix website",
+    "build:app": "vite build",
+    "build:website": "npm run build --prefix website",
+    "build": "npm run build:app && npm run build:website",
     "preview": "vite preview",
     "lint": "eslint .",
     "build:css": "postcss src/index.css -o dist/styles.css"
