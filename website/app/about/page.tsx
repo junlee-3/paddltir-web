@@ -88,11 +88,12 @@ export default function AboutPage() {
               rel="noopener noreferrer"
               className="text-zinc-900 underline decoration-zinc-300 underline-offset-2 hover:decoration-zinc-900"
             >
-              source code is public under the MIT License
+              source code is public
             </a>
-            , so you can check exactly what runs when you use the app.
-            Copyright stays with Jun Lee; you may still use, modify, and
-            distribute the software — including commercially.
+            {" "}
+            so you can inspect what runs. Copyright and all rights stay with Jun
+            Lee — use, hosting, modification, distribution, and sale require
+            permission (including when you buy access from us).
           </p>
         </section>
 
@@ -112,8 +113,8 @@ export default function AboutPage() {
               you confirm a lineup.
             </li>
             <li>
-              The app is open source: you can read the code, run it yourself,
-              and report issues on GitHub.
+              The source is public for inspection. Running, hosting, or selling
+              it without a licence from Jun Lee is not allowed.
             </li>
             <li>
               Privacy is straightforward. The{" "}

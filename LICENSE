@@ -1,21 +1,30 @@
-MIT License
+Copyright (c) 2026 Jun Lee. All rights reserved.
 
-Copyright (c) 2026 Jun Lee
+Paddltir and this repository are the exclusive intellectual property of Jun Lee.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+The source code is published publicly so you can inspect it. Publication does not
+grant you any licence to use, copy, modify, merge, publish, distribute,
+sublicense, sell, host, or otherwise exploit the Software — or any substantial
+portion of it — except as expressly permitted in writing by the copyright holder.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Permission is granted only when Jun Lee sells you access, grants you a licence,
+or otherwise authorises you in writing (including by accepting payment for a
+paid plan or licence under the then-current Terms of Service or purchase terms).
+Any such permission applies only to the scope stated in that sale or written
+authorisation.
+
+Without prior written permission from Jun Lee, you must not:
+
+- use the Software for any purpose other than reading the public source;
+- run, host, or deploy the Software (or a modified version) as a product or
+  service;
+- sell, sublicense, or commercially exploit the Software;
+- remove or alter copyright, licence, or proprietary notices.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+IMPLIED. TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE COPYRIGHT HOLDER SHALL NOT
+BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM THE SOFTWARE
+OR ITS USE.
+
+For permission requests, contact the copyright holder via
+https://github.com/junlee-3.

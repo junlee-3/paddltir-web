@@ -112,24 +112,25 @@ export default function TermsPage() {
 
         <section className="space-y-4">
           <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-            8. Intellectual property &amp; open source
+            8. Intellectual property
           </h2>
           <p className="text-[15px] leading-relaxed text-zinc-700">
-            Copyright in Paddltir and this Service is owned by Jun Lee. The
-            source code is released under the{" "}
+            Copyright in Paddltir and this Service is owned exclusively by Jun
+            Lee. All rights reserved. The source may be published publicly for
+            inspection under the{" "}
             <a
               href="https://github.com/junlee-3/paddltir-web/blob/main/LICENSE"
               target="_blank"
               rel="noopener noreferrer"
               className="text-zinc-900 underline decoration-zinc-300 underline-offset-2 hover:decoration-zinc-900"
             >
-              MIT License
+              proprietary licence
             </a>
-            , which lets you use, modify, and distribute the software — including
-            commercially — while copyright remains with the author. Hosted
-            access, paid plans, and related services may be offered separately
-            under these Terms; open-source rights to the code do not grant free
-            or unlimited use of the hosted Service.
+            . That does not grant you rights to use, copy, modify, host,
+            distribute, or sell the software without prior written permission.
+            Buying access, a paid plan, or another licence from us is how that
+            permission is granted — and only for the scope of that purchase or
+            written authorisation.
           </p>
         </section>
 

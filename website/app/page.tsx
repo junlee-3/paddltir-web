@@ -90,10 +90,10 @@ const pageJsonLd = {
       "@type": "SoftwareSourceCode",
       name: "paddltir-web",
       description:
-        "Open-source dragon boat crew management web app for rosters, crewlists, and race-day insights.",
+        "Dragon boat crew management web app for rosters, crewlists, and race-day insights. Source is public; copyright retained.",
       codeRepository: "https://github.com/junlee-3/paddltir-web",
       programmingLanguage: "TypeScript",
-      license: "https://opensource.org/licenses/MIT",
+      license: "https://github.com/junlee-3/paddltir-web/blob/main/LICENSE",
       author: { "@id": `${SITE}/#org` },
     },
     {

@@ -63,7 +63,7 @@ export const EXTRA_FAQS: Faq[] = [
     a: "Open the app, add paddlers to a roster, create a crewlist, then seat your first boat. The docs page walks through the main pieces.",
   },
   {
-    q: "Is Paddltir open source?",
-    a: "Yes. The code is MIT-licensed — copyright stays with Jun Lee, and you can use, modify, and distribute it, including commercially. Paid hosted access may still apply separately from the open-source license.",
+    q: "Is the source code public?",
+    a: "Yes — you can read it on GitHub. Copyright stays with Jun Lee. You may not use, host, modify, distribute, or sell the software without permission. Buying Paddltir (or another written licence) is how that permission is granted.",
   },
 ];

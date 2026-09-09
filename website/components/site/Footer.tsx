@@ -40,8 +40,8 @@ export function Footer() {
                   Seat the boat with confidence.
                 </span>{" "}
                 Manage rosters, build crewlists, configure boats, and read trim
-                and balance insights before race day. Open source, so you can
-                see exactly what runs on your machine.
+                and balance insights before race day. Source is public so you
+                can inspect what runs — use still requires a licence from us.
               </p>
               <p className="mt-4 text-xs leading-relaxed text-zinc-500">
                 Crew management for dragon boat clubs. Not affiliated with any
@@ -76,8 +76,8 @@ export function Footer() {
 
           {/* Bottom bar */}
           <div className="mt-14 flex flex-col gap-4 border-t border-zinc-200 pt-7 text-[13px] text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
-            <p>© <CurrentYear /> Jun Lee · MIT License</p>
-            <p>Open-source crew management for dragon boat clubs.</p>
+            <p>© <CurrentYear /> Jun Lee · All rights reserved</p>
+            <p>Crew management for dragon boat clubs.</p>
           </div>
         </div>
       </div>

@@ -24,8 +24,8 @@
 ## Policies
 
 - [Privacy](https://paddltir-web.vercel.app/privacy): what we store about your account and crew data
-- [Terms](https://paddltir-web.vercel.app/terms): including MIT open-source license and copyright
-- [License](https://github.com/junlee-3/paddltir-web/blob/main/LICENSE): MIT © Jun Lee
+- [Terms](https://paddltir-web.vercel.app/terms): including proprietary copyright and licence terms
+- [License](https://github.com/junlee-3/paddltir-web/blob/main/LICENSE): proprietary © Jun Lee — public source, all rights reserved
 
 ## Author
 

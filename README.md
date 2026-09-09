@@ -4,7 +4,7 @@ Dragon boat crew management — rosters, crewlists, and boat configs.
 
 ## License
 
-MIT © Jun Lee. You can use, modify, and sell copies; copyright stays with the author. See [LICENSE](./LICENSE).
+Proprietary © Jun Lee. All rights reserved. Source is public for inspection only — you may not use, host, modify, distribute, or sell this software without written permission from the copyright holder (a purchase or paid plan is that permission, under the sale terms). See [LICENSE](./LICENSE).
 
 ## Stack
 
