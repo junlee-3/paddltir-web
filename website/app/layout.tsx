@@ -13,6 +13,7 @@ const sans = localFont({
   src: [
     { path: "./fonts/Switzer-Regular.woff2", weight: "400", style: "normal" },
     { path: "./fonts/Switzer-Medium.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/Switzer-Semibold.woff2", weight: "600", style: "normal" },
   ],
   variable: "--font-sans",
   display: "swap",

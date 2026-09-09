@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useLenis } from "lenis/react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import { trackEvent } from "@/lib/analytics";
 const LINKS = [
-  { href: "/docs", label: "Docs" },
   { href: "/about", label: "About" },
+  { href: "/docs", label: "Docs" },
   { href: "/faq", label: "FAQ" },
 ];
 
@@ -50,17 +51,10 @@ export function Nav() {
 
   const isHome = pathname === "/";
 
-  // One scroll owner for the header (heynox pattern): the pill morph and the
-  // home offset are computed in the same rAF batch. On the home page at lg+
-  // the fixed header starts NAV_INITIAL_TOP below the window and slides up
-  // with the page (top = max(0, offset − scrollY)) until it pins to the
-  // viewport top; other pages (and mobile) sit at 0.
-  useEffect(() => {
-    let raf = 0;
-
-    const compute = () => {
-      raf = 0;
-      const next = window.scrollY > SCROLL_THRESHOLD;
+  // Shared scroll apply: updates pill morph + home offset from a scrollY value.
+  const applyScroll = useCallback(
+    (y: number) => {
+      const next = y > SCROLL_THRESHOLD;
       if (scrolledRef.current !== next) {
         scrolledRef.current = next;
         setScrolled(next);
@@ -70,21 +64,64 @@ export function Nav() {
       const offsetActive =
         isHome && window.matchMedia("(min-width: 1024px)").matches;
       el.style.top = offsetActive
-        ? `${Math.max(0, NAV_INITIAL_TOP - window.scrollY)}px`
+        ? `${Math.max(0, NAV_INITIAL_TOP - y)}px`
         : "0px";
+    },
+    [isHome],
+  );
+
+  // Lenis path (when smooth scroll is active).
+  useLenis(
+    (lenis) => {
+      applyScroll(lenis.scroll);
+    },
+    [applyScroll],
+  );
+
+  // IntersectionObserver sentinel: reliable even when Lenis owns scrolling or
+  // native scroll events don't reach window listeners. A 1px marker at the
+  // document top leaves the viewport once scrollY passes SCROLL_THRESHOLD.
+  useEffect(() => {
+    const sentinel = document.createElement("div");
+    sentinel.setAttribute("data-nav-scroll-sentinel", "");
+    sentinel.setAttribute("aria-hidden", "true");
+    sentinel.style.cssText =
+      "position:absolute;top:0;left:0;width:1px;height:1px;visibility:hidden;pointer-events:none;";
+    document.body.prepend(sentinel);
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        applyScroll(entry.isIntersecting ? 0 : SCROLL_THRESHOLD + 1);
+      },
+      {
+        root: null,
+        threshold: 0,
+        rootMargin: `-${SCROLL_THRESHOLD}px 0px 0px 0px`,
+      },
+    );
+    io.observe(sentinel);
+
+    // Keep home offset tracking continuous (IO only flips the boolean).
+    let raf = 0;
+    const onScroll = () => {
+      if (!raf) {
+        raf = requestAnimationFrame(() => {
+          raf = 0;
+          const y = window.scrollY || document.documentElement.scrollTop;
+          if (isHome) applyScroll(y);
+        });
+      }
     };
-    const schedule = () => {
-      if (!raf) raf = requestAnimationFrame(compute);
-    };
-    compute();
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
+    applyScroll(window.scrollY || document.documentElement.scrollTop);
+    window.addEventListener("scroll", onScroll, { passive: true });
+
     return () => {
-      window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
+      io.disconnect();
+      sentinel.remove();
+      window.removeEventListener("scroll", onScroll);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, [pathname, isHome]);
+  }, [pathname, applyScroll, isHome]);
 
   useEffect(() => {
     if (!open) return;
