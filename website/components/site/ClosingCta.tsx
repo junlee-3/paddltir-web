@@ -1,3 +1,4 @@
+import { BrandMark } from "./BrandMark";
 import { GitHubIcon } from "./GitHubIcon";
 
 /* ---------------------------------------------------------------------------
@@ -10,18 +11,7 @@ export function ClosingCta() {
   return (
     <section className="glow-cta px-5 pt-20 pb-28 sm:pt-24">
       <div className="mx-auto max-w-2xl text-center">
-        <svg
-          width={48}
-          height={48}
-          viewBox="0 0 32 32"
-          fill="none"
-          aria-hidden="true"
-          className="mx-auto"
-        >
-          <rect x="1" y="1" width="30" height="30" rx="8.5" fill="#fa520f" />
-          <circle cx="10.5" cy="16" r="2.6" fill="#ffffff" />
-          <rect x="15" y="13.9" width="7.5" height="4.2" rx="2.1" fill="#ffffff" />
-        </svg>
+        <BrandMark size={48} className="mx-auto block text-zinc-900" />
         <h2 className="mt-7 text-[clamp(1.65rem,6vw,2.5rem)] font-normal leading-[1.1] tracking-tight2 text-zinc-900">
           Seat your crews before you leave the bank
         </h2>

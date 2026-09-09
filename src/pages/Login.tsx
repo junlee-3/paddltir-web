@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from "react";
+import { BrandMark } from "../components/BrandMark";
 import { supabase } from "../supabase";
 
 export default function Login() {
@@ -36,7 +37,10 @@ export default function Login() {
     <div className="min-h-screen bg-background flex items-center justify-center px-4">
       <div className="w-full max-w-sm">
         <div className="mb-10 text-center">
-          <p className="text-xs font-bold uppercase tracking-widest text-slate-900">Paddltir</p>
+          <div className="inline-flex flex-col items-center gap-3 text-slate-900">
+            <BrandMark size={40} />
+            <p className="text-xs font-bold uppercase tracking-widest">Paddltir</p>
+          </div>
           <p className="mt-3 text-sm text-slate-500">Sign in to continue</p>
         </div>
 

@@ -6,6 +6,7 @@ import type { Area } from "react-easy-crop";
 import { supabase } from "../supabase";
 import { uploadProfilePhoto } from "../services/profile";
 import type { AuthUser } from "../types/auth";
+import { BrandMark } from "./BrandMark";
 
 const HomeIcon = () => (
   <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
@@ -255,7 +256,10 @@ export default function Layout({ user }: LayoutProps) {
         `}
       >
         <div className="h-14 shrink-0 flex items-center justify-between px-6 border-b border-slate-200">
-           <span className="text-xs font-bold uppercase tracking-widest text-slate-900">Paddltir</span>
+           <div className="flex items-center gap-2 text-slate-900">
+             <BrandMark size={18} />
+             <span className="text-xs font-bold uppercase tracking-widest">Paddltir</span>
+           </div>
            <button 
              onClick={() => setMobileMenuOpen(false)}
              className="p-1 -mr-2 text-slate-500 hover:text-slate-900 lg:hidden"
@@ -300,7 +304,10 @@ export default function Layout({ user }: LayoutProps) {
             >
               <Menu className="w-5 h-5" />
             </button>
-            <span className="text-xs font-bold uppercase tracking-widest text-slate-900">Paddltir</span>
+            <span className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-900">
+              <BrandMark size={16} />
+              Paddltir
+            </span>
           </div>
 
           <div className="flex items-center gap-4">

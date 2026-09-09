@@ -198,6 +198,14 @@ ul  { list-style: none; }
   font-weight: 700;
   font-size: 1.35rem;
   letter-spacing: -.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav__logo-mark {
+  display: block;
+  height: 1.35em;
+  width: auto;
 }
 .nav__links {
   display: flex;
@@ -1101,6 +1109,14 @@ details[open] .faq__question::after {
   font-weight: 700;
   font-size: 1.2rem;
   letter-spacing: -.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.footer__logo-mark {
+  display: block;
+  height: 1.35em;
+  width: auto;
 }
 .footer__tagline {
   color: var(--text-muted);

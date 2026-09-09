@@ -19,14 +19,19 @@ export async function ogCard({
   title: string;
   description: string;
 }) {
-  const [regular, medium] = await Promise.all([
+  const [regular, medium, logo] = await Promise.all([
     fetch(new URL("../app/fonts/Switzer-Regular.otf", import.meta.url)).then(
       (r) => r.arrayBuffer(),
     ),
     fetch(new URL("../app/fonts/Switzer-Medium.otf", import.meta.url)).then(
       (r) => r.arrayBuffer(),
     ),
+    fetch(new URL("../public/logo-mark.png", import.meta.url)).then((r) =>
+      r.arrayBuffer(),
+    ),
   ]);
+
+  const logoSrc = `data:image/png;base64,${Buffer.from(logo).toString("base64")}`;
 
   return new ImageResponse(
     (
@@ -46,35 +51,14 @@ export async function ogCard({
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <div
-            style={{
-              width: 52,
-              height: 52,
-              borderRadius: 14,
-              backgroundColor: "#fa520f",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 7,
-            }}
-          >
-            <div
-              style={{
-                width: 9,
-                height: 9,
-                borderRadius: 9999,
-                backgroundColor: "#ffffff",
-              }}
-            />
-            <div
-              style={{
-                width: 13,
-                height: 7,
-                borderRadius: 9999,
-                backgroundColor: "#ffffff",
-              }}
-            />
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={logoSrc}
+            width={36}
+            height={54}
+            alt=""
+            style={{ display: "flex" }}
+          />
           <div style={{ fontSize: 32, fontWeight: 500, letterSpacing: -0.5 }}>
             Paddltir
           </div>

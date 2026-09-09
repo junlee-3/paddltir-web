@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useLenis } from "lenis/react";
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import { trackEvent } from "@/lib/analytics";
+import { BrandMark } from "./BrandMark";
 const LINKS = [
   { href: "/about", label: "About" },
   { href: "/docs", label: "Docs" },
@@ -18,22 +19,6 @@ const SCROLL_THRESHOLD = 50;
 // (top = max(0, 10 − scrollY)) until it pins, where the padding morph takes
 // over as the scrolled state.
 const NAV_INITIAL_TOP = 10;
-
-function Mark({ size = 20 }: { size?: number }) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 32 32"
-      fill="none"
-      aria-hidden="true"
-    >
-      <rect x="1" y="1" width="30" height="30" rx="8.5" fill="#fa520f" />
-      <circle cx="10.5" cy="16" r="2.6" fill="#ffffff" />
-      <rect x="15" y="13.9" width="7.5" height="4.2" rx="2.1" fill="#ffffff" />
-    </svg>
-  );
-}
 
 /**
  * Scroll-aware nav: at the top of the page it reads as a full-width
@@ -187,7 +172,7 @@ export function Nav() {
               className="flex items-center gap-2 justify-self-start px-2 py-1 text-[15px] font-medium tracking-tight1 text-zinc-900 max-md:px-0"
               aria-label="Paddltir home"
             >
-              <Mark />
+              <BrandMark size={22} className="text-zinc-900" />
               Paddltir
             </Link>
 

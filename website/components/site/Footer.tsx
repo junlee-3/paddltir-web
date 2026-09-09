@@ -1,23 +1,8 @@
 import Link from "next/link";
+import { BrandMark } from "./BrandMark";
 import { CurrentYear } from "./CurrentYear";
 
 const GITHUB = "https://github.com/junlee-3/paddltir-web";
-
-function Mark({ size = 26 }: { size?: number }) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 32 32"
-      fill="none"
-      aria-hidden="true"
-    >
-      <rect x="1" y="1" width="30" height="30" rx="8.5" fill="#fa520f" />
-      <circle cx="10.5" cy="16" r="2.6" fill="#ffffff" />
-      <rect x="15" y="13.9" width="7.5" height="4.2" rx="2.1" fill="#ffffff" />
-    </svg>
-  );
-}
 
 export function Footer() {
   return (
@@ -30,7 +15,7 @@ export function Footer() {
             {/* Brand group */}
             <div className="max-w-sm">
               <div className="flex items-center gap-2.5">
-                <Mark size={26} />
+                <BrandMark size={28} className="text-zinc-900" />
                 <span className="text-[17px] font-medium tracking-tight1 text-zinc-900">
                   Paddltir
                 </span>
