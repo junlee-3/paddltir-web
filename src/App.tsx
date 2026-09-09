@@ -4,6 +4,7 @@ import { mapAuthUser, supabase } from "./supabase";
 import type { AuthUser } from "./types/auth";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
 import PaddlersRoster from "./pages/PaddlersRoster";
 import Crewlists from "./pages/Crewlists";
 import CrewlistDetail from "./pages/CrewlistDetail";
@@ -21,9 +22,6 @@ function App() {
       if (!active) return;
       setUser(mapAuthUser(data.session?.user ?? null));
       setIsLoading(false);
-      if (!data.session?.user) {
-        void loginUser();
-      }
     });
 
     const {
@@ -39,45 +37,16 @@ function App() {
     };
   }, []);
 
-  const loginUser = async () => {
-    const email = window.prompt("Enter your email:");
-    if (!email) {
-      alert("Email is required!");
-      void loginUser();
-      return;
-    }
-
-    const password = window.prompt("Enter your password:");
-    if (!password) {
-      alert("Password is required!");
-      void loginUser();
-      return;
-    }
-
-    try {
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) throw error;
-    } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
-      alert("Login failed: " + errorMessage);
-      void loginUser();
-    }
-  };
-
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center text-gray-900">
-        <p className="text-gray-500">Loading...</p>
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <p className="text-sm text-slate-500">Loading…</p>
       </div>
     );
   }
 
   if (!user) {
-    return (
-      <div className="min-h-screen bg-white flex items-center justify-center text-gray-900">
-        <p className="text-gray-500">Please log in...</p>
-      </div>
-    );
+    return <Login />;
   }
 
   return (
