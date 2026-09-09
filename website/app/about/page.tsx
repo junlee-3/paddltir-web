@@ -88,9 +88,11 @@ export default function AboutPage() {
               rel="noopener noreferrer"
               className="text-zinc-900 underline decoration-zinc-300 underline-offset-2 hover:decoration-zinc-900"
             >
-              source code is public
+              source code is public under the MIT License
             </a>
             , so you can check exactly what runs when you use the app.
+            Copyright stays with Jun Lee; you may still use, modify, and
+            distribute the software — including commercially.
           </p>
         </section>
 

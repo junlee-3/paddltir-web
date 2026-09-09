@@ -24,7 +24,7 @@ export default function TermsPage() {
       <div className="mx-auto max-w-3xl space-y-10">
         <div className="space-y-3">
           <h1 className="text-3xl font-normal tracking-tight1 text-zinc-900">Terms of Service</h1>
-          <p className="text-sm text-zinc-500">Last updated: 26 May 2026</p>
+          <p className="text-sm text-zinc-500">Last updated: 9 September 2026</p>
         </div>
 
         <section className="space-y-4">
@@ -112,7 +112,30 @@ export default function TermsPage() {
 
         <section className="space-y-4">
           <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-            8. Governing Law
+            8. Intellectual property &amp; open source
+          </h2>
+          <p className="text-[15px] leading-relaxed text-zinc-700">
+            Copyright in Paddltir and this Service is owned by Jun Lee. The
+            source code is released under the{" "}
+            <a
+              href="https://github.com/junlee-3/paddltir-web/blob/main/LICENSE"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-zinc-900 underline decoration-zinc-300 underline-offset-2 hover:decoration-zinc-900"
+            >
+              MIT License
+            </a>
+            , which lets you use, modify, and distribute the software — including
+            commercially — while copyright remains with the author. Hosted
+            access, paid plans, and related services may be offered separately
+            under these Terms; open-source rights to the code do not grant free
+            or unlimited use of the hosted Service.
+          </p>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
+            9. Governing Law
           </h2>
           <p className="text-[15px] leading-relaxed text-zinc-700">
             These Terms are governed by the laws of New South Wales, Australia.
@@ -120,7 +143,7 @@ export default function TermsPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">9. Changes</h2>
+          <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">10. Changes</h2>
           <p className="text-[15px] leading-relaxed text-zinc-700">
             We may update these Terms from time to time. Continued use of the
             Service after changes constitutes acceptance of the revised Terms.

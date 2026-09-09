@@ -2,6 +2,10 @@
 
 Dragon boat crew management — rosters, crewlists, and boat configs.
 
+## License
+
+MIT © Jun Lee. You can use, modify, and sell copies; copyright stays with the author. See [LICENSE](./LICENSE).
+
 ## Stack
 
 - React 18 + TypeScript + Vite + Tailwind

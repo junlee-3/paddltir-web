@@ -76,7 +76,7 @@ export function Footer() {
 
           {/* Bottom bar */}
           <div className="mt-14 flex flex-col gap-4 border-t border-zinc-200 pt-7 text-[13px] text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
-            <p>© <CurrentYear /> Jun Lee</p>
+            <p>© <CurrentYear /> Jun Lee · MIT License</p>
             <p>Open-source crew management for dragon boat clubs.</p>
           </div>
         </div>

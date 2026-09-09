@@ -93,7 +93,7 @@ const pageJsonLd = {
         "Open-source dragon boat crew management web app for rosters, crewlists, and race-day insights.",
       codeRepository: "https://github.com/junlee-3/paddltir-web",
       programmingLanguage: "TypeScript",
-      license: "https://www.gnu.org/licenses/agpl-3.0.html",
+      license: "https://opensource.org/licenses/MIT",
       author: { "@id": `${SITE}/#org` },
     },
     {
