@@ -366,7 +366,7 @@ export default function HomePage() {
       >
         <h2
           id="session-h"
-          className="mx-auto max-w-[22ch] text-center text-[clamp(1.6rem,3vw,2.25rem)] font-normal leading-[1.15] tracking-tight1 sm:max-w-[28ch]"
+          className="mx-auto max-w-[22ch] text-center text-[clamp(1.85rem,3.6vw,2.6rem)] font-normal leading-[1.35] tracking-tight1 sm:max-w-[28ch]"
         >
           Your athletes give you{" "}
           <em className="[font-family:var(--font-serif-accent)] text-[1.06em] leading-none [-webkit-text-stroke:0.35px_currentColor]">
