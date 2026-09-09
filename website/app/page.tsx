@@ -366,9 +366,18 @@ export default function HomePage() {
       >
         <h2
           id="session-h"
-          className="mx-auto text-center text-[clamp(1.6rem,3vw,2.25rem)] font-normal leading-[1.1] tracking-tight1"
+          className="mx-auto max-w-[22ch] text-center text-[clamp(1.6rem,3vw,2.25rem)] font-normal leading-[1.15] tracking-tight1 sm:max-w-[28ch]"
         >
-          The race-day calls your crew lead actually makes
+          Your athletes give you{" "}
+          <em className="[font-family:var(--font-serif-accent)] text-[1.06em] leading-none [-webkit-text-stroke:0.35px_currentColor]">
+            their best
+          </em>
+          .
+          <br className="hidden sm:block" /> Do{" "}
+          <em className="[font-family:var(--font-serif-accent)] text-[1.06em] leading-none [-webkit-text-stroke:0.35px_currentColor]">
+            your best
+          </em>{" "}
+          for them.
         </h2>
 
         {/* Alternating wide rows: plain-language turn on one side, a graphic
