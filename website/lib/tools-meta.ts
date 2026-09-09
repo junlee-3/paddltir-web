@@ -35,7 +35,7 @@ export const TOOLS_META: ToolMeta[] = [
     name: "empty_check",
     title: "Empty seat check",
     group: "Lineups",
-    summary: "Flag missing seats before you leave the bank so race-day surprises stay rare.",
+    summary: "Flag missing seats before you paddle so race-day surprises stay rare.",
     example: `empty_check({ heat: "women_200" })`,
   },
   {

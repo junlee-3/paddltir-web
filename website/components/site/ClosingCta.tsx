@@ -13,7 +13,7 @@ export function ClosingCta() {
       <div className="mx-auto max-w-2xl text-center">
         <BrandMark size={48} className="mx-auto block text-zinc-900" />
         <h2 className="mt-7 text-[clamp(1.65rem,6vw,2.5rem)] font-normal leading-[1.1] tracking-tight2 text-zinc-900">
-          Seat your crews before you leave the bank
+          Come race-ready. Stay race-flexible.
         </h2>
         <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
           <a

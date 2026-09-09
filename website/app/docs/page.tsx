@@ -28,7 +28,7 @@ const GROUPS: {
     key: "Lineups",
     heading: "Seat the boat",
     description:
-      "Place paddlers left and right, set drummer and sweep, copy heats, and catch empty seats before you leave the bank.",
+      "Place paddlers left and right, set drummer and sweep, copy heats, and catch empty seats before you paddle.",
   },
   {
     key: "Rosters",
