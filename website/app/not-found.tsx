@@ -5,14 +5,14 @@ export default function NotFound() {
     <main className="flex min-h-[70vh] items-center justify-center px-5 text-center">
       <div>
         <p className="font-mono text-xs uppercase tracking-[0.08em] text-brand-text">
-          404 · not assessable
+          404 · off course
         </p>
         <h1 className="mt-4 text-[clamp(2rem,4.5vw,3rem)] font-normal tracking-tight2 text-zinc-900">
-          This page is not deductible.
+          This page missed the start horn.
         </h1>
         <p className="mx-auto mt-4 max-w-md text-sm text-zinc-500">
-          Whatever you were looking for isn&apos;t in the corpus. Try the docs,
-          or head home.
+          Whatever you were looking for isn&apos;t in the boat. Try the docs,
+          or head back to the dock.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Link href="/" className="btn btn-primary px-6 py-3 text-sm">

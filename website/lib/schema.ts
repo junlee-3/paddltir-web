@@ -4,7 +4,7 @@
  * AI systems and Google consolidate them instead of seeing fragments.
  */
 
-export const SITE = "https://ato-mcp.com.au";
+export const SITE = "https://paddltir-web.vercel.app";
 
 export const ORG_ID = `${SITE}/#org`;
 export const PERSON_ID = `${SITE}/about#jun`;

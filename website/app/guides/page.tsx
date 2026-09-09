@@ -5,9 +5,9 @@ import { breadcrumbJsonLd } from "@/lib/breadcrumbs";
 import { BasGraphic, DeductionsGraphic } from "@/app/blog/graphics";
 
 export const metadata: Metadata = {
-  title: "Guides: AI agents and Australian tax",
+  title: "Guides: crew seating and race day",
   description:
-    "Reference guides for doing Australian tax with an AI agent: finding deductions and preparing a BAS, with what an agent can and can't do, all cited.",
+    "Reference guides for dragon boat crew managers: how to seat a standard boat, run multiple heats, and keep lineups balanced before you push off.",
   alternates: { canonical: "/guides" },
 };
 
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
    story-shaped; these are question-shaped references, hence the split.
 --------------------------------------------------------------------------- */
 
-const SITE = "https://ato-mcp.com.au";
+const SITE = "https://paddltir-web.vercel.app";
 
 const pageJsonLd = {
   "@context": "https://schema.org",
@@ -25,7 +25,7 @@ const pageJsonLd = {
     {
       "@type": "CollectionPage",
       "@id": `${SITE}/guides`,
-      name: "Guides: AI agents and Australian tax",
+      name: "Guides: crew seating and race day",
       url: `${SITE}/guides`,
       inLanguage: "en-AU",
       publisher: { "@id": `${SITE}/#org` },
@@ -65,8 +65,9 @@ export default function GuidesIndexPage() {
         Guides
       </h1>
       <p className="reveal mt-4 max-w-xl text-[15px] leading-relaxed text-zinc-500">
-        What an AI agent can and can&apos;t do for your Australian tax, one
-        question at a time. Every figure cited.
+        Practical answers for crew seating and race day — one question at a
+        time. Built for coaches and sweeps who need lineups right before the
+        horn.
       </p>
 
       <section className="mt-10 sm:mt-12" aria-label="All guides">

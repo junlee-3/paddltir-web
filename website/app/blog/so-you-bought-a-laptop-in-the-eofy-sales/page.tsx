@@ -3,53 +3,48 @@ import Link from "next/link";
 import { breadcrumbJsonLd } from "@/lib/breadcrumbs";
 import { BLOG_POSTS } from "../posts";
 import { DepreciationGraphic } from "../graphics";
-import { Cite } from "../cite";
 import { blogPostingJsonLd, postMetadata } from "../seo";
 import { ClosingCta } from "@/components/site/ClosingCta";
 
 const POST = BLOG_POSTS.find((p) => p.slug === "so-you-bought-a-laptop-in-the-eofy-sales")!;
 
 const SEO = {
-  title: "Instant asset write-off and depreciation with an AI agent",
+  title: "Crew weight and dragon boat trim",
   description:
-    "Ask your agent how to write off equipment: the $20,000 instant asset write-off for 2025-26, depreciation schedules compared, and the rule behind each number.",
+    "You weighed the whole crew — now what? How paddler weight and preferred side affect seating, and why trim shows up before the start horn.",
 };
 
 export const metadata: Metadata = postMetadata(POST, SEO);
 
 /* ---------------------------------------------------------------------------
-   /blog/so-you-bought-a-laptop-in-the-eofy-sales — a story-shaped guide: the EOFY laptop, the turn (it
-   shows its working), Dan's ute and the pool, the traps, FAQ.
+   /blog/so-you-bought-a-laptop-in-the-eofy-sales — after the weigh-in: using weight
+   data, bow-stern balance, a club example, common mistakes.
 --------------------------------------------------------------------------- */
 
 const FAQS: { q: string; a: string }[] = [
   {
-    q: "Is the write-off money back in my pocket?",
-    a: "No, it's a deduction: it reduces your taxable income, so the cash benefit is roughly your marginal tax rate times the deduction. A $2,000 write-off does not refund $2,000.",
+    q: "Do we need exact weights for every paddler?",
+    a: "Close enough is fine for club racing — within a kilo or two. What matters is relative: who's heavy, who's light, and where they sit compared to last time.",
   },
   {
-    q: "Can I write off more than one asset?",
-    a: "Yes. The $20,000 threshold applies per asset, so a $12,000 mower, a $9,000 trailer and a $3,000 laptop can each be written off in full in the same year, provided each is used or installed ready for use in that year.",
+    q: "Where should the heavy paddlers go?",
+    a: "Many crews load stern for trim because the drummer and sweep add weight forward. Your boat and crew differ — track what worked when the boat felt flat, not what a forum post said once.",
   },
   {
-    q: "What about cars?",
-    a: "Cars have their own cap: the car limit ($69,674 for 2025-26) caps the cost you can depreciate regardless of what you paid. Many utes and vans designed to carry a tonne or more are not \"cars\" for this rule, so ask with the specific vehicle in hand and your agent can check the definition and the current limit, cited.",
+    q: "Does side weight matter as much as bow-stern?",
+    a: "Both matter. Side imbalance shows up in the catch; fore-aft imbalance shows up as bow bury or stern squat. Fix side first — it's faster to spot on the pontoon.",
   },
   {
-    q: "Can I claim it if I bought the asset on finance?",
-    a: "Generally yes: eligibility follows the asset's cost and when it was first used, not how you paid. Interest on a business loan is a separate deduction question your agent can check, with its own source.",
+    q: "We only weighed people once last season",
+    a: "Still useful. Re-weigh once a year or when someone's visibly changed. Update the roster so you're not guessing from memory.",
   },
   {
-    q: "Do second-hand assets qualify?",
-    a: "For the small business instant asset write-off, yes: new or second-hand. One trap the tool flags: for residential rental properties, second-hand depreciating assets acquired after 9 May 2017 are generally not deductible.",
+    q: "Juniors and seniors in the same boat?",
+    a: "Spread weight deliberately. A row of light juniors in the bow and seniors in the stern can pitch the boat even if sides balance. Mix for trim, not just for vibes.",
   },
   {
-    q: "What happens when I sell the asset?",
-    a: "A balancing adjustment: the sale proceeds are compared with the asset's remaining value and the difference is assessable or deductible. For pooled assets, proceeds reduce the pool balance instead. Worth asking about before you sell, not after.",
-  },
-  {
-    q: "Is the 2026-27 threshold locked in?",
-    a: "Not yet. A change has been announced but has not become law, and under current law the $20,000 limit applies to assets first used or installed ready for use by 30 June 2026. Because the corpus rebuilds monthly and thresholds are stored per year, your agent's answer updates when the law does.",
+    q: "Can Paddltir show total weight by section?",
+    a: "Yes — as you seat people, you see weight by bow, middle, and stern plus left-right totals. That's the point of weighing once and saving it.",
   },
 ];
 
@@ -67,12 +62,12 @@ const pageJsonLd = {
     },
     breadcrumbJsonLd([
       { name: "Blog", path: "/blog" },
-      { name: "Write off equipment", path: "/blog/so-you-bought-a-laptop-in-the-eofy-sales" },
+      { name: POST.title, path: "/blog/so-you-bought-a-laptop-in-the-eofy-sales" },
     ]),
   ],
 };
 
-export default function DepreciationPost() {
+export default function CrewWeightPost() {
   return (
     <>
     <main className="mx-auto min-h-screen max-w-5xl px-5 pb-24 pt-20">
@@ -103,7 +98,7 @@ export default function DepreciationPost() {
           className="reveal-lcp mt-3 text-[clamp(2rem,4vw,2.75rem)] font-normal leading-[1.08] tracking-tight2 text-zinc-900"
           style={{ "--reveal-delay": "0s" } as React.CSSProperties}
         >
-          So you bought a laptop in the EOFY sales
+          {POST.title}
         </h1>
         <p className="mt-4 text-[15px] leading-relaxed text-zinc-500">
           {POST.description}
@@ -117,44 +112,37 @@ export default function DepreciationPost() {
         <div className="mt-12 space-y-12">
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              The question behind the question
+              The spreadsheet full of numbers
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              &quot;Can I write this off?&quot; is rarely the real question.
-              The real question is how much, and when. And for a small
-              business (aggregated turnover under $10 million), the 2025-26
-              answer is unusually good: anything costing less than $20,000 can
-              come off your taxable income in full under the{" "}
-              <Cite href="https://www.ato.gov.au/businesses-and-organisations/income-deductions-and-concessions/depreciation-and-capital-expenses-and-allowances/simpler-depreciation-for-small-business/instant-asset-write-off">
-                instant asset write-off
-              </Cite>
-              , this year, the year you actually spent the money. Per asset,
-              not per year, so the mower, the trailer and the laptop can each
-              qualify.
+              You did the awkward thing and weighed everyone after training.
+              Eighty-two kilos, fifty-eight, seventy-one — a column of figures
+              that felt useful for about a day. Then race morning arrived and
+              you seated by side preference anyway because the weight column
+              lived in a different tab nobody opened.
+            </p>
+            <p className="text-[15px] leading-relaxed text-zinc-700">
+              Weight only helps when it sits next to the lineup. The question
+              isn&apos;t &quot;how much does Sam weigh?&quot; It&apos;s
+              &quot;if Sam sits in 6, what happens to the stern?&quot;
             </p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              It shows its working
+              Read the boat in three bands
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              You tell your agent what happened: bought a laptop in May,
-              $2,899, mostly for work. It doesn&apos;t reply with a number
-              pulled from the air. It runs every method you&apos;re eligible
-              for as an actual schedule, the same formulas the law prescribes,
-              and where a method doesn&apos;t apply, it says so and tells you
-              why instead of quietly leaving it out.
+              Split the crew into bow (seats 1–4), middle (5–8), stern
+              (9–10 plus drummer and sweep at the ends). You want each band
+              roughly in the same ballpark, with small tweaks for your hull.
+              Drag someone forward and watch the bow band total drop — that's
+              the calculation worth doing before launch.
             </p>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              For the laptop the answer is short: under the threshold, 80%
-              business use, $2,319 off this year&apos;s taxable income, with
-              the section behind it (<Cite href="https://www.legislation.gov.au/C2004A05138/latest/text">ITAA 1997 s 328-180</Cite>).
-              Some choices the
-              law leaves to you, like prime cost versus diminishing value on
-              bigger assets. It won&apos;t pretend to make them. It puts both
-              schedules side by side, cited, and the decision stays where it
-              belongs: with you.
+              Side totals run in parallel. Left-right within a kilo or two is
+              a reasonable club target. Off-side seating for balance is fine;
+              just know you're trading trim for power on that seat.
             </p>
             <div className="tile mt-6 flex items-center justify-center p-6 sm:p-10">
               <DepreciationGraphic className="h-auto w-full max-w-[320px]" />
@@ -163,51 +151,39 @@ export default function DepreciationPost() {
 
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              Then there&apos;s the ute
+              Lin&apos;s crew after weigh-in day
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              Dan landscapes his way across the northern suburbs. Same year,
-              two purchases: the $2,899 laptop, and a $24,000 ute. The laptop
-              is easy, as above. The ute is over the line, so it takes the
-              slower road: the{" "}
-              <Cite href="https://www.ato.gov.au/businesses-and-organisations/income-deductions-and-concessions/depreciation-and-capital-expenses-and-allowances/simpler-depreciation-for-small-business/small-business-pool-calculations">
-                small business pool
-              </Cite>
-              . 15% in the first year ($3,600), then 30% of what&apos;s left
-              each year after ($6,120, then $4,284, and so on down). Slower,
-              but it all gets there.
+              Lin imported weights into Paddltir and rebuilt the usual Open
+              lineup. Stern was 12 kg heavy — she swapped two middles toward
+              the back and pulled a 90 kg paddler from seat 10 to seat 5.
+              Side count stayed even. On the water the boat stopped feeling
+              like the bow was fighting the wake.
             </p>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              And a rule almost nobody mentions: if the whole pool ever dips
-              under the write-off threshold at 30 June, the entire balance can
-              come off at once. His agent tracks that against the year&apos;s
-              threshold so he doesn&apos;t have to.
-            </p>
-            <p className="text-[15px] leading-relaxed text-zinc-700">
-              Dan is made up. The thresholds, rates and pool mechanics are
-              real for 2025-26 (ITAA 1997 Subdiv 328-D).
+              Lin is made up. The physics isn&apos;t: fore-aft trim changes
+              how the hull rides, and you feel it in the first ten strokes
+              if you got it wrong.
             </p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              Before the EOFY sales get you again
+              Before the next regatta
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              Two traps, both cheap to avoid. The asset has to be first used,
-              or installed ready for use, by 30 June: ordered, paid for and
-              sitting in a warehouse doesn&apos;t count. And the $20,000 is
-              GST-exclusive if you&apos;re registered (you claim that GST back
-              on your BAS anyway), which means a $21,500 sticker price can
-              still sneak under.
+              Two habits: store weight on the paddler profile so it travels
+              with the name, and glance at section totals every time you
+              change a seat. Weigh-in day is annual; trim is every heat.
             </p>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              A change to the threshold for 2026-27 has been announced but is
-              not yet law, and that&apos;s exactly why the answers come with
-              dates and sources: the rule you remember is so often the rule
-              from a different year. None of this is tax advice. For the big
-              calls, take the schedules and the citations to a registered tax
-              agent and make the decision together.
+              If your numbers are still in a tab from last season, move them
+              into{" "}
+              <Link href="/app" className="underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-900">
+                Paddltir
+              </Link>{" "}
+              once and seat with the totals visible. You'll use the data or
+              you won't — there&apos;s no third option.
             </p>
           </section>
         </div>

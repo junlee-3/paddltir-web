@@ -3,49 +3,48 @@ import Link from "next/link";
 import { breadcrumbJsonLd } from "@/lib/breadcrumbs";
 import { BLOG_POSTS } from "../posts";
 import { AiAnswersGraphic } from "../graphics";
-import { Cite } from "../cite";
 import { blogPostingJsonLd, postMetadata } from "../seo";
 import { ClosingCta } from "@/components/site/ClosingCta";
 
 const POST = BLOG_POSTS.find((p) => p.slug === "can-you-trust-ai-with-your-tax")!;
 
 const SEO = {
-  title: "Can AI answer Australian tax questions correctly?",
+  title: "Spreadsheet vs crew management app for dragon boat",
   description:
-    "Generic AI answers about Australian tax can be years out of date. Ground your agent in 34,500+ ATO documents; every answer carries its citation for 2025-26.",
+    "Shared sheets drift, wrong tabs get edited, race morning doesn't match the file. Why a dedicated crew tool beats the spreadsheet that never quite matches the pontoon.",
 };
 
 export const metadata: Metadata = postMetadata(POST, SEO);
 
 /* ---------------------------------------------------------------------------
-   /blog/can-you-trust-ai-with-your-tax — a story-shaped guide: the confident stale answer, why it
-   happens, what grounding changes, and the test you can run yourself.
+   /blog/can-you-trust-ai-with-your-tax — spreadsheets vs purpose-built roster
+   tools: the confident wrong tab, why drift happens, what changes, FAQ.
 --------------------------------------------------------------------------- */
 
 const FAQS: { q: string; a: string }[] = [
   {
-    q: "Is it actually safe to use AI for my tax?",
-    a: "Used as a cited research layer, yes: you check the source, not the vibe. Used as an oracle, no. The disclaimer on this whole site is real: retrieval and fixed calculations with citations, not tax advice.",
+    q: "Our Google Sheet works fine — why switch?",
+    a: "If it works, keep it. Switch when you've had a wrong-heat edit, a version nobody trusts, or a coach rebuilding from memory every regatta. That's the usual trigger.",
   },
   {
-    q: "Why do AI answers about tax go stale?",
-    a: "Training data has a cutoff date, and Australian tax changes every year: rates, thresholds, methods, sometimes whole rules. An answer can be fluent, plausible and two years out of date at the same time.",
+    q: "Can we export from a spreadsheet?",
+    a: "Most clubs start in a sheet. Paddltir expects you to enter paddlers once — name, side, weight — then seat in a layout built for boats, not cells.",
   },
   {
-    q: "What does ato-mcp actually change?",
-    a: "The source of the answer. Instead of memory, your agent searches a corpus rebuilt monthly from ato.gov.au, the Federal Register of Legislation and law.ato.gov.au, and returns passages with their citations attached.",
+    q: "What goes wrong with shared sheets?",
+    a: "Wrong tab edited, sort breaks seat order, someone adds a row and formulas silently fail, three copies after a regatta and nobody knows which was final.",
   },
   {
-    q: "Can my agent still get things wrong?",
-    a: "Yes. Retrieval grounds the facts; the reasoning is still the agent's. That's why every answer carries its source: so a wrong answer is checkable instead of invisible.",
+    q: "Do we need an app if we only race twice a year?",
+    a: "Maybe not. If you race often or run multiple heats, the cost of one bad lineup usually exceeds the cost of a proper tool.",
   },
   {
-    q: "Does the ATO endorse this?",
-    a: "No. ato-mcp is independent and is not affiliated with, or endorsed by, the Australian Taxation Office. It retrieves the ATO's published material and always shows you where an answer came from.",
+    q: "Who can see the lineup on race day?",
+    a: "Share read-only with paddlers if your tool supports it. Coaches edit; crew confirms seat numbers — fewer dock arguments.",
   },
   {
-    q: "What's a citation worth if I can't read tax law?",
-    a: "Quite a lot: hand it to your accountant. A question with the ruling attached is a shorter, cheaper conversation than a question alone.",
+    q: "Is Paddltir only for big clubs?",
+    a: "No. Small crews benefit most from not re-inventing the lineup every time. One roster, saved layouts, less dependence on whoever coached last year.",
   },
 ];
 
@@ -63,12 +62,12 @@ const pageJsonLd = {
     },
     breadcrumbJsonLd([
       { name: "Blog", path: "/blog" },
-      { name: "Can you trust AI with your tax?", path: "/blog/can-you-trust-ai-with-your-tax" },
+      { name: POST.title, path: "/blog/can-you-trust-ai-with-your-tax" },
     ]),
   ],
 };
 
-export default function AiPost() {
+export default function SpreadsheetPost() {
   return (
     <>
     <main className="mx-auto min-h-screen max-w-5xl px-5 pb-24 pt-20">
@@ -99,7 +98,7 @@ export default function AiPost() {
           className="reveal-lcp mt-3 text-[clamp(2rem,4vw,2.75rem)] font-normal leading-[1.08] tracking-tight2 text-zinc-900"
           style={{ "--reveal-delay": "0s" } as React.CSSProperties}
         >
-          Can you trust AI with your tax?
+          {POST.title}
         </h1>
         <p className="mt-4 text-[15px] leading-relaxed text-zinc-500">
           {POST.description}
@@ -113,55 +112,36 @@ export default function AiPost() {
         <div className="mt-12 space-y-12">
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              The confident answer problem
+              The confident wrong tab
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              Ask an AI about claiming your working-from-home hours and
-              there&apos;s a decent chance it tells you about the 80 cents an
-              hour shortcut method. Delivered warmly, formatted nicely,
-              completely gone:{" "}
-              <Cite href="https://www.ato.gov.au/forms-and-instructions/shortcut-method">
-                that method ended on 30 June 2022
-              </Cite>
-              .
+              Every club has a spreadsheet. Tabs for each heat, colours for
+              sides, maybe a formula summing weight if someone stayed up late.
+              It worked until someone edited Mixed 200m while thinking they
+              were in Open 500m, or sorted by name and destroyed seat order,
+              or opened last season&apos;s copy by mistake.
             </p>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              It isn&apos;t lying. A model&apos;s knowledge froze on the day
-              its training data was collected, and tax refuses to hold still.
-              The cents per kilometre rate was 85 cents, then 88. The{" "}
-              <Cite href="https://www.ato.gov.au/businesses-and-organisations/income-deductions-and-concessions/depreciation-and-capital-expenses-and-allowances/simpler-depreciation-for-small-business/instant-asset-write-off">
-                instant asset write-off
-              </Cite>{" "}
-              has been $20,000, $25,000, $30,000 and $150,000 inside a single
-              decade. Whatever year your chatbot memorised, it answers from
-              that year forever. Even the ATO has warned that AI answers can
-              draw on outdated or overseas sources.
-            </p>
-            <p className="text-[15px] leading-relaxed text-zinc-700">
-              For most topics, stale is a shrug. For the numbers on your tax
-              return, stale is a problem.
+              Spreadsheets are general-purpose. Race morning is not. You need
+              boat-shaped layout, side totals that move when you drag a name,
+              and one source of truth the whole committee can open without
+              breaking a macro.
             </p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              Grounding changes where answers come from
+              What a crew tool changes
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              ato-mcp doesn&apos;t make your agent smarter. It changes what
-              the answer is made of. Connected over MCP, your agent stops
-              reciting from memory and starts reading: 34,500+ ATO documents,
-              the income tax and GST Acts and 4,900+ public rulings, rebuilt
-              monthly, with rates and thresholds stored per year.
+              Paddltir isn&apos;t smarter than your sheet. It&apos;s narrower.
+              Paddlers live in a roster with side and weight. Lineups are
+              per heat, drawn on a boat diagram. Change seat 7 and the
+              left-right tally updates — no SUMIF range to maintain.
             </p>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              So ask about the shortcut method now and the answer becomes:
-              that ended in 2022; for 2025-26 the{" "}
-              <Cite href="https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/work-related-deductions/working-from-home-expenses/fixed-rate-method">
-                fixed rate is 70 cents an hour
-              </Cite>
-              , and here is the guideline that says so. Same agent. Same
-              question. Different place the answer comes from.
+              Same committee, same people. Different shape for the job: less
+              &quot;which file is live?&quot;, more &quot;load the boat.&quot;
             </p>
             <div className="tile mt-6 flex items-center justify-center p-6 sm:p-10">
               <AiAnswersGraphic className="h-auto w-full max-w-[320px]" />
@@ -173,32 +153,30 @@ export default function AiPost() {
               The test you can run yourself
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              You don&apos;t have to take a website&apos;s word for any of
-              this, which is rather the point. Connect, then ask your agent
-              something with a date-shaped edge: what&apos;s the instant asset
-              write-off limit this year? Can I still use the shortcut method?
-              What&apos;s the cents per kilometre rate? Watch it check instead
-              of remember. Every answer comes back with the section, the
-              ruling or the ATO page it stands on, and the links go to
-              ato.gov.au and the legislation, not to a summary of a summary.
+              Next regatta, ask: did the dock match the sheet? Did anyone
+              re-seat from memory? Was there a version saved as
+              &quot;FINAL_v3_REAL&quot;? If yes to any of that, your tool is
+              costing you time whether or not the subscription does.
             </p>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              If a citation looks wrong, you can click it and find out. That
-              sentence is the entire trust model.
+              Try seating one heat in{" "}
+              <Link href="/app" className="underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-900">
+                Paddltir
+              </Link>{" "}
+              alongside the sheet. If the layout feels obvious and the totals
+              match what you eyeball, you have your answer.
             </p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              Where the judgement stays human
+              Where judgement stays human
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              Grounding fixes the facts; it doesn&apos;t finish the thinking.
-              Your agent still does the reasoning, and reasoning can still
-              miss. None of it is tax advice, and material decisions still
-              belong with a registered tax agent. What changes is what you
-              hand them: not &quot;the AI said so&quot;, but the source it
-              said it from.
+              Software doesn&apos;t pick your race plan or know who&apos;s
+              carrying a shoulder. It holds the lineup so you can argue about
+              strategy, not arithmetic. The coach still decides; the tool
+              just stops the record from lying.
             </p>
           </section>
         </div>

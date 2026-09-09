@@ -1,45 +1,44 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { breadcrumbJsonLd } from "@/lib/breadcrumbs";
-import { Cite } from "@/app/blog/cite";
 import { ClosingCta } from "@/components/site/ClosingCta";
 
 export const metadata: Metadata = {
-  title: "Can AI do your BAS?",
+  title: "How do you run multiple heats?",
   description:
-    "AI can prepare your BAS: which labels apply, what evidence to gather and when it's due, with the ATO source behind each line. Lodging stays with you.",
+    "Open, mixed, women's — keep separate lineups for each heat so one change doesn't wipe the next race.",
   alternates: { canonical: "/guides/can-ai-do-my-bas" },
 };
 
 /* ---------------------------------------------------------------------------
    /guides/can-ai-do-my-bas — a reference guide (not a blog story): direct
-   answers under question-form headings, a real due-dates table, every
-   figure cited. Targets "can AI do my BAS" queries.
+   answers under question-form headings, a heat-by-heat workflow table.
+   Targets "dragon boat multiple heats race day" queries.
 --------------------------------------------------------------------------- */
 
-const QUARTERS = [
-  { q: "Quarter 1", months: "July, August and September", due: "28 October" },
-  { q: "Quarter 2", months: "October, November and December", due: "28 February" },
-  { q: "Quarter 3", months: "January, February and March", due: "28 April" },
-  { q: "Quarter 4", months: "April, May and June", due: "28 July" },
+const HEATS = [
+  { heat: "Heat 1", category: "Open 500m", time: "08:30", note: "Full-strength lineup — seat first" },
+  { heat: "Heat 2", category: "Mixed 500m", time: "10:15", note: "Gender mix rules apply — separate crewlist" },
+  { heat: "Heat 3", category: "Women's 500m", time: "12:00", note: "Copy from open, swap paddlers as needed" },
+  { heat: "Heat 4", category: "Open 2000m", time: "14:30", note: "Endurance crew — check reserves and fatigue" },
 ];
 
 const FAQS: { q: string; a: string }[] = [
   {
-    q: "Can the agent lodge my BAS for me?",
-    a: "No. ato-mcp prepares: it builds the checklist, explains the labels and cites the ATO source behind each line. Lodgment happens in myGov, Online services for business, your accounting software or through your BAS agent.",
+    q: "Should each heat have its own crewlist?",
+    a: "Yes. A crewlist is the set of paddlers available for one race. Keep open, mixed, and women's heats separate so editing one lineup never overwrites another.",
   },
   {
-    q: "Do I get more time if I lodge online or through an agent?",
-    a: "Usually. Lodging online can add two extra weeks to quarterly due dates, and registered tax or BAS agents have their own lodgment programs. The quarter 2 due date already includes a one-month extension, so no further online extension applies to it.",
+    q: "Can I copy a lineup between heats?",
+    a: "Copy the starting point, then adjust. Most clubs copy the open heat into mixed or women's and swap individual seats — not rebuild from scratch each time.",
   },
   {
-    q: "Is this tax advice?",
-    a: "No. ato-mcp is information infrastructure: it retrieves published ATO material and runs fixed, cited calculations. It does not consider your full circumstances and it is not a registered tax or BAS agent service. Verify material decisions with a registered agent.",
+    q: "What about paddlers who can't make every heat?",
+    a: "Mark them as unavailable for the heats they miss before you seat the boat. That way you don't discover a gap five minutes before launch.",
   },
   {
-    q: "Which AI agents work with it?",
-    a: "Anything that speaks MCP: Claude Code, Claude Desktop, ChatGPT, Codex, Gemini CLI, Cursor and VS Code all connect to the same endpoint with a browser sign-in.",
+    q: "How does Paddltir handle this?",
+    a: "Create a crewlist per heat, seat each boat independently, and copy lineups between heats when the roster overlap is high. Changes stay scoped to the heat you're working on.",
   },
 ];
 
@@ -54,7 +53,9 @@ const pageJsonLd = {
         acceptedAnswer: { "@type": "Answer", text: f.a },
       })),
     },
-    breadcrumbJsonLd([{ name: "Can AI do my BAS", path: "/guides/can-ai-do-my-bas" }]),
+    breadcrumbJsonLd([
+      { name: "How do you run multiple heats?", path: "/guides/can-ai-do-my-bas" },
+    ]),
   ],
 };
 
@@ -72,109 +73,125 @@ export default function CanAiDoMyBasPage() {
         <div className="mx-auto max-w-3xl space-y-10">
           <div className="space-y-4">
             <h1 className="reveal-lcp text-[clamp(2rem,4vw,2.75rem)] font-normal leading-[1.08] tracking-tight2 text-zinc-900">
-              Can AI do your BAS?
+              How do you run multiple heats?
             </h1>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              AI can prepare, not lodge. An agent connected to ato-mcp builds a
-              cited checklist for your reporting period: which labels apply,
-              what to gather for each and when it&apos;s due, with the ATO page
-              behind every line. You (or your BAS agent) still review the
-              numbers and lodge.
+              A regatta day is rarely one race. Open, mixed, women&apos;s,
+              sprints and distance — each heat needs its own lineup, and a
+              scratch in heat two shouldn&apos;t scramble heat four. The goal is
+              separate crewlists per heat, with copy-and-adjust between them
+              instead of starting from zero every time.
             </p>
           </div>
 
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              When is your BAS due?
+              What does a typical regatta day look like?
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              Most small businesses report quarterly. The{" "}
-              <Cite href="https://www.ato.gov.au/businesses-and-organisations/preparing-lodging-and-paying/business-activity-statements-bas/due-dates-for-lodging-and-paying-your-bas">
-                standard due dates
-              </Cite>{" "}
-              are:
+              Most clubs run two to four heats in a day. Each one has its own
+              category rules, start time, and crew mix:
             </p>
             <div className="card overflow-hidden p-0">
               <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr className="border-b border-zinc-200 bg-zinc-50">
-                    <th className="eyebrow px-4 py-2.5 text-left">Quarter</th>
-                    <th className="eyebrow px-4 py-2.5 text-left">Months covered</th>
-                    <th className="eyebrow px-4 py-2.5 text-left">Due date</th>
+                    <th className="eyebrow px-4 py-2.5 text-left">Heat</th>
+                    <th className="eyebrow px-4 py-2.5 text-left">Category</th>
+                    <th className="eyebrow px-4 py-2.5 text-left">Start</th>
+                    <th className="eyebrow px-4 py-2.5 text-left">Notes</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {QUARTERS.map((row, idx) => (
-                    <tr key={row.q} className={idx % 2 === 1 ? "bg-zinc-50/70" : "bg-white"}>
-                      <td className="px-4 py-2 text-[13px] text-zinc-900">{row.q}</td>
-                      <td className="px-4 py-2 text-[13px] text-zinc-500">{row.months}</td>
-                      <td className="px-4 py-2 font-mono text-xs text-zinc-900">{row.due}</td>
+                  {HEATS.map((row, idx) => (
+                    <tr key={row.heat} className={idx % 2 === 1 ? "bg-zinc-50/70" : "bg-white"}>
+                      <td className="px-4 py-2 text-[13px] text-zinc-900">{row.heat}</td>
+                      <td className="px-4 py-2 text-[13px] text-zinc-700">{row.category}</td>
+                      <td className="px-4 py-2 font-mono text-xs text-zinc-500">{row.time}</td>
+                      <td className="px-4 py-2 text-[13px] text-zinc-500">{row.note}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              Lodging online can add two extra weeks, except for quarter 2,
-              whose due date already includes a one-month extension.
+              Times are illustrative — your regatta program is the source of
+              truth. Seat the earliest heat first, then work forward through the
+              day.
             </p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              What goes on a Simpler BAS?
+              How do you keep heats from overwriting each other?
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              If your GST turnover is under $10 million you use{" "}
-              <Cite href="https://www.ato.gov.au/businesses-and-organisations/preparing-lodging-and-paying/business-activity-statements-bas/goods-and-services-tax-gst/gst-reporting-methods">
-                Simpler BAS
-              </Cite>
-              , which needs three GST labels:
+              The roster is your pool of paddlers. Each heat gets its own
+              crewlist — the subset available for that race. Never seat all heats
+              from one shared lineup:
             </p>
             <ul className="list-disc space-y-2 pl-5 text-[15px] leading-relaxed text-zinc-700">
               <li>
-                <Cite href="https://www.ato.gov.au/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/in-detail/managing-gst-in-your-business/reporting-paying-and-activity-statements/completing-your-bas-for-gst/complete-your-bas/step-1-sales">
-                  G1: total sales
-                </Cite>{" "}
-                for the period.
+                Create a crewlist per heat before race day, or at least before
+                the first call to the pontoon.
               </li>
-              <li>1A: GST you collected on those sales.</li>
               <li>
-                1B: GST credits on business purchases (some purchases{" "}
-                <Cite href="https://www.ato.gov.au/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/claiming-gst-credits/when-you-cannot-claim-a-gst-credit">
-                  don&apos;t qualify
-                </Cite>
-                ).
+                Mark unavailable paddlers on the crewlist for heats they
+                can&apos;t make — not on the master roster alone.
+              </li>
+              <li>
+                Copy a seated boat from one heat to the next, then swap
+                individual seats for category rules or fatigue.
+              </li>
+              <li>
+                Re-check trim and side balance after every copy — a mixed crew
+                often needs different weight distribution than open.
               </li>
             </ul>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              Do you even need to lodge one?
+              What changes between open, mixed, and women&apos;s?
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              Only if you&apos;re registered for GST.{" "}
-              <Cite href="https://www.ato.gov.au/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/registering-for-gst">
-                Registration becomes mandatory
-              </Cite>{" "}
-              once your GST turnover reaches $75,000 ($150,000 for
-              non-profits), or from day one if you drive taxis or do
-              ride-sourcing, regardless of turnover.
+              Category rules vary by regatta, but the seating workflow is the
+              same:
+            </p>
+            <ul className="list-disc space-y-2 pl-5 text-[15px] leading-relaxed text-zinc-700">
+              <li>
+                <strong className="font-medium text-zinc-900">Open:</strong>{" "}
+                your strongest available crew — seat this one first as the
+                baseline.
+              </li>
+              <li>
+                <strong className="font-medium text-zinc-900">Mixed:</strong>{" "}
+                gender mix requirements apply. Copy from open, swap paddlers to
+                meet the ratio, re-check balance.
+              </li>
+              <li>
+                <strong className="font-medium text-zinc-900">Women&apos;s:</strong>{" "}
+                often overlaps heavily with open. Copy and remove male paddlers,
+                fill gaps from reserves.
+              </li>
+            </ul>
+            <p className="text-[15px] leading-relaxed text-zinc-700">
+              Distance heats (1000m, 2000m) may need a different crew mix than
+              sprints — lighter bow pairs, more endurance paddlers in the
+              middle. Treat them as separate crewlists even if the category name
+              matches an earlier sprint.
             </p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              What does the agent actually do?
+              What does Paddltir do on race day?
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              Connected to ato-mcp, your agent calls bas_prep_checklist: a
-              deterministic tool that reads your saved tax profile (reporting
-              period, GST registration, structure) and returns a tiered
-              checklist for the quarter: the labels that apply to you, the
-              evidence to gather for each, the gotchas people hit, and the ATO
-              source cited on every line. It prepares; you lodge.
+              Paddltir keeps rosters, crewlists, and seated boats in one place.
+              Create a crewlist per heat, seat each boat independently, copy
+              lineups between heats, and check trim before every launch. A swap
+              in heat two stays in heat two — it won&apos;t touch heat four.
             </p>
           </section>
 
@@ -196,11 +213,11 @@ export default function CanAiDoMyBasPage() {
             <p className="text-sm text-zinc-500">
               Related reading:{" "}
               <Link href="/blog/its-bas-time-again" className={linkCls}>
-                It&apos;s BAS time again
+                It&apos;s race weekend again
               </Link>{" "}
               and{" "}
               <Link href="/guides/ai-agent-tax-deductions" className={linkCls}>
-                Can an AI agent find your tax deductions?
+                How do you seat a standard boat?
               </Link>
             </p>
           </section>

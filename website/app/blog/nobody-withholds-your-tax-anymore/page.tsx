@@ -3,49 +3,48 @@ import Link from "next/link";
 import { breadcrumbJsonLd } from "@/lib/breadcrumbs";
 import { BLOG_POSTS } from "../posts";
 import { AbnGraphic } from "../graphics";
-import { Cite } from "../cite";
 import { blogPostingJsonLd, postMetadata } from "../seo";
 import { ClosingCta } from "@/components/site/ClosingCta";
 
 const POST = BLOG_POSTS.find((p) => p.slug === "nobody-withholds-your-tax-anymore")!;
 
 const SEO = {
-  title: "Sole trader tax basics for your first year with an ABN",
+  title: "Keep dragon boat race lineup history",
   description:
-    "Your first freelance invoice arrives whole: no tax withheld. What changes with an ABN: income tax, PAYG instalments and the $75,000 GST threshold, cited.",
+    "After the final, the lineup fades. How to record who raced which heat so the next regatta starts from history — not a blank sheet and group-chat archaeology.",
 };
 
 export const metadata: Metadata = postMetadata(POST, SEO);
 
 /* ---------------------------------------------------------------------------
-   /blog/nobody-withholds-your-tax-anymore — a story-shaped guide: the first whole invoice, the catch, the
-   three things that change, Jess's day-one question, the habit.
+   /blog/nobody-withholds-your-tax-anymore — lineup memory: why it fades, what to
+   record, a post-regatta habit, FAQ.
 --------------------------------------------------------------------------- */
 
 const FAQS: { q: string; a: string }[] = [
   {
-    q: "How much should I put aside from each invoice?",
-    a: "There's no single number: it depends on your total income, the tax-free threshold, the Medicare levy and whether GST applies to you. Ask your agent to lay out the current rates with sources and work it through, and for real stakes, confirm with a registered tax agent.",
+    q: "What should we save after each regatta?",
+    a: "Final lineup per heat: names, seats, side, drummer, sweep. Note scratches and reserves who raced. That's enough to seat the next meet faster.",
   },
   {
-    q: "When do PAYG instalments actually start?",
-    a: "Usually after you lodge your first return with instalment income above the entry threshold: the ATO enters you automatically and writes to tell you. You can also enter voluntarily earlier to smooth out the first year.",
+    q: "How long do we keep old lineups?",
+    a: "At least a season. Patterns emerge — who races Open vs Mixed, who sweeps, who can't make early heats — and new coaches inherit context.",
   },
   {
-    q: "Do I need to register for GST from day one?",
-    a: "Not until your current or projected turnover reaches $75,000; then you have 21 days. Registering earlier is optional and occasionally useful, and it brings BAS lodgment along with it.",
+    q: "New coach — how do they learn the crew?",
+    a: "Roster plus past lineups beats oral history. Side preference and weight on the profile; heat history shows who actually raced, not who said they'd come.",
   },
   {
-    q: "Can I claim deductions in my first year?",
-    a: "From day one: expenses you incur earning your business income are generally deductible, from the laptop to the software subscriptions. The deductions guide on this blog walks it properly.",
+    q: "Should paddlers see historical lineups?",
+    a: "Helpful for transparency — less 'why am I always seat 10?' if they can see the pattern. Read-only access is enough.",
   },
   {
-    q: "Do I still lodge just one tax return?",
-    a: "Yes. As a sole trader your business income and deductions go into your individual return with a business schedule. Companies and trusts are different animals with their own returns.",
+    q: "We only remember winners",
+    a: "Fair. But seating the next 500m doesn't need trophies — it needs who sat where when the boat felt good.",
   },
   {
-    q: "What records should I start keeping now?",
-    a: "Invoices out, receipts in, hours if you work from home, kilometres if you drive for work. Keep them for five years. Future-you will be grateful, again.",
+    q: "Does Paddltir keep history automatically?",
+    a: "Saved lineups stay tied to the roster. Duplicate last regatta's heat, swap the scratches, adjust — you're editing, not rebuilding.",
   },
 ];
 
@@ -63,12 +62,12 @@ const pageJsonLd = {
     },
     breadcrumbJsonLd([
       { name: "Blog", path: "/blog" },
-      { name: "Your first year with an ABN", path: "/blog/nobody-withholds-your-tax-anymore" },
+      { name: POST.title, path: "/blog/nobody-withholds-your-tax-anymore" },
     ]),
   ],
 };
 
-export default function AbnPost() {
+export default function LineupHistoryPost() {
   return (
     <>
     <main className="mx-auto min-h-screen max-w-5xl px-5 pb-24 pt-20">
@@ -99,7 +98,7 @@ export default function AbnPost() {
           className="reveal-lcp mt-3 text-[clamp(2rem,4vw,2.75rem)] font-normal leading-[1.08] tracking-tight2 text-zinc-900"
           style={{ "--reveal-delay": "0s" } as React.CSSProperties}
         >
-          Nobody withholds your tax anymore
+          {POST.title}
         </h1>
         <p className="mt-4 text-[15px] leading-relaxed text-zinc-500">
           {POST.description}
@@ -113,20 +112,18 @@ export default function AbnPost() {
         <div className="mt-12 space-y-12">
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              The miracle has a catch
+              The fog after the final
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              When you were employed, tax happened to you. An employer withheld
-              it before you ever saw it, and the return each July was mostly a
-              formality. The ABN ends that arrangement quietly and completely:
-              nobody withholds anything now, but the income tax is still real,
-              still accruing with every invoice, and still due after you
-              lodge.
+              Regatta done, tent packed, photos in the group chat. Ask who
+              sat seat 4 in the Mixed heat and you get three different names
+              by Tuesday. The lineup existed for one morning — then it
+              dissolved into memory and half-deleted messages.
             </p>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              That&apos;s the whole trap of the first year. Nothing feels
-              wrong until the first tax bill arrives, and by then the money
-              has a way of having been spent.
+              That&apos;s normal. Nobody&apos;s job is to be the club&apos;s
+              living archive. But next month someone will seat Open from
+              scratch and repeat the same experiments you already ran.
             </p>
             <div className="tile mt-6 flex items-center justify-center p-6 sm:p-10">
               <AbnGraphic className="h-auto w-full max-w-[320px]" />
@@ -135,73 +132,60 @@ export default function AbnPost() {
 
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              The three things that actually change
+              Three things worth keeping
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              First, income tax becomes your job. You still get the{" "}
-              <Cite href="https://www.ato.gov.au/individuals-and-families/jobs-and-employment-types/tax-free-threshold/how-to-claim-the-tax-free-threshold">
-                tax-free threshold
-              </Cite>{" "}
-              ($18,200), and above it your business profit is taxed like any
-              other income, just with nobody collecting as you go.
+              First, the final seat map per heat — not the draft from
+              Thursday, the one that actually raced. Second, who scratched
+              and who came off the bench; that tells you depth. Third, anything
+              you noticed on the water: stern heavy, bow light, one side
+              strong. A sentence in the notes field beats a perfect lineup
+              you can't explain.
             </p>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              Second, after your first return with business income above the
-              entry threshold, the ATO typically enters you into{" "}
-              <Cite href="https://www.ato.gov.au/businesses-and-organisations/income-deductions-and-concessions/payg-instalments/starting-payg-instalments">
-                PAYG instalments
-              </Cite>
-              : quarterly prepayments so the bill never balloons like that
-              again. You&apos;ll get a letter. It&apos;s help, not punishment.
-            </p>
-            <p className="text-[15px] leading-relaxed text-zinc-700">
-              Third, GST stays off your plate entirely until your turnover
-              reaches $75,000, current or projected, at which point you have{" "}
-              <Cite href="https://www.ato.gov.au/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/registering-for-gst">
-                21 days to register
-              </Cite>
-              . Until then, no GST on your invoices and no BAS to lodge.
+              Store it where the next coach will look — not a personal
+              camera roll, not a thread that scrolls away. Same place as the
+              roster, attached to the same names.
             </p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              Jess asks on day one
+              Jess takes over in March
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              Jess left her marketing job in August and invoiced $4,400 in her
-              first month. Her question isn&apos;t sophisticated, and
-              that&apos;s the point: I just went freelance, what do I need to
-              do for tax?
+              Jess inherits the committee role mid-season. Last year&apos;s
+              coach moved interstate. She opens Paddltir, finds last
+              regatta&apos;s Open 500m lineup, duplicates it, swaps two
+              paddlers who left and a reserve who&apos;s now core crew. Side
+              and weight totals carry over. First session seated in ten
+              minutes instead of re-interviewing twenty people about left or
+              right.
             </p>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              Her agent, reading her saved profile, walks the year ahead: the
-              return she&apos;ll lodge, the instalments that will likely
-              follow it, the GST threshold she doesn&apos;t need to think
-              about yet at her pace, and the deductions that start counting
-              from day one (the laptop, the software, the co-working desk).
-              Each line lands with the ATO page behind it, so the answer to
-              &quot;says who?&quot; is always one click.
-            </p>
-            <p className="text-[15px] leading-relaxed text-zinc-700">
-              Jess is made up. The thresholds, the instalment system and the
-              21 days are real.
+              Jess is made up. The handover problem is not — clubs lose
+              knowledge every time a volunteer rotates off.
             </p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              Start the habit before the bill
+              Start the habit before the next meet
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              The single kindest thing you can do for future-you is open a
-              second account and move a slice of every invoice into it from
-              the start. How big a slice depends on your bracket and your
-              circumstances, which is exactly the kind of question to put to
-              your agent with the current rates in front of it, or to a
-              registered tax agent if the stakes are real. The habit matters
-              more than the precision. July-you will want to buy August-you a
-              drink.
+              After your next race, save the final lineup before the tent
+              comes down. One minute. Do it twice and it&apos;s routine.
+              Future-you — or future coach — gets a head start instead of a
+              blank grid and a vague memory of &quot;I think we ran Sam in
+              the middle.&quot;
+            </p>
+            <p className="text-[15px] leading-relaxed text-zinc-700">
+              If your lineups live in messages and muscle memory,{" "}
+              <Link href="/app" className="underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-900">
+                Paddltir
+              </Link>{" "}
+              keeps them with the roster. Same crew, less re-learning every
+              season.
             </p>
           </section>
         </div>

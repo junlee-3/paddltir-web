@@ -32,20 +32,20 @@ export function Footer() {
               <div className="flex items-center gap-2.5">
                 <Mark size={26} />
                 <span className="text-[17px] font-medium tracking-tight1 text-zinc-900">
-                  Australian Tax MCP
+                  Paddltir
                 </span>
               </div>
               <p className="mt-5 text-[14.5px] leading-relaxed text-zinc-500">
                 <span className="font-medium text-zinc-900">
-                  Every answer, cited.
+                  Seat the boat with confidence.
                 </span>{" "}
-                Connect your AI agent to 34,500+ ATO documents, the income tax
-                and GST Acts and 4,900+ public rulings. The client is open
-                source, so you can read exactly what runs on your machine.
+                Manage rosters, build crewlists, configure boats, and read trim
+                and balance insights before race day. Open source, so you can
+                see exactly what runs on your machine.
               </p>
               <p className="mt-4 text-xs leading-relaxed text-zinc-500">
-                Information infrastructure, not tax advice. Verify material
-                decisions with a registered tax agent.
+                Crew management for dragon boat clubs. Not affiliated with any
+                governing body.
               </p>
             </div>
 
@@ -77,7 +77,7 @@ export function Footer() {
           {/* Bottom bar */}
           <div className="mt-14 flex flex-col gap-4 border-t border-zinc-200 pt-7 text-[13px] text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
             <p>© <CurrentYear /> Jun Lee</p>
-            <p>ATO content remains subject to ATO publication terms.</p>
+            <p>Open-source crew management for dragon boat clubs.</p>
           </div>
         </div>
       </div>

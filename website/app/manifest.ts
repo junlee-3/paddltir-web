@@ -2,10 +2,10 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Australian Tax MCP",
-    short_name: "ato-mcp",
+    name: "Paddltir",
+    short_name: "Paddltir",
     description:
-      "The MCP server that provides Australian tax knowledge to your AI agents. Cited retrieval over 34,500+ ATO documents with personal context to answer any tax question.",
+      "Configure crews, manage rosters and crewlists, and get real insights into trim, balance and lineups before race day.",
     start_url: "/",
     display: "browser",
     background_color: "#ffffff",

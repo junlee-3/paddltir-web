@@ -22,45 +22,45 @@ const HERO_TRUST = [
 ];
 
 const CORPUS_STATS = [
-  { n: "286,638", label: "searchable passages", sub: "every paragraph of guidance, findable" },
-  { n: "6,468", label: "sections of tax law", sub: "plus 2,310 legal definitions" },
-  { n: "64,217", label: "cross-references", sub: "answers traceable to their source" },
+  { n: "120+", label: "roster slots", sub: "every paddler with side, weight, and availability" },
+  { n: "24", label: "heats per regatta", sub: "crewlists built and adjusted heat by heat" },
+  { n: "6", label: "live insight checks", sub: "balance, trim, and lineup gaps before you race" },
 ];
 
 const CORPUS_INDEX = [
-  { num: "01", title: "Guidance", sub: "ato.gov.au" },
-  { num: "02", title: "Legislation", sub: "ITAA 1997 & 1936, GST Act" },
-  { num: "03", title: "Rulings", sub: "law.ato.gov.au" },
-  { num: "04", title: "Cross-references", sub: "rulings tied to the law behind them" },
+  { num: "01", title: "Rosters", sub: "paddlers, sides, and weights in one place" },
+  { num: "02", title: "Crewlists", sub: "heat-by-heat lineups for race day" },
+  { num: "03", title: "Trim & balance", sub: "side weight and bow/stern checks" },
+  { num: "04", title: "Insights", sub: "gaps and risks surfaced before you push off" },
 ];
 
 const SESSION_TURNS = [
   {
     graphic: "deductions" as const,
-    question: "What can I claim this year?",
+    question: "How do I seat a balanced boat?",
     answer:
-      "It finds every deduction that fits how you work: home office, equipment, software. Each one comes backed with the exact ATO source.",
-    tool: "Deduction finder",
+      "It weighs side balance and stroke position against your roster so no bench feels heavy. Each swap shows the knock-on effect before you commit.",
+    tool: "Balance planner",
   },
   {
     graphic: "depreciation" as const,
-    question: "How do I write off my new laptop?",
+    question: "Who's in the boat for this heat?",
     answer:
-      "Anything under $300 is claimed straight away; bigger gear is written down over its life. It runs the numbers and shows the rule it used.",
-    tool: "Depreciation helper",
+      "Pull from your roster, lock in reservations, and export a crewlist your marshall can read at a glance. Changes stay in sync so nobody shows up to the wrong lane.",
+    tool: "Crewlist builder",
   },
   {
     graphic: "risk" as const,
-    question: "Is anything in my return risky?",
+    question: "Are we trimmed for this heat?",
     answer:
-      "It checks your return against the risk areas the ATO publishes and shows where you stand. This year you sit comfortably in the low band.",
-    tool: "Audit risk check",
+      "It flags bow-heavy setups, uneven sides, and gaps against your target before you push off. You see where you sit — comfortably balanced or worth a last-minute swap.",
+    tool: "Trim check",
   },
 ];
 
 const FAQS = HOME_FAQS;
 
-const SITE = "https://ato-mcp.com.au";
+const SITE = "https://paddltir-web.vercel.app";
 
 const pageJsonLd = {
   "@context": "https://schema.org",
@@ -68,39 +68,31 @@ const pageJsonLd = {
     {
       "@type": "SoftwareApplication",
       "@id": `${SITE}/#app`,
-      name: "ato-mcp",
-      alternateName: "Australian Tax MCP",
-      operatingSystem: "macOS, Linux, Windows",
-      applicationCategory: "DeveloperApplication",
+      name: "Paddltir",
+      alternateName: "Paddltir crew management",
+      operatingSystem: "Web",
+      applicationCategory: "SportsApplication",
       description:
-        "MCP server providing Australian tax knowledge for AI agents. Cited retrieval over 34,500+ ATO documents with personal context to answer any tax question.",
+        "Dragon boat crew management software. Configure rosters, build race-day crewlists, and get trim and balance insights before every heat.",
       url: SITE,
       mainEntityOfPage: SITE,
-      downloadUrl: "https://www.npmjs.com/package/ato-mcp",
       offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
-      license: "https://www.gnu.org/licenses/agpl-3.0.html",
       author: { "@id": `${SITE}/#org` },
       publisher: { "@id": `${SITE}/#org` },
     },
     {
-      "@type": "WebAPI",
-      "@id": `${SITE}/#api`,
-      name: "Australian Tax MCP endpoint",
-      description:
-        "Hosted remote MCP endpoint (streamable HTTP, OAuth sign-in) serving the 13 Australian-tax tools.",
-      url: "https://api.ato-mcp.com.au/mcp",
-      documentation: `${SITE}/docs`,
-      termsOfService: `${SITE}/terms`,
-      provider: { "@id": `${SITE}/#org` },
+      "@type": "Organization",
+      "@id": `${SITE}/#org`,
+      name: "Paddltir",
+      url: SITE,
     },
     {
       "@type": "SoftwareSourceCode",
-      name: "ato-mcp client",
+      name: "paddltir-web",
       description:
-        "Open-source MCP client that bridges stdio hosts to the hosted Australian Tax MCP endpoint.",
+        "Open-source dragon boat crew management web app for rosters, crewlists, and race-day insights.",
       codeRepository: "https://github.com/junlee-3/paddltir-web",
       programmingLanguage: "TypeScript",
-      runtimePlatform: "Node.js",
       license: "https://www.gnu.org/licenses/agpl-3.0.html",
       author: { "@id": `${SITE}/#org` },
     },
@@ -447,7 +439,7 @@ export default function HomePage() {
           id="session-h"
           className="mx-auto text-center text-[clamp(1.6rem,3vw,2.25rem)] font-normal leading-[1.1] tracking-tight1"
         >
-          The questions you&apos;d save up for your accountant
+          The race-day calls your crew lead actually makes
         </h2>
 
         {/* Alternating wide rows: plain-language turn on one side, a graphic
@@ -498,11 +490,11 @@ export default function HomePage() {
                 id="corpus-h"
                 className="max-w-xl text-[clamp(1.6rem,3vw,2.25rem)] font-normal leading-[1.1] tracking-tight1"
               >
-                Every ATO guide, law and ruling in one searchable place
+                Everything your crew needs, in one place
               </h2>
               <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-zinc-500">
-                So every answer your agent gives can point to the exact source
-                behind it.
+                So every lineup you publish is balanced, traceable, and ready
+                before the horn.
               </p>
               <div className="mt-10 grid gap-4 sm:grid-cols-3">
                 {CORPUS_STATS.map((s) => (
@@ -516,7 +508,7 @@ export default function HomePage() {
                 ))}
               </div>
               <p className="mt-6 text-sm text-zinc-500">
-                Rebuilt monthly, served fresh.{" "}
+                Updated as your roster changes.{" "}
                 <Link
                   href="/docs"
                   className="text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900"
@@ -555,7 +547,7 @@ export default function HomePage() {
           id="faq-h"
           className="text-center text-[clamp(1.6rem,3vw,2.25rem)] font-normal tracking-tight1"
         >
-          Before you connect
+          Before you start
         </h2>
         <div className="mt-10">
           {FAQS.map((f) => (

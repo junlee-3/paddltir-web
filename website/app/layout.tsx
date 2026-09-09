@@ -35,7 +35,7 @@ const serifAccent = Instrument_Serif({
   display: "swap",
 });
 
-const SITE = "https://ato-mcp.com.au";
+const SITE = "https://paddltir-web.vercel.app";
 
 // Colours the browser chrome (mobile address bar) to match the white site.
 export const viewport: Viewport = {
@@ -47,25 +47,23 @@ const GA_MEASUREMENT_ID = "G-1DFRLLC2CR";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
-  // Site name for Google: WebSite JSON-LD name + og:site_name + applicationName
-  // all say "Australian Tax MCP" (never "ato-mcp").
-  applicationName: "Australian Tax MCP",
+  applicationName: "Paddltir",
   title: {
-    default: "Australian Tax Knowledge for AI Agents",
-    template: "%s · Australian Tax MCP",
+    default: "Paddltir — Dragon boat crew management",
+    template: "%s · Paddltir",
   },
   description:
-    "The MCP server that provides Australian tax knowledge to your AI agents. Cited retrieval over 34,500+ ATO documents with personal context to answer any tax question.",
+    "Configure crews, manage rosters and crewlists, and get real insights into trim, balance and lineups before race day.",
   keywords: [
-    "ATO MCP server",
-    "Australian tax AI",
-    "Model Context Protocol",
-    "Claude tax tools",
-    "ATO API for AI agents",
-    "ITAA 1997 search",
-    "Australian tax deductions AI",
-    "BAS checklist AI",
-    "tax RAG Australia",
+    "dragon boat",
+    "crew management",
+    "boat lineup",
+    "paddler roster",
+    "crewlist",
+    "boat trim",
+    "dragon boat coaching",
+    "race day seating",
+    "Paddltir",
   ],
   authors: [{ name: "Jun Lee", url: "https://github.com/junlee-3" }],
   creator: "Jun Lee",
@@ -74,16 +72,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_AU",
     url: SITE,
-    siteName: "Australian Tax MCP",
-    title: "Australian Tax MCP Server for AI Agents",
+    siteName: "Paddltir",
+    title: "Paddltir — Dragon boat crew management",
     description:
-      "Cited retrieval over 34,500+ ATO documents, tax legislation and rulings with personal context to answer any tax question.",
+      "Configure crews, manage rosters and crewlists, and get real insights into trim, balance and lineups before race day.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "ATO MCP Server for AI Agents",
+    title: "Paddltir — Dragon boat crew management",
     description:
-      "Cited ATO docs retrieval + tax workflow tools for AI agents via MCP",
+      "Configure, manage, and get real insights into your crew before race day.",
   },
   robots: {
     index: true,
@@ -101,12 +99,12 @@ const orgJsonLd = {
     {
       "@type": "Organization",
       "@id": `${SITE}/#org`,
-      name: "ato-mcp",
-      alternateName: "Australian Tax MCP",
+      name: "Paddltir",
+      alternateName: "Paddltir",
       url: SITE,
       logo: `${SITE}/logo.png`,
       description:
-        "Independent Australian project providing AI agents with cited retrieval over 34,500+ ATO documents, the income tax and GST Acts and 4,900+ public rulings via the Model Context Protocol. Not affiliated with the Australian Taxation Office.",
+        "Dragon boat crew management for coaches and clubs: rosters, crewlists, boat configs, and trim insights before race day.",
       foundingDate: "2026-05-26",
       founder: {
         "@type": "Person",
@@ -114,13 +112,12 @@ const orgJsonLd = {
         name: "Jun Lee",
         url: `${SITE}/about`,
       },
-      email: "privacy@ato-mcp.com.au",
       knowsAbout: [
-        "Australian taxation",
-        "Australian Taxation Office guidance",
-        "Income Tax Assessment Act 1997",
-        "GST Act",
-        "Model Context Protocol",
+        "Dragon boat racing",
+        "Crew management",
+        "Boat configuration",
+        "Sports analytics",
+        "Paddler rosters",
       ],
       sameAs: [
         "https://github.com/junlee-3/paddltir-web",
@@ -131,9 +128,8 @@ const orgJsonLd = {
       "@type": "WebSite",
       "@id": `${SITE}/#website`,
       url: SITE,
-      // Google reads the displayed site name from here (plus og:site_name).
-      name: "Australian Tax MCP",
-      alternateName: ["ato-mcp", "ATO MCP Server"],
+      name: "Paddltir",
+      alternateName: ["Paddltir crew management"],
       publisher: { "@id": `${SITE}/#org` },
       inLanguage: "en-AU",
     },
@@ -178,7 +174,7 @@ export default function RootLayout({
         <link
           rel="alternate"
           type="application/rss+xml"
-          title="Australian Tax MCP blog"
+          title="Paddltir blog"
           href="/feed.xml"
         />
         {/* Warm the connection gtag.js will use once it loads at idle. */}

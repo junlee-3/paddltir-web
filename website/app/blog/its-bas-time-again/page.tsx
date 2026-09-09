@@ -3,53 +3,48 @@ import Link from "next/link";
 import { breadcrumbJsonLd } from "@/lib/breadcrumbs";
 import { BLOG_POSTS } from "../posts";
 import { BasGraphic } from "../graphics";
-import { Cite } from "../cite";
 import { blogPostingJsonLd, postMetadata } from "../seo";
 import { ClosingCta } from "@/components/site/ClosingCta";
 
 const POST = BLOG_POSTS.find((p) => p.slug === "its-bas-time-again")!;
 
 const SEO = {
-  title: "Prepare your BAS with an AI agent, cited",
+  title: "Race weekend crew roster checklist",
   description:
-    "Ask your agent what goes on your BAS, when it's due and what to gather for each label, with the ATO source behind every line. Grounded in 34,500+ ATO documents.",
+    "How to keep dragon boat regatta rosters calm: who's in, who's scratched, which heat needs a sweep, and where to put changes so nothing breaks the next race.",
 };
 
 export const metadata: Metadata = postMetadata(POST, SEO);
 
 /* ---------------------------------------------------------------------------
-   /blog/its-bas-time-again — a story-shaped guide: the quarterly ritual, the turn (bring
-   your agent), Sam's September quarter with real figures, what it won't do.
+   /blog/its-bas-time-again — race weekend ritual: the scramble, a roster workflow,
+   a Saturday regatta walkthrough, what a good tool won't do for you.
 --------------------------------------------------------------------------- */
 
 const FAQS: { q: string; a: string }[] = [
   {
-    q: "Can my agent lodge the BAS for me?",
-    a: "No. It prepares: which labels apply, what to gather for each, due dates, all cited. You lodge through Online services for business, myGov or a registered agent. Keeping lodgment in your hands is deliberate.",
+    q: "How early should I lock the roster?",
+    a: "Final lock the night before for travel planning, then one pass at the tent before each heat. Late scratches happen — you want a single place to edit without rebuilding every lineup from memory.",
   },
   {
-    q: "Does it calculate my GST for me?",
-    a: "The checklist tool structures what to gather rather than doing sums, so nothing depends on records it can't see. Give your agent the quarter's figures in the conversation and it can do the arithmetic, with the label definitions cited.",
+    q: "One roster or separate lists per heat?",
+    a: "Separate lineups per heat. Open 500m and Mixed 200m share paddlers but not seats. Editing one sheet for both is how you seat someone in two places at once.",
   },
   {
-    q: "Do I need to lodge if I made no sales?",
-    a: "Yes. A nil activity statement is still due by the same date, and skipping it is one of the most common ways a small business collects a penalty for a quarter in which it earned nothing. Lodging nil takes minutes online.",
+    q: "What if we don't have a sweep for a heat?",
+    a: "Flag it early. Borrow from another crew, swap a paddler who holds sweep cert, or scratch the heat — but decide at the tent, not at the dock when the marshal is waiting.",
   },
   {
-    q: "I made a mistake on a BAS I already lodged",
-    a: "Breathe. Small GST errors can usually be corrected on a later BAS, within limits the ATO publishes; larger ones need a revision of the original statement. The limits depend on your turnover, which your agent can look up for your situation, cited.",
+    q: "Should reserves sit on the same lineup?",
+    a: "Keep them visible but unassigned, or in a bench row if your tool supports it. You need to see who's available without counting heads in the carpark.",
   },
   {
-    q: "I report monthly. Does it still work?",
-    a: "Yes. The checklist is built from your reporting period: monthly BAS due the 21st of the following month, quarterly with the statutory dates, or the annual GST return, which is generally due with your income tax return.",
+    q: "How do I handle paddlers racing multiple divisions?",
+    a: "Note the conflict in both heats. Staggered schedules usually work; overlapping heats need a call and a substitute before call time, not after.",
   },
   {
-    q: "What about PAYG withholding, FBT or fuel tax credits?",
-    a: "Sections for PAYG withholding (W1, W2), FBT instalments, fuel tax credits, even wine equalisation and luxury car tax, appear when your profile or the conversation says they apply. If they don't apply, you never see them.",
-  },
-  {
-    q: "I'm behind on a few BAS. Where do I start?",
-    a: "The ATO's guidance on overdue lodgment, nil statements and payment plans is in the corpus too, so your agent can walk you through what applies, cited. For debts and penalties, talk to the ATO or a registered agent early rather than waiting.",
+    q: "Can Paddltir replace our regatta entry system?",
+    a: "No — you still enter crews with the regatta organiser. Paddltir is for internal lineups: who sits where once you're accepted into the draw.",
   },
 ];
 
@@ -67,12 +62,12 @@ const pageJsonLd = {
     },
     breadcrumbJsonLd([
       { name: "Blog", path: "/blog" },
-      { name: "Prepare your BAS", path: "/blog/its-bas-time-again" },
+      { name: POST.title, path: "/blog/its-bas-time-again" },
     ]),
   ],
 };
 
-export default function BasPost() {
+export default function RaceWeekendPost() {
   return (
     <>
     <main className="mx-auto min-h-screen max-w-5xl px-5 pb-24 pt-20">
@@ -103,7 +98,7 @@ export default function BasPost() {
           className="reveal-lcp mt-3 text-[clamp(2rem,4vw,2.75rem)] font-normal leading-[1.08] tracking-tight2 text-zinc-900"
           style={{ "--reveal-delay": "0s" } as React.CSSProperties}
         >
-          It&apos;s BAS time again
+          {POST.title}
         </h1>
         <p className="mt-4 text-[15px] leading-relaxed text-zinc-500">
           {POST.description}
@@ -117,50 +112,40 @@ export default function BasPost() {
         <div className="mt-12 space-y-12">
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              The dance you know by heart
+              The scramble you know by heart
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              Nobody warns you about this part when you get an ABN. Four times
-              a year, a form arrives with its own vocabulary: G1, 1A, 1B,
-              labels that sound like droids. You&apos;ve googled &quot;what
-              goes at G1&quot; so many times the search bar finishes the
-              sentence for you.
+              Every regatta starts the same way: draw published, WhatsApp
+              erupts, three people confirm and two go quiet. Someone asks if
+              the 200m is before or after lunch. Someone else thought they
+              were reserve for Open but they&apos;re listed in Mixed. The
+              tent becomes a courtroom.
             </p>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              The form itself is smaller than the dread. If you&apos;re like
-              most small businesses you&apos;re on{" "}
-              <Cite href="https://www.ato.gov.au/businesses-and-organisations/preparing-lodging-and-paying/business-activity-statements-bas/goods-and-services-tax-gst/gst-reporting-methods">
-                Simpler BAS
-              </Cite>
-              , which is three numbers: everything you sold (G1), the GST you
-              collected (1A), and the GST credits on what you bought (1B). The
-              dread lives at the edges: which sales count, which purchases
-              qualify, and what happens if you get it wrong.
+              The racing is the easy part. The admin is four heats, two
+              boats, eighteen names that move between them, and a sweep who
+              only drives the 500m. Get the roster wrong and the penalty is
+              wasted warm-up, a rushed seat change, or a DNS you didn&apos;t
+              see coming.
             </p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              This time, you bring your agent
+              A checklist instead of a group chat
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              You say: help me get my BAS together. That&apos;s the whole
-              prompt. Your profile already carries the answers to the boring
-              questions: GST-registered, quarterly, no employees.
+              Work top down: confirm who&apos;s on deck for the day, then
+              one lineup per heat. For each heat note drummer, sweep, and
+              full paddling order. Scratch someone in Heat 2 and the change
+              stays in Heat 2 — Heat 3 shouldn&apos;t inherit it by accident.
             </p>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              What comes back is your checklist, not a brochure. The three
-              labels that apply to you, what to gather for each, and the traps
-              placed exactly where people fall into them:{" "}
-              <Cite href="https://www.ato.gov.au/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/in-detail/managing-gst-in-your-business/reporting-paying-and-activity-statements/completing-your-bas-for-gst/complete-your-bas/step-1-sales">
-                G1 includes your GST-free sales
-              </Cite>{" "}
-              too. That $90 purchase{" "}
-              <Cite href="https://www.ato.gov.au/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/claiming-gst-credits/when-you-cannot-claim-a-gst-credit">
-                needs a tax invoice
-              </Cite>
-              . A nil quarter still has to be lodged. And every line carries
-              the ATO page it came from, one click away.
+              The traps are always the same: same person named twice across
+              overlapping heats, a reserve still marked &quot;in&quot; when
+              they&apos;re travelling, sweep missing on the sheet but not in
+              anyone&apos;s head. A roster tool puts those conflicts where
+              you can see them before the marshal calls your lane.
             </p>
             <div className="tile mt-6 flex items-center justify-center p-6 sm:p-10">
               <BasGraphic className="h-auto w-full max-w-[320px]" />
@@ -169,44 +154,41 @@ export default function BasPost() {
 
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              Sam&apos;s September quarter
+              Tom&apos;s Saturday at Penrith
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              Sam builds websites. The quarter&apos;s books: $22,000 invoiced
-              and paid, $3,300 of business purchases with the invoices to show
-              for it. His agent walks it through: $22,000 at G1, the $2,000 of
-              GST inside it at 1A, $300 of credits at 1B. $1,700 to pay,{" "}
-              <Cite href="https://www.ato.gov.au/businesses-and-organisations/preparing-lodging-and-paying/business-activity-statements-bas/due-dates-for-lodging-and-paying-your-bas">
-                due 28 October
-              </Cite>
-              , a few weeks later if he lodges through an agent.
+              Tom&apos;s club has four heats across two divisions. Friday
+              night he marks two scratches and drops reserves into Open 500m
+              and Women&apos;s 200m. Saturday 7am: one reserve turns up
+              after all, so he swaps her into Mixed 500m and pulls a
+              paddler who&apos;d doubled up.
             </p>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              One catch gets flagged before he can step on it: Sam reports on
-              a cash basis, so the September invoice that gets paid in October
-              belongs to next quarter, not this one. That single sentence is
-              one of the most common BAS mistakes in the country, settled in
-              seconds with the source attached.
-            </p>
-            <p className="text-[15px] leading-relaxed text-zinc-700">
-              Sam is made up. The labels, the arithmetic and the due date are
-              real.
+              Because each heat is its own lineup, the Women&apos;s 200m
+              sheet never moved. Call time for Open is 8:12; he prints
+              nothing, just reads seat numbers off his phone at the dock.
+              Tom is made up. The draw chaos is not.
             </p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              What it won&apos;t do
+              What the roster can&apos;t do
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              It won&apos;t lodge for you, and it won&apos;t guess your
-              liability from records it can&apos;t see. That&apos;s
-              deliberate: the checklist is built from published ATO guidance
-              and your saved profile, and lodging stays in your hands, through
-              Online services or your agent. None of it is tax advice. It just
-              makes the preparation the easy part, and if something material
-              comes up, you take it to a registered tax or BAS agent with the
-              citations already in hand.
+              It won&apos;t enter you in the regatta or talk to the
+              organiser&apos;s system. It won&apos;t make paddlers reply to
+              messages. What it does is hold the lineups you&apos;re
+              responsible for — so when the horn is twenty minutes away
+              you&apos;re checking balance and warm-up, not rebuilding a
+              spreadsheet from scratch.
+            </p>
+            <p className="text-[15px] leading-relaxed text-zinc-700">
+              If your club is still on a shared sheet for this,{" "}
+              <Link href="/app" className="underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-900">
+                try Paddltir
+              </Link>{" "}
+              for the next meet. Same people, same heats, less tent drama.
             </p>
           </section>
         </div>

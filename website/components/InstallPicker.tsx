@@ -7,9 +7,8 @@ import { trackEvent } from "@/lib/analytics";
 
 /* ---------------------------------------------------------------------------
    Install picker — a self-contained card: a scrollable tab rail of clients
-   (brand mark + name, active = soft pill), then the install laid out as the
-   two real steps (add the server → sign in). Used on /install and
-   /onboard/install.
+   (brand mark + name, active = soft pill), then get-started laid out as the
+   two real steps (open the app → sign in). Used on /install.
 --------------------------------------------------------------------------- */
 
 function CopyIcon({ className }: { className?: string }) {
@@ -128,12 +127,7 @@ export default function InstallPicker() {
     select(INSTALL_CLIENTS[next]!.id, true);
   };
 
-  const isConfig = selected.snippet.trimStart().startsWith("{");
-  const stepOneTitle = selected.steps
-    ? "Add the connector"
-    : isConfig
-      ? "Add the server config"
-      : "Run this command";
+  const stepOneTitle = selected.steps ? "Open the app" : "Copy the app URL";
 
   return (
     <div className="card overflow-hidden">
@@ -142,7 +136,7 @@ export default function InstallPicker() {
         <div
           ref={railRef}
           role="tablist"
-          aria-label="MCP clients"
+          aria-label="Get started options"
           onScroll={updateFades}
           className="flex gap-1 overflow-x-auto p-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
@@ -251,7 +245,7 @@ export default function InstallPicker() {
           <span className="pt-0.5 font-mono text-[0.6875rem] text-zinc-500">02</span>
         </div>
         <div className="min-w-0">
-          <p className="text-[13px] font-medium text-zinc-900">Log in with your browser</p>
+          <p className="text-[13px] font-medium text-zinc-900">Sign in to Paddltir</p>
           <p className="mt-1.5 text-sm leading-relaxed text-zinc-600">
             <NoteText text={selected.authNote} />
           </p>

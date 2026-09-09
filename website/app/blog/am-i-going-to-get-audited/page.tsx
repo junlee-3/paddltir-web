@@ -3,45 +3,44 @@ import Link from "next/link";
 import { breadcrumbJsonLd } from "@/lib/breadcrumbs";
 import { BLOG_POSTS } from "../posts";
 import { AuditGraphic } from "../graphics";
-import { Cite } from "../cite";
 import { blogPostingJsonLd, postMetadata } from "../seo";
 import { ClosingCta } from "@/components/site/ClosingCta";
 
 const POST = BLOG_POSTS.find((p) => p.slug === "am-i-going-to-get-audited")!;
 
 const SEO = {
-  title: "Check your audit risk with an AI agent, cited",
+  title: "Check dragon boat lineup balance before you load",
   description:
-    "Ask your agent to check your draft return against the risk areas the ATO publishes: banded, explained and cited, before you lodge. Grounded in 34,500+ ATO documents.",
+    "Second-guessed the heat at 6am? How to check left-right and fore-aft balance before you load — not after you bury a gunwale.",
 };
 
 export const metadata: Metadata = postMetadata(POST, SEO);
 
 /* ---------------------------------------------------------------------------
-   /blog/am-i-going-to-get-audited — a story-shaped guide: the fear after lodging, the turn
-   (check before you lodge), Priya's ten minutes, what a flag is and isn't.
+   /blog/am-i-going-to-get-audited — pre-load balance check: the doubt, what to
+   look at, a morning example, what balance tells you and what it doesn't.
 --------------------------------------------------------------------------- */
 
 const FAQS: { q: string; a: string }[] = [
   {
-    q: "What does the audit risk check actually look at?",
-    a: "Around 13 red flags drawn from published ATO guidance: income completeness against what's typically pre-filled, deductions out of proportion to your occupation and income, and claims in areas the ATO has flagged publicly. Each result carries the guidance behind it.",
+    q: "What's a reasonable left-right weight gap?",
+    a: "Club boats often aim for within a few kilos total. Exact numbers matter less than sudden swings — if you're 8 kg off one side, move someone before you push off.",
   },
   {
-    q: "Can it tell me my real chance of being audited?",
-    a: "No, and be suspicious of anything that says it can: the ATO doesn't publish its selection systems. The check reads your draft against public guidance, which is the part you can actually control.",
+    q: "The boat looked fine at the dock but felt wrong on the water",
+    a: "Static balance at rest isn't the whole story — paddle weight and reach matter — but big static skew usually gets worse under load. Fix obvious skew first.",
   },
   {
-    q: "Does a low band mean I'm safe?",
-    a: "It means nothing in your draft contradicts the published guidance it checks against. Keep your records anyway: five years, receipts, and the hours or kilometres behind any rate-based claim.",
+    q: "Should I re-check after a last-minute swap?",
+    a: "Yes. One substitution can flip side count and stern weight. Thirty seconds at the screen beats a 500m with the gunwale in the drink.",
   },
   {
-    q: "Does using AI to prepare my tax increase audit risk?",
-    a: "Your lodgment looks the same however you prepared it. What matters is whether the claims are right and substantiated, and cited answers make both of those easier, not harder.",
+    q: "Does balance guarantee a fast time?",
+    a: "No. It guarantees you're not fighting the hull before technique even starts. Speed still needs fitness, timing, and a decent catch.",
   },
   {
-    q: "I found a mistake in a return I already lodged",
-    a: "You can request an amendment, and raising it yourself early is far better than waiting for a letter. Your agent can walk the amendment process with the ATO page behind it; for anything material, bring in a registered tax agent.",
+    q: "We eyeball it — isn't that enough?",
+    a: "Sometimes. If you've raced the same ten people for years, maybe. New crew, guest paddlers, or a reserve swap is when eyeball fails.",
   },
 ];
 
@@ -59,12 +58,12 @@ const pageJsonLd = {
     },
     breadcrumbJsonLd([
       { name: "Blog", path: "/blog" },
-      { name: "Check your audit risk", path: "/blog/am-i-going-to-get-audited" },
+      { name: POST.title, path: "/blog/am-i-going-to-get-audited" },
     ]),
   ],
 };
 
-export default function AuditPost() {
+export default function BalancePost() {
   return (
     <>
     <main className="mx-auto min-h-screen max-w-5xl px-5 pb-24 pt-20">
@@ -95,7 +94,7 @@ export default function AuditPost() {
           className="reveal-lcp mt-3 text-[clamp(2rem,4vw,2.75rem)] font-normal leading-[1.08] tracking-tight2 text-zinc-900"
           style={{ "--reveal-delay": "0s" } as React.CSSProperties}
         >
-          Am I going to get audited?
+          {POST.title}
         </h1>
         <p className="mt-4 text-[15px] leading-relaxed text-zinc-500">
           {POST.description}
@@ -109,54 +108,37 @@ export default function AuditPost() {
         <div className="mt-12 space-y-12">
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              The fear that outlasts the refund
+              The doubt that hits at 6am
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              Almost everyone who does their own tax carries a version of it.
-              Not guilt, exactly. You didn&apos;t invent deductions. You just
-              weren&apos;t sure, twice, and you rounded up once, and now the
-              word &quot;audit&quot; has a permanent corner of your brain.
+              You locked the lineup last night. This morning someone&apos;s
+              sick and a reserve stepped in — same side, you told yourself,
+              should be fine. Still you stare at the boat rack wondering if
+              the stern is too heavy, if the port side has one too many
+              left-handers, if you&apos;re about to learn the hard way.
             </p>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              Here&apos;s what the fear gets wrong: the ATO isn&apos;t peering
-              through your window. It&apos;s reading your data. Banks,
-              employers, health funds and government agencies send your numbers
-              in{" "}
-              <Cite href="https://www.ato.gov.au/individuals-and-families/your-tax-return/how-to-lodge-your-tax-return/lodge-your-tax-return-online-with-mytax/pre-filling-your-online-tax-return">
-                before you&apos;ve opened myTax
-              </Cite>{" "}
-              (that&apos;s what pre-fill is). So the fastest way to draw
-              attention isn&apos;t a big claim. It&apos;s telling them
-              something different from what they already know.
+              That feeling isn&apos;t superstition. Dragon boats punish lazy
+              balance. A few kilos the wrong way and the crew spends the race
+              correcting instead of driving.
             </p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              So you check before you lodge
+              Check before you load
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              You say: here&apos;s my draft return, is anything in it risky?
-              The audit risk check runs your numbers against around 13 red
-              flags drawn from published ATO guidance: income that
-              doesn&apos;t match what&apos;s been reported about you,
-              deductions out of proportion to{" "}
-              <Cite href="https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/guides-for-occupations-and-industries">
-                your occupation
-              </Cite>{" "}
-              and income, claims in the areas the ATO has said it watches.
+              Run two passes on the lineup: left versus right headcount and
+              weight, then bow, middle, and stern totals. Flags are simple —
+              more than two paddlers&apos; worth of skew on a side, or one
+              section carrying half the crew&apos;s mass. Swap one seat and
+              look again.
             </p>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              What comes back isn&apos;t a verdict. It&apos;s a band (low,
-              medium, high) with every flag explained and cited, so you can
-              see exactly which line earned it and what the ATO actually says
-              about it. Most of the time the answer is: you&apos;re fine, and
-              now you know why you&apos;re fine.
-            </p>
-            <p className="text-[15px] leading-relaxed text-zinc-700">
-              The reasons matter more than the band. A flag doesn&apos;t mean
-              don&apos;t claim it. It means this is the claim to have records
-              for.
+              What you get isn&apos;t a guarantee of gold. It&apos;s a short
+              list: this side heavy, this end light, move this person. Doubt
+              with a to-do list beats doubt in the dark.
             </p>
             <div className="tile mt-6 flex items-center justify-center p-6 sm:p-10">
               <AuditGraphic className="h-auto w-full max-w-[320px]" />
@@ -165,44 +147,36 @@ export default function AuditPost() {
 
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              Priya&apos;s ten minutes
+              Priya&apos;s reserve swap
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              Priya photographs weddings, sole trader, second year in. Draft
-              return done, one nagging doubt: her working-from-home claim
-              feels big. She asks.
+              Priya&apos;s Open heat lost a 95 kg stern paddler to a flu.
+              Reserve was 68 kg, same side. Side count still balanced but stern
+              dropped 27 kg. She moved a 82 kg middle to seat 9, checked
+              totals again, loaded.
             </p>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              Two flags come back. Her interest income is missing $34 that her
-              bank has already reported (a forgotten savings account, easily
-              fixed). And her equipment claims are large for her income, which
-              is normal for a photographer in a gear-heavy year, and exactly
-              the kind of claim to have the receipts for. The band lands on
-              low. She fixes the $34, checks the receipts folder, lodges, and
-              gets her September back.
-            </p>
-            <p className="text-[15px] leading-relaxed text-zinc-700">
-              Priya is made up. Pre-fill, the bands and the guidance behind
-              each flag are real.
+              Priya is made up. The swap logic isn&apos;t — weight and side
+              interact. One substitution can fix headcount while breaking trim.
             </p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              What a flag is, and isn&apos;t
+              What balance is, and isn&apos;t
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              None of this predicts an audit, and be suspicious of anything
-              that claims to. The check reads your draft against what the ATO
-              has published, nothing more. It can&apos;t see what the
-              ATO&apos;s own systems see, and it isn&apos;t tax advice. What
-              it does is convert a vague background dread into a short,
-              specific list: this line, this reason, this source. Dread
-              doesn&apos;t have a to-do list. This does.
+              Balance check doesn&apos;t replace coaching or hours on the
+              water. It removes the obvious foot-gun — the listing boat, the
+              buried bow, the crew that spent 500m fighting geometry instead
+              of the race plan.
             </p>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              And if something material surfaces, that&apos;s the moment for a
-              registered tax agent, with the citations already in hand.
+              If you&apos;re still doing this in your head,{" "}
+              <Link href="/app" className="underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-900">
+                Paddltir
+              </Link>{" "}
+              totals update as you drag seats. Same check, less 6am anxiety.
             </p>
           </section>
         </div>

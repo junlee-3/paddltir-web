@@ -77,7 +77,7 @@ export async function ogCard({
             />
           </div>
           <div style={{ fontSize: 32, fontWeight: 500, letterSpacing: -0.5 }}>
-            Australian Tax MCP
+            Paddltir
           </div>
           {badge ? (
             <div

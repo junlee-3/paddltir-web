@@ -148,10 +148,10 @@ export function Nav() {
             <Link
               href="/"
               className="flex items-center gap-2 justify-self-start px-2 py-1 text-[15px] font-medium tracking-tight1 text-zinc-900 max-md:px-0"
-              aria-label="Australian Tax MCP home"
+              aria-label="Paddltir home"
             >
               <Mark />
-              Australian Tax MCP
+              Paddltir
             </Link>
 
             {/* Centre — links */}

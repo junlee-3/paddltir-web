@@ -1,6 +1,6 @@
 import { BLOG_POSTS } from "@/app/blog/posts";
 
-const SITE = "https://ato-mcp.com.au";
+const SITE = "https://paddltir-web.vercel.app";
 
 const escape = (s: string) =>
   s
@@ -30,9 +30,9 @@ export function GET() {
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Australian Tax MCP blog</title>
+    <title>Paddltir blog</title>
     <link>${SITE}/blog</link>
-    <description>Notes on doing your own tax with an AI agent, from the Australian tax knowledge base for AI agents.</description>
+    <description>Notes on seating crews, race-day rosters, and boat balance from Paddltir.</description>
     <language>en-AU</language>
     <atom:link href="${SITE}/feed.xml" rel="self" type="application/rss+xml"/>
 ${items}

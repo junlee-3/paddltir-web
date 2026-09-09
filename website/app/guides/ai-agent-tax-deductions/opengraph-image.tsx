@@ -1,15 +1,15 @@
 import { OG_CONTENT_TYPE, OG_SIZE, ogCard } from "@/lib/og-card";
 
 export const runtime = "edge";
-export const alt = "Can AI find your tax deductions? · Australian Tax MCP";
+export const alt = "How do you seat a standard boat? · Paddltir";
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 
 export default function OgImage() {
   return ogCard({
     badge: "Guide",
-    title: "Can AI find your tax deductions?",
+    title: "How do you seat a standard boat?",
     description:
-      "What a connected agent can do for a sole trader in 2025-26: cited deduction categories, records to keep, and the honest limits.",
+      "Left, right, drummer, sweep: a practical order of operations for filling a standard dragon boat without leaving balance to chance.",
   });
 }

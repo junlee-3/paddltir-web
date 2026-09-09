@@ -7,7 +7,7 @@ import { ClosingCta } from "@/components/site/ClosingCta";
 export const metadata: Metadata = {
   title: "FAQ: common questions",
   description:
-    "Is there an MCP server for Australian tax? Is it tax advice? What does it store? Every common question about ato-mcp, answered plainly.",
+    "How do rosters, crewlists, and lineups work? What does Paddltir store? Every common question about dragon boat crew management, answered plainly.",
   alternates: { canonical: "/faq" },
 };
 

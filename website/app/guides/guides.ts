@@ -1,7 +1,5 @@
 /**
- * Registry of reference guides (question-form, extractable, cited) — the
- * /guides analogue of app/blog/posts.ts. The index page, sitemap and blog
- * cross-links all read from here so a new guide only gets added once.
+ * Registry of reference guides — the /guides analogue of app/blog/posts.ts.
  */
 export type Guide = {
   slug: string;
@@ -15,16 +13,16 @@ export type Guide = {
 export const GUIDES: Guide[] = [
   {
     slug: "ai-agent-tax-deductions",
-    title: "Can AI find your tax deductions?",
+    title: "How do you seat a standard boat?",
     description:
-      "What a connected agent can do for a sole trader in 2025-26: cited deduction categories, records to keep, and the honest limits.",
+      "Left, right, drummer, sweep: a practical order of operations for filling a standard dragon boat without leaving balance to chance.",
     date: "2026-08-17",
   },
   {
     slug: "can-ai-do-my-bas",
-    title: "Can AI do your BAS?",
+    title: "How do you run multiple heats?",
     description:
-      "What an agent prepares and what you still lodge: the labels that apply, the evidence to gather, and the due dates, all cited.",
+      "Open, mixed, women's — keep separate lineups for each heat so one change doesn't wipe the next race.",
     date: "2026-08-17",
   },
 ];

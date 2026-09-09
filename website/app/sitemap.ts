@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { BLOG_POSTS } from "./blog/posts";
 import { GUIDES } from "./guides/guides";
 
-const SITE = "https://ato-mcp.com.au";
+const SITE = "https://paddltir-web.vercel.app";
 
 // Bump a date only when that page's content meaningfully changes.
 // Stamping build time on every deploy makes Google ignore lastmod entirely.

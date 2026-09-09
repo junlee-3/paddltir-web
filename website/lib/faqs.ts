@@ -8,58 +8,58 @@ export interface Faq {
 
 export const HOME_FAQS: Faq[] = [
   {
-    q: "Is this tax advice?",
-    a: "No. ato-mcp retrieves published ATO material and runs fixed calculations, always with the source attached. Confidence ratings and risk bands are guides, not professional judgement. Your agent does the reasoning, and decisions that matter should still go past a registered tax agent.",
+    q: "What is Paddltir?",
+    a: "Paddltir is a dragon boat crew management app. Build lineups, keep rosters and crewlists organised, and check trim and balance before you race.",
   },
   {
-    q: "What does ato-mcp store about me?",
-    a: "Your onboarding facts (business structure, GST registration and so on, about 25 fields you control), your sign-in identity, and basic usage counts. Never tool names, never query content, never results: the database physically has nowhere to store them, and the privacy page is generated from that same schema so it can't drift.",
+    q: "Who is it for?",
+    a: "Coaches, sweeps, and club organisers who need to seat boats quickly and keep paddler details in one place — especially when you run multiple heats in a day.",
   },
   {
-    q: "Which agents does it work with?",
-    a: "Anything that speaks the Model Context Protocol: Claude, ChatGPT, Codex, Gemini CLI, Cursor, VS Code and more. One line to install, then sign in with your browser.",
+    q: "What can I configure in a boat?",
+    a: "Seat paddlers left and right, assign drummer and sweep, and switch between small and standard boat sizes. Paddltir uses weight and preferred side to help you see how the boat sits.",
   },
   {
-    q: "Is there an MCP server for Australian tax?",
-    a: "Yes. ato-mcp is an MCP server for Australian tax: it gives any agent that speaks the Model Context Protocol (Claude, ChatGPT, Codex, Gemini CLI, Cursor, VS Code) cited retrieval over 34,500+ ATO documents, the income tax and GST Acts and 4,900+ public rulings.",
+    q: "What insights do I get?",
+    a: "You can see fore-aft trim, side balance, and empty seats before you commit a lineup. The goal is fewer surprises on the pontoon.",
   },
   {
-    q: "What is MCP (the Model Context Protocol)?",
-    a: "MCP is the open standard AI agents use to call outside tools and data sources. ato-mcp uses it to hand your agent 13 Australian tax tools: search over the corpus, statutory definitions, current rates and thresholds, and four workflow tools, with every answer carrying its ATO citation.",
+    q: "Do I need to be technical?",
+    a: "No. Sign in, add your paddlers, build a crewlist, and seat the boat. If you can run a race day roster on paper, you can use Paddltir.",
   },
   {
-    q: "How current is the corpus?",
-    a: "The corpus is rebuilt from ato.gov.au, the Federal Register of Legislation and law.ato.gov.au on a monthly cycle and served fresh. The stats tool reports the live snapshot.",
+    q: "Is my crew data private?",
+    a: "Your account, paddlers, and crewlists belong to you. You can update or remove them from the app. See the privacy page for what we store.",
   },
   {
-    q: "Is it open source?",
-    a: "Most clients connect directly to the hosted endpoint with no local code at all. The optional npm client is open source (AGPL-3.0) and public, so you can verify exactly what it does. The hosted retrieval platform and the corpus are maintained privately.",
+    q: "Is it ready for race day?",
+    a: "Yes. Keep a roster ready, seat each heat, and check trim before you load. Open the app from any device your crew already uses.",
   },
 ];
 
 export const EXTRA_FAQS: Faq[] = [
   {
-    q: "What sources does it search?",
-    a: "Three: ato.gov.au guidance, the legislation itself (the ITAA 1997, ITAA 1936 and GST Act, section by section, with 2,310 statutory definitions) and 4,900+ ATO public rulings across ten series, with withdrawn rulings flagged. The corpus is rebuilt monthly and served fresh.",
+    q: "What's the difference between a roster and a crewlist?",
+    a: "A roster is your pool of paddlers. A crewlist is the set of people available for a race or training block. You seat boats from a crewlist so each heat stays clear.",
   },
   {
-    q: "What can my agent actually do with it?",
-    a: "Thirteen tools. Nine retrieval tools cover search, whole documents, statutory definitions, current rates and thresholds and the citation graph. A personal-context tool carries your tax profile into every answer. Four workflow tools handle deduction discovery, depreciation schedules, BAS preparation and audit-risk checks, all cited.",
+    q: "Can I run multiple heats?",
+    a: "Yes. Configure separate lineups per heat so open, mixed, and women's crews don't overwrite each other.",
   },
   {
-    q: "How do I install it?",
-    a: "One line in your client, or a short config paste, then sign in with your browser. Your account is created on first sign-in and there is no token to copy. The install page has the exact command for each client.",
+    q: "How does weight affect seating?",
+    a: "Heavier paddlers shift the boat's centre of mass. Paddltir shows trim so you can move people forward or aft before you race instead of guessing on the water.",
   },
   {
-    q: "Do I need to be a developer?",
-    a: "No. If you can paste a command and sign in with your browser, you can connect ato-mcp. The install page walks through each client step by step.",
+    q: "What about preferred side?",
+    a: "Many paddlers paddle stronger on one side. You can record that and seat left/right with it in mind, then still override when the boat needs balance.",
   },
   {
-    q: "Does it know my situation?",
-    a: "If you want it to. You can save a tax profile (about 25 fields: business structure, GST registration and so on) that your agent reads once per session, so answers fit a sole trader registered for GST rather than a generic taxpayer. It's optional, and you control every field.",
+    q: "Can I delete my account?",
+    a: "Yes. Account deletion removes your profile and associated crew data from the service. Details are on the privacy page.",
   },
   {
-    q: "Can I delete my data?",
-    a: "Yes. Account deletion removes your profile and sign-in identity. There are no stored queries or results to delete, because the database has nowhere to put them. The privacy page lists every stored field, generated from the schema itself.",
+    q: "Where do I start?",
+    a: "Open the app, add paddlers to a roster, create a crewlist, then seat your first boat. The docs page walks through the main pieces.",
   },
 ];

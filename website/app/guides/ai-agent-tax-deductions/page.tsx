@@ -1,42 +1,47 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { breadcrumbJsonLd } from "@/lib/breadcrumbs";
-import { Cite } from "@/app/blog/cite";
 import { ClosingCta } from "@/components/site/ClosingCta";
 
 export const metadata: Metadata = {
-  title: "Can AI find your tax deductions?",
+  title: "How do you seat a standard boat?",
   description:
-    "Can an AI agent find your tax deductions? What a connected agent can do for a sole trader in 2025-26: cited categories, records, honest limits.",
+    "Left, right, drummer, sweep: a practical order of operations for filling a standard dragon boat without leaving balance to chance.",
   alternates: { canonical: "/guides/ai-agent-tax-deductions" },
 };
 
 /* ---------------------------------------------------------------------------
    /guides/ai-agent-tax-deductions — a reference guide (not a blog story):
-   direct answers under question-form headings, extractable lists, every
-   figure cited. Targets "AI agent Australian tax deductions" queries.
+   direct answers under question-form headings, extractable lists. Targets
+   "how to seat a dragon boat" queries.
 --------------------------------------------------------------------------- */
+
+const SEATS = [
+  { role: "Sweep", side: "Stern", note: "Steers the boat; fixed at the back" },
+  { role: "Drummer", side: "Bow", note: "Sets the pace; fixed at the front" },
+  { role: "Stroke pair", side: "Seats 1L / 1R", note: "Sets rhythm and power for the crew" },
+  { role: "Middle seats", side: "Seats 2–9", note: "Engine room — balance weight here first" },
+  { role: "Back pair", side: "Seats 10L / 10R", note: "Often heavier paddlers; affects trim" },
+];
 
 const FAQS: { q: string; a: string }[] = [
   {
-    q: "Is this tax advice?",
-    a: "No. ato-mcp is information infrastructure: it retrieves published ATO material and runs fixed, cited calculations. It does not consider your full circumstances and it is not a registered tax agent service. Verify material decisions with a registered tax agent.",
+    q: "Do I have to seat left and right alternately?",
+    a: "Not strictly, but side balance matters more than perfect alternation. Aim for roughly equal total weight on port and starboard. If someone only paddles one side, pair them with a strong opposite-side paddler nearby.",
   },
   {
-    q: "Which AI agents can find deductions this way?",
-    a: "Anything that speaks MCP: Claude Code, Claude Desktop, ChatGPT, Codex, Gemini CLI, Cursor and VS Code all connect to the same endpoint. The agent you already use asks the questions; ato-mcp supplies the cited tax knowledge.",
+    q: "Where do I put heavier paddlers?",
+    a: "Heavier paddlers shift the boat's centre of mass. In a standard boat, spread them through the middle seats (3–8) rather than stacking them at bow or stern. Check fore-aft trim after every few swaps.",
   },
   {
-    q: "Does the agent see my bank account or receipts?",
-    a: "No. ato-mcp reads a tax profile of about 25 fields you save (business structure, GST registration and so on), nothing else. You describe your spending in the conversation; the tool matches it to deduction categories and returns the sources.",
+    q: "What if someone can only paddle one side?",
+    a: "Record their preferred side in your roster and seat them there when you can. When balance needs a fix, swap someone in an adjacent seat rather than moving the whole boat around at the last minute.",
   },
   {
-    q: "How current are the answers?",
-    a: "The corpus is rebuilt monthly from ato.gov.au, the Federal Register of Legislation and law.ato.gov.au, and withdrawn rulings are flagged. Every passage carries its publication date, so the agent can prefer current guidance and say which year a rate belongs to.",
+    q: "Can Paddltir do this for me?",
+    a: "Paddltir won't pick your crew for you, but it shows side balance and fore-aft trim as you seat people — so you see the effect of each swap before you commit.",
   },
 ];
-
-const SITE = "https://ato-mcp.com.au";
 
 const pageJsonLd = {
   "@context": "https://schema.org",
@@ -50,7 +55,7 @@ const pageJsonLd = {
       })),
     },
     breadcrumbJsonLd([
-      { name: "AI agent for tax deductions", path: "/guides/ai-agent-tax-deductions" },
+      { name: "How do you seat a standard boat?", path: "/guides/ai-agent-tax-deductions" },
     ]),
   ],
 };
@@ -69,97 +74,106 @@ export default function AiAgentTaxDeductionsPage() {
         <div className="mx-auto max-w-3xl space-y-10">
           <div className="space-y-4">
             <h1 className="reveal-lcp text-[clamp(2rem,4vw,2.75rem)] font-normal leading-[1.08] tracking-tight2 text-zinc-900">
-              Can an AI agent find your tax deductions?
+              How do you seat a standard boat?
             </h1>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              Yes, with a caveat. An AI agent connected to cited retrieval over
-              34,500+ ATO documents can map the deduction categories that fit
-              how you work, show the ATO source for each and list the records
-              you need. It cannot lodge for you, and amounts stay your
-              decision.
+              A standard dragon boat carries twenty paddlers — ten left, ten
+              right — plus a drummer at the bow and a sweep at the stern. The
+              trick is filling it in an order that keeps side balance and
+              fore-aft trim in check, not redrawing the whole lineup on the
+              pontoon.
             </p>
           </div>
 
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              What can a sole trader usually claim?
+              What roles are fixed?
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              The general rule sits in{" "}
-              <Cite href="https://www.legislation.gov.au/C2004A05138/latest/text">
-                section 8-1 of the ITAA 1997
-              </Cite>
-              : expenses you incur in earning your business income, to the
-              extent they are not private or capital. For 2025-26 the common
-              categories are:
+              Start with the two roles that don&apos;t move: sweep at the stern
+              and drummer at the bow. Everyone else fills the ten seat pairs
+              between them, numbered from the bow (seat 1) to the stern (seat
+              10).
             </p>
+            <div className="card overflow-hidden p-0">
+              <table className="w-full border-collapse text-sm">
+                <thead>
+                  <tr className="border-b border-zinc-200 bg-zinc-50">
+                    <th className="eyebrow px-4 py-2.5 text-left">Role</th>
+                    <th className="eyebrow px-4 py-2.5 text-left">Position</th>
+                    <th className="eyebrow px-4 py-2.5 text-left">Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {SEATS.map((row, idx) => (
+                    <tr key={row.role} className={idx % 2 === 1 ? "bg-zinc-50/70" : "bg-white"}>
+                      <td className="px-4 py-2 text-[13px] text-zinc-900">{row.role}</td>
+                      <td className="px-4 py-2 font-mono text-xs text-zinc-500">{row.side}</td>
+                      <td className="px-4 py-2 text-[13px] text-zinc-700">{row.note}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
+              What order should you fill seats?
+            </h2>
+            <p className="text-[15px] leading-relaxed text-zinc-700">
+              Work from the outside in — fixed roles first, then the pairs that
+              matter most for rhythm and balance:
+            </p>
+            <ol className="list-decimal space-y-2 pl-5 text-[15px] leading-relaxed text-zinc-700">
+              <li>
+                Lock in sweep and drummer. They anchor fore-aft trim at both
+                ends.
+              </li>
+              <li>
+                Seat the stroke pair (1L and 1R). These paddlers set the rate
+                the rest of the crew follows.
+              </li>
+              <li>
+                Fill middle seats (roughly 3–8), alternating sides and watching
+                total weight on port vs starboard as you go.
+              </li>
+              <li>
+                Place the back pair (10L and 10R). Heavier paddlers here pull
+                the stern down — check trim before you call it done.
+              </li>
+              <li>
+                Walk the boat one last time: any empty seats, anyone on the
+                wrong side, any side more than a few kilos heavy?
+              </li>
+            </ol>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
+              What should you check before you push off?
+            </h2>
             <ul className="list-disc space-y-2 pl-5 text-[15px] leading-relaxed text-zinc-700">
               <li>
-                Home office running costs: the{" "}
-                <Cite href="https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/work-related-deductions/working-from-home-expenses/fixed-rate-method">
-                  fixed-rate method
-                </Cite>{" "}
-                allows 70 cents per work hour for 2025-26, or you can claim the
-                work share of actual costs with records.
+                Side balance: total weight on left and right within a few
+                kilograms of each other.
               </li>
               <li>
-                Tools and equipment: business assets are depreciated, and for
-                2025-26 assets under $20,000 could be deducted in full under
-                the{" "}
-                <Cite href="https://www.ato.gov.au/businesses-and-organisations/income-deductions-and-concessions/depreciation-and-capital-expenses-and-allowances/simpler-depreciation-for-small-business/instant-asset-write-off">
-                  instant asset write-off
-                </Cite>{" "}
-                (the 2026-27 threshold is not yet legislated).
+                Fore-aft trim: the boat should sit level, not bow- or
+                stern-heavy.
               </li>
               <li>
-                Motor vehicle and travel:{" "}
-                <Cite href="https://www.ato.gov.au/tax-and-super-professionals/for-tax-professionals/prepare-and-lodge/tax-time/tax-time-toolkits/tax-time-toolkit-small-business/small-business-guides/motor-vehicle-expenses">
-                  cents per kilometre or logbook
-                </Cite>
-                , for the business share of vehicle use.
+                Preferred sides: paddlers seated where they paddle strongest,
+                unless balance needs an override.
               </li>
               <li>
-                Phone, internet and software: the portion used for the
-                business, apportioned on a reasonable basis.
-              </li>
-              <li>
-                Insurance, professional fees, bank fees and subscriptions
-                connected to earning your business income.
+                Empty seats: every slot filled, or a deliberate reserve noted
+                so the sweep knows the count.
               </li>
             </ul>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              Which of these actually apply, and what evidence each needs,
-              depends on your structure and how you operate. That matching is
-              the part an agent does well.
-            </p>
-          </section>
-
-          <section className="space-y-4">
-            <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              What does the agent actually do when you ask?
-            </h2>
-            <p className="text-[15px] leading-relaxed text-zinc-700">
-              Connected to ato-mcp, your agent calls deduction_discovery: a
-              deterministic tool that walks a curated map of deduction
-              categories built from ATO guidance, matched to the tax profile
-              you saved once (sole trader or company, GST registered or not,
-              home based or not). It returns the categories that plausibly
-              apply, confidence-rated, with the records each one needs and the
-              ATO source cited on every line. You read the sources, not the
-              model&apos;s memory.
-            </p>
-          </section>
-
-          <section className="space-y-4">
-            <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              What won&apos;t it do?
-            </h2>
-            <p className="text-[15px] leading-relaxed text-zinc-700">
-              It won&apos;t lodge your return, decide amounts, or tell you to
-              claim something. It surfaces categories, rules and sources; the
-              numbers come from your records, and material decisions still
-              belong with a registered tax agent. The difference is you arrive
-              with the citations instead of the question.
+              In Paddltir, these checks update live as you drag paddlers into
+              seats — so a last-minute swap shows its effect before you commit.
             </p>
           </section>
 
@@ -181,15 +195,15 @@ export default function AiAgentTaxDeductionsPage() {
             <p className="text-sm text-zinc-500">
               Related reading:{" "}
               <Link href="/blog/what-can-you-actually-claim" className={linkCls}>
-                What can you actually claim?
+                Who belongs in which seat?
               </Link>
               ,{" "}
               <Link href="/blog/so-you-bought-a-laptop-in-the-eofy-sales" className={linkCls}>
-                So you bought a laptop in the EOFY sales
+                So you finally weighed the whole crew
               </Link>{" "}
               and{" "}
               <Link href="/guides/can-ai-do-my-bas" className={linkCls}>
-                Can AI do your BAS?
+                How do you run multiple heats?
               </Link>
             </p>
           </section>

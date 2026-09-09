@@ -1,40 +1,31 @@
-# Australian Tax MCP (ato-mcp)
+# Paddltir
 
-> The Australian tax knowledge base for AI agents: an MCP (Model Context Protocol)
-> service giving cited retrieval over 34,500+ ATO documents, the income tax and
-> GST Acts and 4,900+ public rulings, plus a personal-facts layer and four
-> tax workflow tools (deduction_discovery, depreciation_helper, bas_prep_checklist,
-> audit_risk_check). Hosted: point your AI client at the remote MCP endpoint and
-> sign in with your browser — your account is created on first sign-in. The optional
-> npm client you run is open source (AGPL-3.0). Not tax advice: every tool returns
-> structured data plus resolvable ATO citations for an agent to reason over.
+> Dragon boat crew management for coaches, sweeps, and club organisers.
+> Build rosters, seat boats heat by heat, and check trim and side balance
+> before you push off. Web app at https://paddltir-web.vercel.app/app —
+> sign in with email or Google on first visit.
 
 ## Docs
 
-- [llms-full.txt](https://ato-mcp.com.au/llms-full.txt): the full site content as a single markdown file
-- [Install](https://ato-mcp.com.au/install): one-line install for Claude Code, Codex, Gemini CLI, Cursor, VS Code, Claude.ai, ChatGPT and any MCP client
-- [Documentation](https://ato-mcp.com.au/docs): install, connect to Claude Code / any MCP host, all 13 tools
-- [Guides](https://ato-mcp.com.au/guides): reference guides with direct, cited answers: can AI find your tax deductions (/guides/ai-agent-tax-deductions) and can AI do your BAS (/guides/can-ai-do-my-bas)
-- [Blog](https://ato-mcp.com.au/blog): sole trader deductions (/blog/what-can-you-actually-claim), BAS preparation (/blog/its-bas-time-again), equipment write-offs (/blog/so-you-bought-a-laptop-in-the-eofy-sales), audit-risk checks (/blog/am-i-going-to-get-audited), AI answer reliability (/blog/can-you-trust-ai-with-your-tax) and first-year ABN basics (/blog/nobody-withholds-your-tax-anymore) with an AI agent, cited
-- [FAQ](https://ato-mcp.com.au/faq): common questions (is it tax advice, what does it store, which agents work)
-- [Compare](https://ato-mcp.com.au/compare): ato-mcp vs browsing ato.gov.au vs asking a chatbot alone
-- [About](https://ato-mcp.com.au/about): who builds ato-mcp, trust signals, contact
-- [Full tool reference](https://github.com/william-laverty/ato-mcp/blob/main/docs/tools.md): input/output schemas, examples, errors
-- [README](https://github.com/william-laverty/ato-mcp/blob/main/README.md): corpus contents, architecture, privacy model
+- [llms-full.txt](https://paddltir-web.vercel.app/llms-full.txt): product copy and main pages as a single markdown file
+- [Get started](https://paddltir-web.vercel.app/install): open the app and sign in
+- [Guides](https://paddltir-web.vercel.app/guides): reference guides — how to seat a standard boat (/guides/ai-agent-tax-deductions) and how to run multiple heats (/guides/can-ai-do-my-bas)
+- [Blog](https://paddltir-web.vercel.app/blog): race-day stories — seating a crew (/blog/what-can-you-actually-claim), regatta prep (/blog/its-bas-time-again), weight and trim (/blog/so-you-bought-a-laptop-in-the-eofy-sales), lineup balance (/blog/am-i-going-to-get-audited), spreadsheets vs a crew tool (/blog/can-you-trust-ai-with-your-tax), and heat records (/blog/nobody-withholds-your-tax-anymore)
+- [FAQ](https://paddltir-web.vercel.app/faq): rosters, crewlists, trim, privacy, and getting started
+- [Compare](https://paddltir-web.vercel.app/compare): paper roster vs spreadsheet vs Paddltir
+- [GitHub](https://github.com/junlee-3/paddltir-web): marketing site source
 
-## Install
+## App
 
-- Remote MCP endpoint: https://api.ato-mcp.com.au/mcp (streamable HTTP, OAuth — your browser opens to sign in with email or Google)
-- Claude Code: `claude mcp add --scope user --transport http ato https://api.ato-mcp.com.au/mcp`
-- Stdio-only clients: npm package ato-mcp (Node 22+) proxies the hosted server — `npx -y ato-mcp`; first run opens your browser to sign in
-- The npm client records 100,000+ downloads a month (registry count; includes mirrors and CI)
+- Web app: https://paddltir-web.vercel.app/app
+- Sign in with email or Google — account created on first visit
+- Works in any modern browser on desktop or mobile
 
 ## Policies
 
-- [Privacy](https://ato-mcp.com.au/privacy): generated from the database schema; never stores queries, tool names or results
-- [Terms](https://ato-mcp.com.au/terms)
+- [Privacy](https://paddltir-web.vercel.app/privacy): what we store about your account and crew data
+- [Terms](https://paddltir-web.vercel.app/terms)
 
-## Optional
+## Author
 
-- [Changelog](https://github.com/william-laverty/ato-mcp/blob/main/CHANGELOG.md): release history for the open-source npm client
-- [Glama listing](https://glama.ai/mcp/servers/william-laverty/ato-mcp): MCP directory page for this server
+- Jun Lee — https://github.com/junlee-3

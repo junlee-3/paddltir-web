@@ -4,7 +4,7 @@ import { BLOG_POSTS } from "../posts";
 const POST = BLOG_POSTS.find((p) => p.slug === "can-you-trust-ai-with-your-tax")!;
 
 export const runtime = "edge";
-export const alt = `${POST.title} · Australian Tax MCP`;
+export const alt = `${POST.title} · Paddltir`;
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 

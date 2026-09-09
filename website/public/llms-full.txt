@@ -1,233 +1,109 @@
-# Australian Tax MCP (ato-mcp) — full site content for LLMs
+# Paddltir — product copy for LLMs
 
-> The Australian tax knowledge base for AI agents: an MCP (Model Context Protocol)
-> service giving cited retrieval over 34,500+ ATO documents, the income tax and
-> GST Acts and 4,900+ public rulings, plus a personal-facts layer and four
-> deterministic tax workflow tools. Hosted-only: point any MCP client at
-> https://api.ato-mcp.com.au/mcp and sign in with your browser.
-> Not tax advice: every tool returns structured data plus resolvable ATO
-> citations for an agent to reason over.
+> Dragon boat crew management software. Configure rosters, build race-day
+> crewlists, seat standard boats, and get trim and balance insights before
+> every heat. Web app: https://paddltir-web.vercel.app/app
 
-Canonical site: https://ato-mcp.com.au · Short index: https://ato-mcp.com.au/llms.txt
+Canonical site: https://paddltir-web.vercel.app · Short index: https://paddltir-web.vercel.app/llms.txt
 
-## What ato-mcp is
+## What Paddltir is
 
-ato-mcp is an MCP server for Australian tax. It plugs into Claude, ChatGPT, Codex,
-Gemini CLI, Cursor, VS Code or any Model Context Protocol host and turns the
-Australian tax corpus into 13 tools an AI agent can call. Every answer is cited
-back to its source (ato.gov.au guidance, legislation, or an ATO public ruling).
+Paddltir helps dragon boat clubs manage crews on race day. Keep paddler
+details — name, weight, preferred side — in one roster. Build separate
+crewlists per heat so open, mixed, and women's lineups don't overwrite each
+other. Seat a standard boat (twenty paddlers, drummer, sweep) and see side
+balance and fore-aft trim update as you swap people.
 
-The corpus, in numbers:
+Built for coaches, sweeps, and club organisers who currently juggle
+clipboards, shared spreadsheets, and last-minute texts on the pontoon.
 
-- 34,564 documents and 286,638 searchable passages
-- ato.gov.au guidance pages, the ITAA 1997, the ITAA 1936 and the GST Act
-  (6,468 sections of tax law plus 2,310 statutory definitions, including the
-  GST Act's s 195-1 dictionary)
-- 4,937 public rulings across ten series (TR, TD, GSTR, PCG and more), with
-  withdrawn rulings clearly flagged
-- 64,217 citation links tying rulings, guidance and legislation into one graph
-- Rebuilt on a monthly cycle from ato.gov.au, the Federal Register of
-  Legislation and law.ato.gov.au, and served fresh
+## Core features
 
-## Install (https://ato-mcp.com.au/install)
+- **Rosters** — paddlers, sides, weights, and availability in one place
+- **Crewlists** — heat-by-heat lineups for race day; separate lists per category
+- **Boat seating** — drag paddlers into seats left and right; assign drummer and sweep
+- **Trim and balance** — fore-aft trim, side weight, and empty-seat checks before launch
+- **Copy between heats** — start from a seated boat and adjust for the next race
 
-One line, then sign in with your browser — your account is created on first
-sign-in, no token to copy.
+## Get started (https://paddltir-web.vercel.app/install)
 
-- Remote MCP endpoint: https://api.ato-mcp.com.au/mcp (streamable HTTP, OAuth)
-- Claude Code: `claude mcp add --scope user --transport http ato https://api.ato-mcp.com.au/mcp`
-- Cursor / VS Code / Codex / Gemini CLI / Claude.ai / ChatGPT: add the same
-  remote endpoint as an HTTP MCP server in the client's MCP settings — the
-  install picker at https://ato-mcp.com.au/install has the exact command or
-  config snippet per client
-- Stdio-only clients: the open-source npm package proxies the hosted server —
-  `npx -y ato-mcp` (Node 22+); first run opens your browser to sign in
-- The npm client records 100,000+ downloads a month (a registry count that
-  includes mirrors and CI, so treat it as reach, not a user count)
+1. Open https://paddltir-web.vercel.app/app in your browser
+2. Sign in with email or Google — your account is created on first visit
+3. Add paddlers to a roster, create a crewlist, seat your first boat
 
-## The 13 tools (https://ato-mcp.com.au/docs)
-
-Retrieval:
-
-- `search` — hybrid keyword + semantic search over the whole corpus, rank-fused,
-  point-in-time aware. Example: `search({ query: "instant asset write-off eligibility", k: 5 })`
-- `get_chunks` — resolve chunk_ids to full passages with optional neighbouring
-  context. Example: `get_chunks({ chunk_ids: ["legis:…/8-1#0"], neighbours: 1 })`
-- `get_doc` — fetch a whole document: metadata, full text in reading order, and
-  its anchor list. Example: `get_doc({ doc_id: "legis:c2004a05138/8-1" })`
-- `get_doc_anchors` — the citation graph around a document: anchors, inbound and
-  outbound references. Example: `get_doc_anchors({ doc_id: "legis:c2004a05138/8-1" })`
-- `get_definition` — statutory definitions (ITAA 1997 Dictionary and friends),
-  point-in-time selectable. Example: `get_definition({ term: "depreciating asset" })`
-- `get_threshold` — time-keyed scalar facts: instant asset write-off limit, GST
-  registration threshold, CGT discount, super caps and more.
-  Example: `get_threshold({ name: "instant_asset_write_off" })`
-- `fetch` — live-fetch a page by URI scheme (ato:, ato-law:, legis:) when
-  freshness matters. Example: `fetch({ uri: "ato:tax-rates-and-codes/…" })`
-- `stats` — corpus snapshot: counts and schema version.
-
-Personal context:
-
-- `get_user_facts` — the user's onboarded tax profile (about 25 fields: business
-  structure, GST registration, residency and so on) that the agent reads once
-  per session instead of re-asking.
-
-Workflows (deterministic, cited, branch on the user's taxpayer structure):
-
-- `deduction_discovery` — every plausibly-applicable deduction category for the
-  user's taxpayer shape, cited and confidence-rated.
-- `depreciation_helper` — prime-cost / diminishing-value / instant-asset-write-off /
-  pool / Division 43 schedules, computed deterministically.
-- `bas_prep_checklist` — a tiered, cited BAS checklist for the user's reporting
-  period: labels, evidence, gotchas.
-- `audit_risk_check` — heuristic ATO red-flags over a draft return, risk-banded
-  with the guidance behind each flag.
-
-Full tool reference (schemas, examples, errors):
-https://github.com/william-laverty/ato-mcp/blob/main/docs/tools.md
+No install required. Works on desktop and mobile browsers.
 
 ## FAQ
 
-**Is this tax advice?**
-No. ato-mcp retrieves published ATO material and runs fixed calculations, always
-with the source attached. Confidence ratings and risk bands are guides, not
-professional judgement. Your agent does the reasoning, and decisions that matter
-should still go past a registered tax agent.
+**What is Paddltir?**
+Dragon boat crew management: build lineups, keep rosters and crewlists
+organised, and check trim and balance before you race.
 
-**What does ato-mcp store about me?**
-Your onboarding facts (business structure, GST registration and so on — about 25
-fields you control), your sign-in identity, and basic usage counts. Never tool
-names, never query content, never results: the database physically has nowhere
-to store them, and the privacy page is generated from that same schema so it
-can't drift.
+**Who is it for?**
+Coaches, sweeps, and club organisers — especially clubs running multiple
+heats in a day.
 
-**Which agents does it work with?**
-Anything that speaks the Model Context Protocol: Claude, ChatGPT, Codex, Gemini
-CLI, Cursor, VS Code and more. One line to install, then sign in with your
-browser.
+**What's the difference between a roster and a crewlist?**
+A roster is your pool of paddlers. A crewlist is the set available for a
+specific race or training block. You seat boats from a crewlist.
 
-**How current is the corpus?**
-The corpus is rebuilt from ato.gov.au, the Federal Register of Legislation and
-law.ato.gov.au on a monthly cycle and served fresh. The stats tool reports the
-live snapshot.
+**Can I run multiple heats?**
+Yes. Configure separate lineups per heat so open, mixed, and women's crews
+don't overwrite each other.
 
-**Is it open source?**
-Most clients connect directly to the hosted endpoint with no local code at all.
-The optional npm client is open source (AGPL-3.0) and public, so you can verify
-exactly what it does. The hosted retrieval platform and the corpus are
-maintained privately.
+**How does weight affect seating?**
+Heavier paddlers shift the boat's centre of mass. Paddltir shows trim so you
+can move people forward or aft before you race.
 
-**Is there an MCP server for Australian tax?**
-Yes. ato-mcp is an MCP server for Australian tax: it gives any agent that
-speaks the Model Context Protocol (Claude, ChatGPT, Codex, Gemini CLI, Cursor,
-VS Code) cited retrieval over 34,500+ ATO documents, the income tax and GST
-Acts and 4,900+ public rulings.
+**Is my crew data private?**
+Your account, paddlers, and crewlists belong to you. See the privacy page for
+what we store.
 
-**What is MCP (the Model Context Protocol)?**
-MCP is the open standard AI agents use to call outside tools and data sources.
-ato-mcp uses it to hand your agent 13 Australian tax tools: search over the
-corpus, statutory definitions, current rates and thresholds, and four workflow
-tools, with every answer carrying its ATO citation.
+Full FAQ: https://paddltir-web.vercel.app/faq
 
-**Do I need to be a developer?**
-No. If you can paste a command and sign in with your browser, you can connect
-ato-mcp. The install page (https://ato-mcp.com.au/install) walks through each
-client step by step.
+## Reference guides (https://paddltir-web.vercel.app/guides)
 
-Full FAQ: https://ato-mcp.com.au/faq
+How do you seat a standard boat?
+(https://paddltir-web.vercel.app/guides/ai-agent-tax-deductions):
+left, right, drummer, sweep — a practical order of operations for filling a
+standard dragon boat without leaving balance to chance.
 
-## Reference guides (https://ato-mcp.com.au/guides)
+How do you run multiple heats?
+(https://paddltir-web.vercel.app/guides/can-ai-do-my-bas):
+open, mixed, women's — keep separate lineups for each heat so one change
+doesn't wipe the next race.
 
-Question-shaped references with direct, cited answers:
+## Blog (https://paddltir-web.vercel.app/blog)
 
-Can AI find your tax deductions? (https://ato-mcp.com.au/guides/ai-agent-tax-deductions):
-what a connected agent can do for a sole trader in 2025-26: cited deduction
-categories, the records to keep, and the honest limits of what an agent can
-and can't do.
+Who belongs in which seat? (/blog/what-can-you-actually-claim): race morning,
+ten paddlers looking at you, and the boat still empty.
 
-Can AI do your BAS? (https://ato-mcp.com.au/guides/can-ai-do-my-bas): what an
-agent prepares and what you still lodge: the labels that apply, the evidence
-to gather for each, and the due dates, all cited.
+It's race weekend again (/blog/its-bas-time-again): every regatta, the same
+scramble — who's in, who's scratched, which heat needs a sweep.
 
-## Blog (https://ato-mcp.com.au/blog)
+So you finally weighed the whole crew (/blog/so-you-bought-a-laptop-in-the-eofy-sales):
+how weight and preferred side change who sits where.
 
-Six guides to doing your own tax with a connected agent, each showing a
-realistic session, a worked example with real 2025-26 rates, and the
-questions that usually follow.
+Is this lineup going to tip? (/blog/am-i-going-to-get-audited): check balance
+before you load, not after you bury a gunwale.
 
-Find your deductions (https://ato-mcp.com.au/blog/what-can-you-actually-claim): as a
-sole trader you can generally deduct expenses you incur to earn your
-business income: home office running costs, business travel, tools and
-equipment, phone and internet, insurance, professional fees. The
-deduction_discovery tool walks a 59-category map built from ATO guidance,
-matched to your saved profile, confidence-rated, with ATO focus areas
-flagged first and every category cited.
+Can you trust a spreadsheet with your crew? (/blog/can-you-trust-ai-with-your-tax):
+why a dedicated crew tool beats the tab that never quite matches race day.
 
-Prepare your BAS (https://ato-mcp.com.au/blog/its-bas-time-again): a business activity
-statement reports GST and related obligations. Most small businesses use
-Simpler BAS (three labels: G1 total sales, 1A GST on sales, 1B GST credits
-on purchases); quarterly statements are due 28 October, 28 February, 28
-April and 28 July. The bas_prep_checklist tool builds a checklist for your
-reporting period: which labels apply, what to gather, the gotchas, and the
-ATO page behind every line. It prepares; you lodge.
+Nobody remembers who sat where (/blog/nobody-withholds-your-tax-anymore): keep
+a clear record of who raced which heat.
 
-Write off equipment (https://ato-mcp.com.au/blog/so-you-bought-a-laptop-in-the-eofy-sales): for
-small businesses (aggregated turnover under $10 million), assets costing
-less than $20,000 can be deducted in full for 2025-26 under the instant
-asset write-off (per asset); assets at or over the threshold enter the
-small business pool (15% first year, 30% after). The depreciation_helper
-tool computes every eligible method as a deterministic schedule (instant
-write-off, pool, prime cost, diminishing value, capital works) with the
-legal basis attached. A 2026-27 threshold change has been announced but is
-not yet law.
+## Compare (https://paddltir-web.vercel.app/compare)
 
-Check your audit risk (https://ato-mcp.com.au/blog/am-i-going-to-get-audited): the
-audit_risk_check tool checks a draft return against the risk patterns the
-ATO publishes (work-related expenses out of line with income, rental
-anomalies, unreported crypto and more), returns a risk band per flag and
-cites the guidance behind each one, before you lodge. It flags; it does
-not judge, and it is not a prediction of audit selection.
-
-Can you trust AI with your tax (https://ato-mcp.com.au/blog/can-you-trust-ai-with-your-tax):
-uncited chatbot answers about Australian tax can be years out of date (the
-80 cents per hour shortcut method ended 30 June 2022; the 2025-26 fixed
-rate is 70 cents per hour under PCG 2023/1). Grounding the same agent in
-the corpus attaches the current source to every claim so you can check it.
-
-Your first year with an ABN (https://ato-mcp.com.au/blog/nobody-withholds-your-tax-anymore):
-nobody withholds tax on ABN income, so three things change: income tax is
-assessed on business profit at lodgment, PAYG instalments usually begin
-after your first return, and GST registration becomes mandatory once
-turnover reaches $75,000. The guide walks each one with the ATO source.
-
-## Compared with the alternatives (https://ato-mcp.com.au/compare)
-
-Browsing ato.gov.au yourself: the answers exist but span thousands of pages,
-rulings and thresholds; one real question often takes an hour or more.
-Asking a chatbot on its own: fast but uncited, drawn from training data of
-uncertain age; thresholds go stale silently and you can't act on "probably".
-Your agent with ato-mcp: the same agent, grounded in the actual corpus, aware
-of your saved tax profile, running deterministic calculations, with the ATO
-source attached to every claim.
-
-## About (https://ato-mcp.com.au/about)
-
-ato-mcp is designed, built and run by William Laverty, an Australian software
-developer (https://github.com/william-laverty). It is a small, independent
-product: no invented testimonials, no made-up user counts, and the client code
-is public so you can check both. It is not affiliated with, endorsed by, or
-operated by the Australian Taxation Office. A note on the name: an unrelated
-MCP package by another developer (an ATO statistics server) also appears as
-ato-mcp in some directories; this site, api.ato-mcp.com.au and the npm
-package ato-mcp are the Australian tax knowledge base described here. Contact: GitHub issues for product
-questions, privacy@ato-mcp.com.au for privacy and data requests.
+Three ways to build a race-day lineup: paper roster, shared spreadsheet, or
+Paddltir. Paper is fast to start but hard to rebalance. Spreadsheets drift
+with conflicting edits. Paddltir keeps one roster, seats boats with live
+trim checks, and scopes changes to the heat you're working on.
 
 ## Policies
 
-- Privacy (https://ato-mcp.com.au/privacy): generated from the database schema;
-  never stores queries, tool names or results. Last updated 26 May 2026.
-- Terms (https://ato-mcp.com.au/terms): independent service, not affiliated with
-  or endorsed by the Australian Taxation Office; not tax, legal or financial
-  advice. Last updated 26 May 2026.
+- Privacy (https://paddltir-web.vercel.app/privacy): account and crew data handling
+- Terms (https://paddltir-web.vercel.app/terms): service terms
 
-Operator: William Laverty (https://github.com/william-laverty).
+Author: Jun Lee (https://github.com/junlee-3)
+GitHub: https://github.com/junlee-3/paddltir-web

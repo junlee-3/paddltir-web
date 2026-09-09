@@ -23,7 +23,7 @@ export function ClosingCta() {
           <rect x="15" y="13.9" width="7.5" height="4.2" rx="2.1" fill="#ffffff" />
         </svg>
         <h2 className="mt-7 text-[clamp(1.65rem,6vw,2.5rem)] font-normal leading-[1.1] tracking-tight2 text-zinc-900">
-          Get answers to all your tax questions
+          Seat your crews before you leave the bank
         </h2>
         <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
           <a

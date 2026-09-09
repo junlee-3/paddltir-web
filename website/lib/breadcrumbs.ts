@@ -1,6 +1,6 @@
 /** BreadcrumbList JSON-LD for the static pages (Google breadcrumb rich results). */
 
-const SITE = "https://ato-mcp.com.au";
+const SITE = "https://paddltir-web.vercel.app";
 
 export function breadcrumbJsonLd(trail: { name: string; path: string }[]) {
   return {

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { BlogPost } from "./posts";
 import { personRef, speakable } from "@/lib/schema";
 
-const SITE = "https://ato-mcp.com.au";
+const SITE = "https://paddltir-web.vercel.app";
 
 // Card images are NOT restated here: each post folder has its own
 // opengraph-image.tsx (lib/og-card.tsx renders the post title/description),
@@ -28,7 +28,7 @@ export function postMetadata(
     openGraph: {
       type: "article",
       url,
-      siteName: "Australian Tax MCP",
+      siteName: "Paddltir",
       locale: "en_AU",
       title: post.title,
       description: post.description,
@@ -59,7 +59,7 @@ export function blogPostingJsonLd(post: BlogPost) {
     image: `${url}/opengraph-image`,
     author: personRef(),
     publisher: { "@id": `${SITE}/#org` },
-    isPartOf: { "@type": "Blog", "@id": `${SITE}/blog#blog`, name: "ato-mcp blog", url: `${SITE}/blog` },
+    isPartOf: { "@type": "Blog", "@id": `${SITE}/blog#blog`, name: "Paddltir blog", url: `${SITE}/blog` },
     speakable: speakable(["main h1", "main h1 + p"]),
   };
 }

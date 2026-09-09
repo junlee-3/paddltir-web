@@ -3,49 +3,48 @@ import Link from "next/link";
 import { breadcrumbJsonLd } from "@/lib/breadcrumbs";
 import { BLOG_POSTS } from "../posts";
 import { DeductionsGraphic } from "../graphics";
-import { Cite } from "../cite";
 import { blogPostingJsonLd, postMetadata } from "../seo";
 import { ClosingCta } from "@/components/site/ClosingCta";
 
 const POST = BLOG_POSTS.find((p) => p.slug === "what-can-you-actually-claim")!;
 
 const SEO = {
-  title: "Sole trader deductions with an AI agent",
+  title: "Who belongs in which seat? Dragon boat seating guide",
   description:
-    "Ask your agent what you can claim as a sole trader and get answers grounded in 34,500+ ATO documents, with the citation attached. Current for the 2025-26 income year.",
+    "How to seat a standard dragon boat crew: side preference, drummer, sweep, and the order of operations that keeps race morning calm on the pontoon.",
 };
 
 export const metadata: Metadata = postMetadata(POST, SEO);
 
 /* ---------------------------------------------------------------------------
-   /blog/what-can-you-actually-claim — a story-shaped guide: the felt problem, the turn (ask
-   your agent), Maya's session with real 2025-26 figures, what changes, FAQ.
+   /blog/what-can-you-actually-claim — seating a crew without guessing: the felt
+   problem on race morning, a practical order of operations, a worked example, FAQ.
 --------------------------------------------------------------------------- */
 
 const FAQS: { q: string; a: string }[] = [
   {
-    q: "Can my agent see my expenses or bank accounts?",
-    a: "No. ato-mcp reads a tax profile of about 25 fields you save (business structure, GST registration and so on), nothing else. You describe your spending in the conversation; the tool matches it to ATO deduction categories and returns the sources.",
+    q: "Do I have to match left and right paddlers exactly?",
+    a: "Not seat-for-seat, but you want the boat roughly balanced side to side. If you have more left-handers than right-handers, spread them so neither gunwale carries the load. Paddltir shows side totals as you drag people in.",
   },
   {
-    q: "Will it tell me exactly how much to claim?",
-    a: "No. It returns the categories that fit your situation, the records each one needs and the ATO source behind it. You and your agent work out amounts from your own records, and material decisions still belong with a registered tax agent.",
+    q: "Where does the drummer sit?",
+    a: "Facing the crew, usually on a raised seat at the bow. They set the rate and call the race plan. Most clubs treat drummer as a fixed role for the heat, not a seat you swap mid-lineup.",
   },
   {
-    q: "Is it true I can claim $300 without receipts?",
-    a: "Only for employee work expenses. That threshold lives in the substantiation rules for salary and wage earners and doesn't stretch to sole trader business deductions, which need records in full. Plenty of pages get this wrong; it's exactly the kind of detail a cited answer protects you from.",
+    q: "Can a paddler sit on their off side?",
+    a: "Sometimes, for balance or when you're short on one side. Mark it in your roster so you remember — off-side paddling costs power and nobody performs their best there for a whole 500m.",
   },
   {
-    q: "What records do I need?",
-    a: "Receipts or invoices for what you spent, a record of actual hours for the whole year if you use the working-from-home fixed rate (an estimate no longer cuts it), and a logbook if you claim actual car costs. Keep everything for five years. Ask your agent what a category needs and it will quote the requirement with the source.",
+    q: "What if someone doesn't have a side preference?",
+    a: "Seat them where the boat needs weight or headcount, then note it. After a few sessions you'll know. Until then, ask once and save the answer so the next coach doesn't start from zero.",
   },
   {
-    q: "Is it current for the 2025-26 income year?",
-    a: "Yes. The corpus is rebuilt monthly and thresholds are stored per year, so rates like the 70 cents per hour fixed rate and 88 cents per kilometre come back for the year you ask about, not the year a model was trained.",
+    q: "Should stronger paddlers go in the back?",
+    a: "Many crews put heavier or more experienced paddlers toward the back for trim, but club boats vary. What matters is that you can see the spread — bow, middle, stern — before you load.",
   },
   {
-    q: "I have a day job and freelance on the side. Does that work?",
-    a: "Yes. Employee work expenses and sole trader business deductions are different categories with different rules, and the tool surfaces both sides based on your profile.",
+    q: "How does Paddltir help on race morning?",
+    a: "You pick the heat, drag paddlers into seats, and the layout shows side counts and weight at a glance. Same roster every regatta instead of a new guess on the pontoon.",
   },
 ];
 
@@ -63,12 +62,12 @@ const pageJsonLd = {
     },
     breadcrumbJsonLd([
       { name: "Blog", path: "/blog" },
-      { name: "Find your deductions", path: "/blog/what-can-you-actually-claim" },
+      { name: POST.title, path: "/blog/what-can-you-actually-claim" },
     ]),
   ],
 };
 
-export default function DeductionsPost() {
+export default function SeatingPost() {
   return (
     <>
     <main className="mx-auto min-h-screen max-w-5xl px-5 pb-24 pt-20">
@@ -99,7 +98,7 @@ export default function DeductionsPost() {
           className="reveal-lcp mt-3 text-[clamp(2rem,4vw,2.75rem)] font-normal leading-[1.08] tracking-tight2 text-zinc-900"
           style={{ "--reveal-delay": "0s" } as React.CSSProperties}
         >
-          What can you actually claim?
+          {POST.title}
         </h1>
         <p className="mt-4 text-[15px] leading-relaxed text-zinc-500">
           {POST.description}
@@ -113,49 +112,42 @@ export default function DeductionsPost() {
         <div className="mt-12 space-y-12">
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              The three answers everyone knows
+              The empty boat problem
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              Ask around and you&apos;ll hear the same three: home office,
-              laptop, maybe the car. So that&apos;s what you claim. You lodge,
-              you get the refund, and some quiet part of you spends the next
-              year wondering what you left behind.
+              Race morning, ten paddlers on the pontoon, call time in twenty
+              minutes. Everyone knows their side — or says they do. Someone
+              always turns up late. Someone else raced a different heat
+              yesterday and forgot which seat they had. You start filling from
+              the front because that&apos;s where the numbers are painted,
+              and by seat six you realise you&apos;ve stacked four lefts on
+              one side.
             </p>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              Here&apos;s the thing: the real list is longer and more ordinary
-              than you&apos;d expect. The law is roughly one sentence: if you
-              spent it to earn your business income, you can generally deduct
-              it (<Cite href="https://www.legislation.gov.au/C2004A05138/latest/text">ITAA 1997 s 8-1</Cite>).
-              The software subscriptions. The insurance.
-              The fee you paid to get last year&apos;s tax done. The problem
-              was never the principle. The problem is that the detail lives
-              across thousands of ATO pages, and nobody has an evening for
-              that.
+              The principle is simple: twenty paddlers, one drummer, one sweep,
+              left and right in alternation. The practice is that people have
+              preferences, injuries, and opinions. The boat doesn&apos;t care
+              about any of that until it&apos;s in the water listing to
+              port.
             </p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              So you ask your agent instead
+              An order that actually works
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              You type the question the way you&apos;d say it out loud: what
-              can I actually claim? No forms, no dropdown asking for your
-              industry code. Your agent already knows the shape of your year,
-              because you saved a profile once: sole trader, GST-registered,
-              spare room, car.
+              Lock the drummer and sweep first — they&apos;re not in the
+              paddling count and they anchor the ends. Then work bow to stern
+              in pairs: left, right, left, right. When you&apos;re short on
+              one side, swap the least painful off-side paddler rather than
+              breaking the whole pattern.
             </p>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              Then it does the thing a friend can&apos;t. It walks a
-              59-category map built from ATO guidance and keeps everything that
-              fits how you actually work. The occupation-specific rules for
-              what you do. The category you didn&apos;t know had a name. The
-              ones the ATO is watching this year, sorted to the top so you know
-              where the receipts matter most.
-            </p>
-            <p className="text-[15px] leading-relaxed text-zinc-700">
-              And next to every single one: the source. Not &quot;trust
-              me&quot;. The section, the ruling, the page.
+              Heavier paddlers toward the back is a common club habit for trim,
+              but check your boat. Juniors and mixed crews play by different
+              rules. What you want before anyone steps in is a layout you can
+              read at a glance: who, which seat, which side.
             </p>
             <div className="tile mt-6 flex items-center justify-center p-6 sm:p-10">
               <DeductionsGraphic className="h-auto w-full max-w-[320px]" />
@@ -164,58 +156,42 @@ export default function DeductionsPost() {
 
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              Maya&apos;s evening
+              Mei&apos;s heat, 6:40am
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              Maya designs brand identities from the spare room of a Brisbane
-              apartment. Late June, laptop open, receipts within arm&apos;s
-              reach. She gives her agent three sentences about her year and
-              asks the question.
+              Mei coaches a community club mixed crew. Two paddlers scratched
+              overnight; a reserve swapped in from the B heat. She opens
+              Paddltir, pulls the saved lineup for Open Mixed 500m, drops
+              the reserve into seat 8 left, and checks the side tally: 10
+              left, 10 right. Weight skew is a little stern-heavy but within
+              what this crew usually runs.
             </p>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              It comes back with the map. Her 1,480 hours at home are worth
-              $1,036 under the{" "}
-              <Cite href="https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/work-related-deductions/working-from-home-expenses/fixed-rate-method">
-                fixed rate
-              </Cite>{" "}
-              (70 cents an hour for 2025-26, and it wants her to know an
-              estimate of hours won&apos;t cut it: the ATO expects a record of
-              the actual ones). The $2,399 laptop can be{" "}
-              <Cite href="https://www.ato.gov.au/businesses-and-organisations/income-deductions-and-concessions/depreciation-and-capital-expenses-and-allowances/simpler-depreciation-for-small-business/instant-asset-write-off">
-                written off in full
-              </Cite>{" "}
-              this year. The 2,100 km of driving to client sites comes to
-              $1,848 at{" "}
-              <Cite href="https://www.ato.gov.au/tax-and-super-professionals/for-tax-professionals/prepare-and-lodge/tax-time/tax-time-toolkits/tax-time-toolkit-small-business/small-business-guides/motor-vehicle-expenses">
-                88 cents a kilometre
-              </Cite>
-              , no logbook needed under 5,000. The design software, the income
-              protection premiums: on the list, with the source beside each.
-            </p>
-            <p className="text-[15px] leading-relaxed text-zinc-700">
-              Maya is made up. The rates and sections are real for 2025-26,
-              and that&apos;s rather the point: every line arrives with the
-              ATO page behind it, so when her accountant asks where a number
-              came from, the answer is a link, not a shrug.
+              On the pontoon she calls seats by number instead of waving arms.
+              Load takes eight minutes. The boat sits flat at the dock. Mei is
+              made up, but every club has a version of this morning — the
+              difference is whether you rehearsed it on paper or in an app
+              before the horn.
             </p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-              The part that actually changes things
+              Save it for next time
             </h2>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              It isn&apos;t the speed, although the speed is nice. It&apos;s
-              that you stop acting on &quot;probably&quot;. Probably I can
-              claim this. Probably that rule still exists. An agent on its own
-              is confident; an agent with ato-mcp is checkable, and for tax
-              those are different things entirely.
+              The seating that worked today is the starting point for the
+              next regatta. Write it down — or better, keep it in one place
+              with side preference and weight attached to each name. Next
+              race you&apos;re adjusting, not reinventing.
             </p>
             <p className="text-[15px] leading-relaxed text-zinc-700">
-              None of it is tax advice, and it doesn&apos;t pretend to be.
-              When a decision is material, you still take it to a registered
-              tax agent. You just arrive with the citations instead of the
-              question.
+              If your club runs multiple heats, duplicate the layout per event
+              so a scratch in the 200m doesn&apos;t scramble the 500m.{" "}
+              <Link href="/app" className="underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-900">
+                Paddltir
+              </Link>{" "}
+              is built for that: one roster, many lineups, same pontoon calm.
             </p>
           </section>
         </div>

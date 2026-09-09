@@ -4,9 +4,9 @@ import { breadcrumbJsonLd } from "@/lib/breadcrumbs";
 import { MCP_URL } from "@/lib/install-clients";
 
 export const metadata: Metadata = {
-  title: "Install: one line, sign in, done",
+  title: "Get started: open the app",
   description:
-    "Add ato-mcp to Claude Code, Codex, Gemini CLI, Cursor, VS Code or any MCP client with one command, then sign in via your browser. No token setup.",
+    "Open Paddltir in your browser to manage rosters, build crewlists, and seat boats. Sign in with email or Google — no setup required.",
   alternates: { canonical: "/install" },
 };
 
@@ -15,26 +15,26 @@ const installJsonLd = {
   "@graph": [
     {
       "@type": "HowTo",
-      name: "Install ato-mcp in an MCP client",
+      name: "Get started with Paddltir",
       description:
-        "Connect an AI agent to the Australian Tax MCP server: add the remote endpoint to your MCP client, then sign in with your browser.",
+        "Open the Paddltir app, sign in, and start managing your club's rosters and lineups.",
       totalTime: "PT2M",
       step: [
         {
           "@type": "HowToStep",
           position: 1,
-          name: "Add the server",
-          text: `Add the remote MCP endpoint ${MCP_URL} to your client: one command in Claude Code, Codex or Gemini CLI, a config entry in Cursor or Windsurf, or a custom connector in Claude.ai and ChatGPT.`,
+          name: "Open the app",
+          text: `Go to ${MCP_URL} in your browser, or click Open App from any page on this site.`,
         },
         {
           "@type": "HowToStep",
           position: 2,
-          name: "Sign in with your browser",
-          text: "Authenticate when your client asks: your browser opens to sign in with email or Google, and your account is created on first sign-in. No token setup.",
+          name: "Sign in",
+          text: "Authenticate with email or Google. Your account is created on first sign-in.",
         },
       ],
     },
-    breadcrumbJsonLd([{ name: "Install", path: "/install" }]),
+    breadcrumbJsonLd([{ name: "Get started", path: "/install" }]),
   ],
 };
 
@@ -49,7 +49,7 @@ export default function InstallPage() {
         className="reveal-lcp text-[clamp(2rem,5vw,3rem)] font-normal leading-[1.06] tracking-tight2 text-zinc-900"
         style={{ "--reveal-delay": "0s" } as React.CSSProperties}
       >
-        Make your agent actually know tax.
+        Get your crew race-day ready.
       </h1>
 
       <div className="reveal mt-10 sm:mt-12" style={{ "--reveal-delay": "0.24s" } as React.CSSProperties}>

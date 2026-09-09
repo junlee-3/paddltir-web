@@ -6,59 +6,61 @@ import { ClosingCta } from "@/components/site/ClosingCta";
 import { GitHubIcon } from "@/components/site/GitHubIcon";
 
 export const metadata: Metadata = {
-  title: "Docs: the 13 tools your agent gets",
+  title: "Docs: seat boats, manage rosters, read insights",
   description:
-    "The 13 tools ato-mcp gives your AI agent: cited search over 34,500+ ATO documents, definitions, thresholds, your tax profile and four deterministic workflows.",
+    "The Paddltir feature reference: lineups, rosters, and trim/balance insights for dragon boat crew management.",
   alternates: { canonical: "/docs" },
 };
 
 /* ---------------------------------------------------------------------------
    /docs — the tool reference. Install lives on /install; this page answers
-   the question that follows the pitch: what can the agent actually do once
-   it's connected? Each group is an editorial row (label, narrative beat,
+   the question that follows the pitch: what can you actually do once
+   you're in the app? Each group is an editorial row (label, narrative beat,
    description) beside its card grid, echoing the homepage corpus section.
 --------------------------------------------------------------------------- */
 
 const GROUPS: {
-  key: "Workflows" | "Retrieval" | "Personal context";
+  key: "Lineups" | "Rosters" | "Insights";
   heading: string;
   description: string;
 }[] = [
   {
-    key: "Workflows",
-    heading: "The questions that come back every year",
+    key: "Lineups",
+    heading: "Seat the boat",
     description:
-      "What can I claim, how does the laptop write off, what goes on the BAS, is anything risky. Four workflows that run the numbers deterministically, shaped to your taxpayer structure, with the ATO source on every line.",
+      "Place paddlers left and right, set drummer and sweep, copy heats, and catch empty seats before you leave the bank.",
   },
   {
-    key: "Retrieval",
-    heading: "Straight from the source",
+    key: "Rosters",
+    heading: "Manage your paddlers",
     description:
-      "Eight ways into 34,500+ ATO documents: hybrid search, whole documents in reading order, statutory definitions, point-in-time thresholds and the citation graph connecting them.",
+      "Keep names, weights, preferred sides, and roles in one roster. Build crewlists for race weekends and track who is actually available.",
   },
   {
-    key: "Personal context",
-    heading: "It knows your situation",
+    key: "Insights",
+    heading: "Read trim and balance",
     description:
-      "One read of your saved tax profile replaces twenty clarifying questions. Sole trader or company, GST-registered or not: answers fit how you actually operate.",
+      "See fore-aft trim, left-right side balance, lineup gaps, and heat comparisons so you confirm lineups with numbers, not guesswork.",
   },
 ];
+
+const SITE = "https://paddltir-web.vercel.app";
 
 const docsJsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "TechArticle",
-      headline: "ato-mcp documentation",
+      headline: "Paddltir documentation",
       description:
-        "The 13 Australian-tax tools ato-mcp gives an AI agent, with examples.",
+        "Feature reference for Paddltir: lineups, rosters, and insights for dragon boat crew management.",
       author: personRef(),
-      publisher: { "@id": "https://ato-mcp.com.au/#org" },
+      publisher: { "@id": `${SITE}/#org` },
       datePublished: "2026-05-26",
       dateModified: "2026-07-23",
-      url: "https://ato-mcp.com.au/docs",
-      mainEntityOfPage: "https://ato-mcp.com.au/docs",
-      image: "https://ato-mcp.com.au/opengraph-image",
+      url: `${SITE}/docs`,
+      mainEntityOfPage: `${SITE}/docs`,
+      image: `${SITE}/opengraph-image`,
     },
     breadcrumbJsonLd([{ name: "Documentation", path: "/docs" }]),
   ],
@@ -74,7 +76,7 @@ export default function DocsPage() {
       />
 
       <h1 className="reveal-lcp max-w-2xl text-[clamp(2rem,5vw,3rem)] font-normal leading-[1.06] tracking-tight2 text-zinc-900">
-        What your agent can actually do
+        What you can actually do
       </h1>
 
       {/* ----------------------------------------------- tool groups */}

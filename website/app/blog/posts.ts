@@ -20,9 +20,9 @@ export type BlogPost = {
 export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "what-can-you-actually-claim",
-    title: "What can you actually claim?",
+    title: "Who belongs in which seat?",
     description:
-      "It's late June. You have a dozen ATO tabs open, a folder of receipts, and a quiet suspicion you're leaving money on the table. Every sole trader knows that night.",
+      "Race morning, ten paddlers looking at you, and the boat still empty. Here's how to seat a crew without guessing on the pontoon.",
     date: "2026-08-04",
     dateLabel: "4 August 2026",
     tag: "Explainer",
@@ -30,9 +30,9 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "its-bas-time-again",
-    title: "It's BAS time again",
+    title: "It's race weekend again",
     description:
-      "Every quarter, the same ritual: open the spreadsheet, re-Google what goes at G1, wonder whether that subscription counts, triple-check the due date. You've done this dance a dozen times and it never gets less tense.",
+      "Every regatta, the same scramble: who's in, who's scratched, which heat needs a sweep. Here's how to keep the roster calm.",
     date: "2026-08-04",
     dateLabel: "4 August 2026",
     tag: "Walkthrough",
@@ -40,9 +40,9 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "so-you-bought-a-laptop-in-the-eofy-sales",
-    title: "So you bought a laptop in the EOFY sales",
+    title: "So you finally weighed the whole crew",
     description:
-      "It's on the desk, it's genuinely for the business, and a voice in the back of your mind says: I can write this off, right?",
+      "The numbers are in. Now what? How weight and preferred side change who sits where — and why trim shows up before the start horn.",
     date: "2026-08-04",
     dateLabel: "4 August 2026",
     tag: "Story",
@@ -50,9 +50,9 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "am-i-going-to-get-audited",
-    title: "Am I going to get audited?",
+    title: "Is this lineup going to tip?",
     description:
-      "You hit lodge in July. The refund lands in August. And somewhere in September, unprompted, the thought arrives: what if they look closely?",
+      "You locked the heat, then second-guessed it at 6am. Here's how to check balance before you load, not after you bury a gunwale.",
     date: "2026-08-04",
     dateLabel: "4 August 2026",
     tag: "Story",
@@ -60,9 +60,9 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "can-you-trust-ai-with-your-tax",
-    title: "Can you trust AI with your tax?",
+    title: "Can you trust a spreadsheet with your crew?",
     description:
-      "It's 11pm, you have a tax question, and the chatbot answers instantly, fluently, and with total confidence. The only problem is the year it thinks it is.",
+      "Shared sheets drift. Someone edits the wrong heat. Here's why a dedicated crew tool beats the tab that never quite matches race day.",
     date: "2026-08-04",
     dateLabel: "4 August 2026",
     tag: "Essay",
@@ -70,9 +70,9 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "nobody-withholds-your-tax-anymore",
-    title: "Nobody withholds your tax anymore",
+    title: "Nobody remembers who sat where",
     description:
-      "The first invoice clears and it's all there. Every dollar. No tax withheld, no super skimmed, just the full number sitting in your account like a small miracle.",
+      "After the final, the lineup is already fog. Here's how to keep a clear record of who raced which heat — and seat the next one faster.",
     date: "2026-08-04",
     dateLabel: "4 August 2026",
     tag: "Story",

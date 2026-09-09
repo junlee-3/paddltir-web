@@ -13,6 +13,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/onboard/verify"],
       },
     ],
-    sitemap: "https://ato-mcp.com.au/sitemap.xml",
+    sitemap: "https://paddltir-web.vercel.app/sitemap.xml",
   };
 }

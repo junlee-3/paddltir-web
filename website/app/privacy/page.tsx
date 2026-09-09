@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { UserFactsSchema } from "@ato-mcp/shared";
-import { z } from "zod";
 import { breadcrumbJsonLd } from "@/lib/breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "How ato-mcp handles your data: exactly what's stored (generated from the database schema), what's never stored — queries and results — and deletion.",
+    "How Paddltir handles your data: what paddler and crew fields we store, what we never store, and how to delete your account.",
   alternates: { canonical: "/privacy" },
 };
 
@@ -16,53 +14,34 @@ const privacyJsonLd = {
   ...breadcrumbJsonLd([{ name: "Privacy Policy", path: "/privacy" }]),
 };
 
-// UserFactsSchema uses .superRefine() which wraps it in ZodEffects.
-// We must reach through to the inner object schema to get .shape.
-const innerSchema = UserFactsSchema.innerType() as z.ZodObject<z.ZodRawShape>;
-const schemaKeys = Object.keys(innerSchema.shape);
-
-const fieldDescriptions: Record<string, string> = {
-  given_name: "Your first name",
-  state: "Your state or territory of residence",
-  residency_status: "Your Australian tax residency status",
-  has_abn: "Whether you hold an Australian Business Number",
-  abn: "Your ABN (if applicable)",
-  business_structure: "Your business entity type",
-  business_name: "Your registered business name (if applicable)",
-  industry_code: "Your ANZSIC industry classification code",
-  occupation: "Your occupation",
-  gst_registered: "Whether you are registered for GST",
-  gst_period: "Your GST reporting period",
-  payg_instalments: "Whether you pay PAYG instalments",
-  fbt_payer: "Whether you are registered for Fringe Benefits Tax",
-  has_spouse: "Whether you have a spouse or de facto partner",
-  dependants: "Number of dependants",
-  hecs_help_debt: "Whether you have a HECS/HELP debt",
-  private_health_insurance: "Whether you hold private health insurance",
-  has_investment_property: "Whether you own investment property",
-  has_shares_or_managed_funds: "Whether you hold shares or managed funds",
-  has_crypto: "Whether you hold cryptocurrency",
-  super_fund_type: "Your superannuation fund type",
-  current_fy: "The current financial year",
-  prior_fy_lodged: "Whether you have lodged your prior year tax return",
-  accepted_disclaimer_at: "Timestamp when you accepted the disclaimer",
-  facts_updated_at: "Timestamp when your facts were last updated",
-  schema_version: "Internal data schema version",
-};
+const storedFields: { field: string; description: string }[] = [
+  { field: "email", description: "Your email address, used for sign-in and account recovery" },
+  { field: "given_name", description: "Your first name" },
+  { field: "family_name", description: "Your last name" },
+  { field: "display_name", description: "How your name appears in the app" },
+  { field: "weight_kg", description: "Your weight in kilograms, used for trim and balance calculations" },
+  { field: "preferred_side", description: "Your preferred paddling side (left, right, or either)" },
+  { field: "role", description: "Your role in the crew (paddler, drummer, or sweep)" },
+  { field: "club_id", description: "The club you belong to" },
+  { field: "availability", description: "Whether you are available for upcoming race weekends" },
+  { field: "notes", description: "Optional notes your coach may add (e.g. injury, swap preference)" },
+  { field: "created_at", description: "When your account or profile was created" },
+  { field: "updated_at", description: "When your profile was last updated" },
+];
 
 const eventTypes = [
   "Email sign-in (one-time code)",
-  "Tax facts created or updated",
+  "Roster or crewlist created or updated",
+  "Lineup saved or modified",
   "Account deleted",
-  "MCP connection detected",
 ];
 
 const notStored = [
-  "Your actual tax returns or ATO correspondence",
-  "Your Tax File Number (TFN)",
-  "Banking or financial account details",
-  "Income amounts or asset valuations",
-  "Information from third-party services",
+  "Payment or billing information",
+  "Location or GPS data",
+  "Health or medical records beyond optional coach notes",
+  "Data from third-party services",
+  "Your conversations or queries to any AI features",
 ];
 
 const linkCls =
@@ -84,13 +63,12 @@ export default function PrivacyPage() {
         <section className="space-y-4">
           <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">1. Overview</h2>
           <p className="text-[15px] leading-relaxed text-zinc-700">
-            ato-mcp.com.au (&quot;we&quot;, &quot;our&quot;, &quot;the service&quot;) is an independent tool that
-            provides access to publicly available Australian Taxation Office
-            information via the Model Context Protocol. We collect minimal
-            personal information to deliver a personalised experience.
+            paddltir-web.vercel.app (&quot;we&quot;, &quot;our&quot;, &quot;the service&quot;) is a dragon boat
+            crew management app. We collect the minimum information needed to
+            maintain rosters, crewlists, and lineups for your club.
           </p>
           <p className="text-[15px] leading-relaxed text-zinc-700">
-            We are not affiliated with the Australian Taxation Office. This
+            We are not affiliated with any dragon boat governing body. This
             service operates under Australian privacy law principles.
           </p>
         </section>
@@ -100,10 +78,11 @@ export default function PrivacyPage() {
             2. Information we collect
           </h2>
           <p className="text-[15px] leading-relaxed text-zinc-700">
-            When you create an account, we collect your email address and the
-            following tax profile fields. All fields are{" "}
+            When you create an account, we collect your email address. Coaches
+            and crew managers may also enter the following paddler profile
+            fields. Most fields are{" "}
             <span className="font-medium">optional</span>: you can use the
-            service without completing your profile.
+            service with only an email address.
           </p>
 
           <div className="card overflow-hidden p-0">
@@ -119,17 +98,17 @@ export default function PrivacyPage() {
                 </tr>
               </thead>
               <tbody>
-                {schemaKeys.map((key: string, idx: number) => (
+                {storedFields.map((row, idx) => (
                   <tr
-                    key={key}
-                    data-field={key}
+                    key={row.field}
+                    data-field={row.field}
                     className={idx % 2 === 1 ? "bg-zinc-50/70" : "bg-white"}
                   >
                     <td className="px-4 py-2 font-mono text-xs text-zinc-900">
-                      {key}
+                      {row.field}
                     </td>
                     <td className="px-4 py-2 text-[13px] text-zinc-500">
-                      {(fieldDescriptions as Record<string, string>)[key] ?? key}
+                      {row.description}
                     </td>
                   </tr>
                 ))}
@@ -174,16 +153,21 @@ export default function PrivacyPage() {
               account page
             </Link>
             . Deletion is permanent and cascades to all associated records
-            including your tax profile.
+            including your paddler profile and any lineups you created.
           </p>
         </section>
 
         <section className="space-y-4">
           <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">6. Contact</h2>
           <p className="text-[15px] leading-relaxed text-zinc-700">
-            For privacy enquiries, contact us at{" "}
-            <a href="mailto:privacy@ato-mcp.com.au" className={linkCls}>
-              privacy@ato-mcp.com.au
+            For privacy enquiries, open an issue at{" "}
+            <a
+              href="https://github.com/junlee-3/paddltir-web/issues"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={linkCls}
+            >
+              github.com/junlee-3/paddltir-web/issues
             </a>
             .
           </p>

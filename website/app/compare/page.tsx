@@ -3,9 +3,9 @@ import { breadcrumbJsonLd } from "@/lib/breadcrumbs";
 import { ClosingCta } from "@/components/site/ClosingCta";
 
 export const metadata: Metadata = {
-  title: "Three ways to answer a tax question",
+  title: "Three ways to seat a boat",
   description:
-    "Three ways to answer an Australian tax question: browse ato.gov.au yourself, ask a chatbot on its own, or ask your agent with ato-mcp connected. An honest comparison.",
+    "Three ways to build a race-day lineup: paper roster, spreadsheet, or Paddltir. An honest comparison for dragon boat crew managers.",
   alternates: { canonical: "/compare" },
 };
 
@@ -16,40 +16,40 @@ const pageJsonLd = {
 
 const ROWS: { label: string; ato: string; alone: string; mcp: string }[] = [
   {
-    label: "Where answers come from",
-    ato: "The published pages, if you can find the right ones",
-    alone: "Training data of uncertain age, plus whatever a web search surfaces",
-    mcp: "34,500+ ATO documents, the income tax and GST Acts and 4,900+ public rulings",
+    label: "Where the data lives",
+    ato: "Names scribbled on a clipboard, weights in someone's head",
+    alone: "One shared sheet, often with conflicting edits",
+    mcp: "One roster your whole coaching team reads from",
   },
   {
-    label: "Citations",
-    ato: "You are reading the source itself",
-    alone: "Rarely, and links often point somewhere generic",
-    mcp: "Every answer: the section, the ruling, the page",
+    label: "Seating a heat",
+    ato: "Draw boxes on paper and hope you counted seats",
+    alone: "Copy-paste rows, manually check left/right balance",
+    mcp: "Seat the boat, swap paddlers, copy heats in a few clicks",
   },
   {
-    label: "How current",
-    ato: "Current, if you checked the right year's page",
-    alone: "Unknown; thresholds and rates go stale silently",
-    mcp: "Corpus rebuilt monthly; withdrawn rulings flagged; thresholds are point-in-time",
+    label: "Trim and balance",
+    ato: "Eyeball it, or run numbers on a calculator afterwards",
+    alone: "Formulas if someone built them; fragile when weights change",
+    mcp: "Fore-aft trim and side balance update as you seat people",
   },
   {
-    label: "Knows your situation",
-    ato: "No. You translate the generic guidance yourself",
-    alone: "Only what you re-type each conversation",
-    mcp: "Optional tax profile (about 25 fields) read once per session",
+    label: "Race-day changes",
+    ato: "Cross out names, redraw, pray the sweep can read your handwriting",
+    alone: "Find the right tab, undo the wrong paste, notify everyone again",
+    mcp: "Swap seats, copy to the next heat, empty-seat check before you launch",
   },
   {
-    label: "Calculations",
-    ato: "You, with a spreadsheet",
-    alone: "Arithmetic of varying reliability",
-    mcp: "Deterministic workflow tools: depreciation, deductions, BAS prep, audit risk",
+    label: "Multiple heats",
+    ato: "Separate sheets per heat, easy to mix up",
+    alone: "Tabs multiply; version control becomes someone's job",
+    mcp: "Crewlists for the weekend, heats linked, compare lineups side by side",
   },
   {
-    label: "Time for one question",
-    ato: "Often an hour or more of tab-hopping",
-    alone: "Seconds, but you can't act on \"probably\"",
-    mcp: "Seconds, with the source attached",
+    label: "Time on race morning",
+    ato: "Works for one boat; falls apart with three heats and a late swap",
+    alone: "Faster than paper until someone edits the wrong column",
+    mcp: "Minutes to seat, check gaps, and confirm balance",
   },
 ];
 
@@ -63,12 +63,12 @@ export default function ComparePage() {
       />
 
       <h1 className="max-w-2xl text-[clamp(2rem,4vw,2.75rem)] font-normal leading-[1.08] tracking-tight2 text-zinc-900">
-        Three ways to answer a tax question
+        Three ways to seat a boat
       </h1>
       <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-zinc-500">
-        Say you bought a laptop in June and want to know how to write it off.
-        You can dig through ato.gov.au yourself, ask a chatbot and hope, or
-        ask your agent with ato-mcp connected. Here is the honest difference.
+        Nationals weekend. Three heats, two late swaps, and someone just asked
+        whether the mixed 200 is balanced. You can work from a paper roster,
+        wrangle a spreadsheet, or use Paddltir. Here is the honest difference.
       </p>
 
       {/* ----------------------------------------------- comparison table */}
@@ -78,13 +78,13 @@ export default function ComparePage() {
             <tr className="border-b border-zinc-200">
               <th scope="col" className="w-[18%] py-3 pr-4 font-medium text-zinc-500"></th>
               <th scope="col" className="w-[27%] py-3 pr-4 font-medium text-zinc-900">
-                Browsing ato.gov.au yourself
+                Paper roster
               </th>
               <th scope="col" className="w-[27%] py-3 pr-4 font-medium text-zinc-900">
-                Asking a chatbot on its own
+                Spreadsheet
               </th>
               <th scope="col" className="w-[28%] py-3 font-medium text-zinc-900">
-                Your agent with ato-mcp
+                Paddltir
               </th>
             </tr>
           </thead>
@@ -107,43 +107,41 @@ export default function ComparePage() {
       <div className="mt-14 max-w-3xl space-y-10">
         <section className="space-y-3">
           <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-            Browsing ato.gov.au yourself
+            Paper roster
           </h2>
           <p className="text-[15px] leading-relaxed text-zinc-700">
-            The answers exist, and reading the source directly is the gold
-            standard. The problem is finding them: the guidance spans
-            thousands of pages, the detail lives in rulings and legislation
-            that guidance pages only gesture at, and thresholds change year to
-            year. For one clear question this works. For &quot;what can I
-            actually claim&quot;, it becomes an afternoon.
+            Simple, visible, and hard to argue with on the bank. For one boat
+            and one heat it works fine. The problem is scale: multiple heats,
+            last-minute swaps, and balance checks mean redrawing or maintaining
+            parallel sheets. By Sunday afternoon the authoritative version is
+            whichever clipboard the coach is holding.
           </p>
         </section>
 
         <section className="space-y-3">
           <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-            Asking a chatbot on its own
+            Spreadsheet
           </h2>
           <p className="text-[15px] leading-relaxed text-zinc-700">
-            Fast, and often roughly right. But the answer comes from training
-            data of uncertain vintage, thresholds drift silently out of date,
-            and there is usually no citation you could hand to your
-            accountant. Tax is exactly the domain where a plausible answer
-            and a correct answer look identical until it costs you.
+            Better for sorting names and storing weights. But seating left and
+            right, copying heats, and checking trim usually means custom
+            formulas someone built once and nobody wants to touch. One wrong
+            paste on race morning and half the club is looking at the wrong
+            lineup.
           </p>
         </section>
 
         <section className="space-y-3">
           <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">
-            Your agent with ato-mcp
+            Paddltir
           </h2>
           <p className="text-[15px] leading-relaxed text-zinc-700">
-            The same agent you already use, grounded. It searches the actual
-            corpus (guidance, three Acts, rulings), reads your saved tax
-            profile so answers fit your structure, runs depreciation and BAS
-            numbers deterministically, and attaches the ATO source to every
-            claim. You still apply judgement, and material decisions still go
-            past a registered tax agent. The difference is you start from the
-            law, not from &quot;probably&quot;.
+            Built for the actual workflow: roster your paddlers, crewlist the
+            weekend, seat each heat, swap seats without starting over, and read
+            trim and side balance before you confirm. Empty-seat checks catch
+            missing drummer or sweep before you leave the dock. You still make
+            the selection calls — Paddltir just stops the admin from eating
+            race morning.
           </p>
         </section>
       </div>

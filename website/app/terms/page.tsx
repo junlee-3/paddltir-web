@@ -5,7 +5,7 @@ import { breadcrumbJsonLd } from "@/lib/breadcrumbs";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description:
-    "The terms for using ato-mcp: an independent retrieval service over public ATO material, not affiliated with the ATO, and not tax, legal or financial advice.",
+    "The terms for using Paddltir: a dragon boat crew management app for rosters, crewlists, and lineups. Independent project, not affiliated with any governing body.",
   alternates: { canonical: "/terms" },
 };
 
@@ -30,7 +30,7 @@ export default function TermsPage() {
         <section className="space-y-4">
           <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">1. Acceptance</h2>
           <p className="text-[15px] leading-relaxed text-zinc-700">
-            By using ato-mcp.com.au (&quot;the Service&quot;), you agree to these Terms of
+            By using paddltir-web.vercel.app (&quot;the Service&quot;), you agree to these Terms of
             Service. If you do not agree, do not use the Service.
           </p>
         </section>
@@ -38,38 +38,37 @@ export default function TermsPage() {
         <section className="space-y-4">
           <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">2. Description</h2>
           <p className="text-[15px] leading-relaxed text-zinc-700">
-            The Service provides AI-accessible retrieval of publicly available
-            Australian Taxation Office information via the Model Context
-            Protocol. It is an independent service and is not affiliated with,
-            endorsed by, or operated by the Australian Taxation Office.
+            The Service is a dragon boat crew management application. It helps
+            clubs maintain paddler rosters, build crewlists, configure boat
+            lineups, and view trim and balance insights. It is an independent
+            project and is not affiliated with, endorsed by, or operated by any
+            dragon boat governing body or race organiser.
           </p>
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">3. Not Tax Advice</h2>
+          <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">3. Not coaching advice</h2>
           <p className="text-[15px] leading-relaxed text-zinc-700">
-            Information provided through the Service is for general informational
-            purposes only and does not constitute tax advice, legal advice, or
-            financial advice. Tax laws are complex and change frequently.
+            Information provided through the Service — including trim, balance,
+            and lineup suggestions — is for organisational purposes only. It
+            does not constitute coaching, medical, or safety advice.
           </p>
           <p className="text-[15px] leading-relaxed text-zinc-700">
-            You should always consult a registered tax agent or other qualified
-            professional before making any decisions based on information
-            retrieved through this Service.
+            Crew selection, race strategy, and on-water safety decisions remain
+            the responsibility of your club&apos;s coaches and officials.
           </p>
         </section>
 
         <section className="space-y-4">
           <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">4. Accounts</h2>
           <p className="text-[15px] leading-relaxed text-zinc-700">
-            You are responsible for maintaining the security of your account and
-            any API tokens issued to you. Notify us immediately if you suspect
-            unauthorised access to your account.
+            You are responsible for maintaining the security of your account.
+            Notify us immediately if you suspect unauthorised access to your
+            account.
           </p>
           <p className="text-[15px] leading-relaxed text-zinc-700">
-            You must not share your API tokens with others or use the Service to
-            make automated requests in a manner that degrades performance for
-            other users.
+            You must not share your account credentials with others or use the
+            Service in a manner that degrades performance for other users.
           </p>
         </section>
 
@@ -81,7 +80,7 @@ export default function TermsPage() {
           <ul className="list-disc pl-5 space-y-1 text-[15px] leading-relaxed text-zinc-700">
             <li>Use the Service for any unlawful purpose</li>
             <li>Attempt to circumvent any security measures</li>
-            <li>Scrape or bulk-download the ATO corpus via the Service</li>
+            <li>Scrape or bulk-export other users&apos; data via the Service</li>
             <li>
               Resell access to the Service without prior written permission
             </li>
@@ -94,9 +93,9 @@ export default function TermsPage() {
           </h2>
           <p className="text-[15px] leading-relaxed text-zinc-700">
             The Service is provided &quot;as is&quot; without warranties of any kind.
-            We make no guarantee that the ATO corpus is complete, accurate, or
-            current. ATO publications may be updated at any time and our corpus
-            may not reflect the latest changes.
+            We make no guarantee that roster data, lineup calculations, or
+            balance insights are complete, accurate, or suitable for your
+            specific race conditions.
           </p>
         </section>
 

@@ -50,8 +50,8 @@ const csp = [
     ...googleAnalytics,
     "https://va.vercel-scripts.com",
     "https://*.supabase.co",
-    "https://auth.ato-mcp.com.au",
-    "https://api.ato-mcp.com.au",
+    "https://paddltir-web.vercel.app",
+    "https://paddltir-web.vercel.app",
   ].join(" "),
 ].join("; ");
 
@@ -118,7 +118,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "Link",
-            value: '<https://api.ato-mcp.com.au/mcp>; rel="service-desc"; title="Australian Tax MCP endpoint"',
+            value: '<https://paddltir-web.vercel.app/app>; rel="service-desc"; title="Paddltir"',
           },
         ],
       },
@@ -138,10 +138,10 @@ const nextConfig: NextConfig = {
     return [
       ...MCP_PROBE_PATHS.map((source) => ({
         source,
-        destination: "https://api.ato-mcp.com.au/mcp",
+        destination: "https://paddltir-web.vercel.app/app",
         permanent: true,
       })),
-      // The pre-2026-08-04 /blogs path (and its the-new-ato-mcp post) is
+      // The pre-2026-08-04 /blogs path (and its the-new-Paddltir post) is
       // retired with no redirect: a 404 is the signal that drops the old
       // URLs from Google's index.
     ];

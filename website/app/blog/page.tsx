@@ -13,24 +13,24 @@ import {
 } from "./graphics";
 
 export const metadata: Metadata = {
-  title: "Notes on doing your own tax",
+  title: "Notes on crew management",
   description:
-    "Guides for doing your own tax with an AI agent, plus product updates from ato-mcp, the Australian tax knowledge base for AI agents.",
+    "Practical notes on seating, balance, and race-day rosters for dragon boat clubs — from Paddltir, crew management for coaches.",
   alternates: { canonical: "/blog" },
   openGraph: {
     type: "website",
-    url: "https://ato-mcp.com.au/blog",
-    siteName: "Australian Tax MCP",
+    url: "https://paddltir-web.vercel.app/blog",
+    siteName: "Paddltir",
     locale: "en_AU",
-    title: "Notes on doing your own tax · Australian Tax MCP",
+    title: "Notes on crew management · Paddltir",
     description:
-      "Guides for doing your own tax with an AI agent, plus product updates from ato-mcp, the Australian tax knowledge base for AI agents.",
+      "Practical notes on seating, balance, and race-day rosters for dragon boat clubs — from Paddltir, crew management for coaches.",
     images: [
       {
-        url: "https://ato-mcp.com.au/opengraph-image",
+        url: "https://paddltir-web.vercel.app/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Australian Tax MCP: cited ATO retrieval for AI agents",
+        alt: "Paddltir: dragon boat crew management",
       },
     ],
   },
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
    language as the posts themselves), with tag, title and teaser below.
 --------------------------------------------------------------------------- */
 
-const SITE = "https://ato-mcp.com.au";
+const SITE = "https://paddltir-web.vercel.app";
 
 const pageJsonLd = {
   "@context": "https://schema.org",
@@ -50,9 +50,9 @@ const pageJsonLd = {
     {
       "@type": "Blog",
       "@id": `${SITE}/blog#blog`,
-      name: "ato-mcp blog",
+      name: "Paddltir blog",
       description:
-        "Guides for doing your own tax with an AI agent, plus product updates from ato-mcp.",
+        "Practical notes on seating, balance, and race-day rosters for dragon boat clubs.",
       url: `${SITE}/blog`,
       publisher: { "@id": `${SITE}/#org` },
       blogPost: BLOG_POSTS.map((p) => ({
@@ -91,7 +91,7 @@ export default function BlogIndexPage() {
         className="reveal-lcp text-[clamp(2rem,5vw,3rem)] font-normal leading-[1.06] tracking-tight2 text-zinc-900"
         style={{ "--reveal-delay": "0s" } as React.CSSProperties}
       >
-        Notes on doing your own tax
+        Notes on crew management
       </h1>
 
       {/* ------------------------------------------------ card grid */}
@@ -127,8 +127,8 @@ export default function BlogIndexPage() {
           Reference guides
         </h2>
         <p className="mt-2 max-w-xl text-[14px] leading-relaxed text-zinc-500">
-          The question-shaped companions to these stories: direct answers,
-          every figure cited.
+          The how-to companions to these stories: seating order, multi-heat
+          rosters, and the stuff you look up mid-season.
         </p>
         <ul className="mt-5 space-y-3">
           {GUIDES.map((g) => (

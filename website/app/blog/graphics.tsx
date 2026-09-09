@@ -66,12 +66,12 @@ export function DeductionsGraphic({ className = "h-auto w-full max-w-[300px]" }:
   );
 }
 
-/** BAS — the three Simpler BAS labels as a tiny form, plus the due date. */
+/** Race weekend — three heats as a tiny schedule, plus the first start. */
 export function BasGraphic({ className = "h-auto w-full max-w-[300px]" }: { className?: string }) {
   const rows = [
-    { label: "G1", desc: "Total sales", value: "$22,000" },
-    { label: "1A", desc: "GST on sales", value: "$2,000" },
-    { label: "1B", desc: "GST credits", value: "$300" },
+    { label: "H1", desc: "Open 200m", value: "22 paddlers" },
+    { label: "H2", desc: "Mixed 500m", value: "20 paddlers" },
+    { label: "H3", desc: "Women 200m", value: "18 paddlers" },
   ];
   return (
     <svg viewBox="0 0 300 164" className={className} fill="none" aria-hidden="true">
@@ -94,22 +94,22 @@ export function BasGraphic({ className = "h-auto w-full max-w-[300px]" }: { clas
         );
       })}
       <text x={0} y={140} className={MONO} fontSize="11" fill="#a1a1aa">
-        Quarterly BAS
+        Race weekend
       </text>
       <rect x={198} y={124} width={94} height={24} rx="12" fill="#fff3ec" stroke="#ffd9c4" strokeWidth="1" />
       <text x={245} y={139.5} textAnchor="middle" className={MONO} fontSize="10.5" fill="#c2410c">
-        DUE 28 OCT
+        START 09:40
       </text>
     </svg>
   );
 }
 
-/** Audit — a pre-lodgment check: two lines clear, one flagged, band on LOW. */
+/** Balance check — two lines clear, one flagged, band on LOW. */
 export function AuditGraphic({ className = "h-auto w-full max-w-[300px]" }: { className?: string }) {
   const rows = [
-    { label: "Income vs pre-fill", note: "matches", flag: false },
-    { label: "Claims vs occupation", note: "in range", flag: false },
-    { label: "Working from home hours", note: "check records", flag: true },
+    { label: "Left vs right mass", note: "matches", flag: false },
+    { label: "Drummer + sweep set", note: "ready", flag: false },
+    { label: "Fore-aft trim", note: "move L3 aft", flag: true },
   ];
   const bandY = 138;
   const seg = 296 / 3;
@@ -157,87 +157,87 @@ export function AuditGraphic({ className = "h-auto w-full max-w-[300px]" }: { cl
   );
 }
 
-/** AI answers — the stale answer crossed out, the grounded one cited. */
+/** Spreadsheet vs crew tool — the stale sheet crossed out, the locked heat ready. */
 export function AiAnswersGraphic({ className = "h-auto w-full max-w-[300px]" }: { className?: string }) {
   return (
     <svg viewBox="0 0 300 150" className={className} fill="none" aria-hidden="true">
-      {/* stale answer */}
+      {/* stale sheet */}
       <rect x={2} y={8} width={296} height={54} rx="9" fill="none" stroke="#e4e4e7" strokeWidth="1" />
       <g>
         <circle cx={24} cy={35} r="8" fill="none" stroke="#e4e4e7" strokeWidth="1" />
         <path d="M 21 32 l 6 6 M 27 32 l -6 6" stroke="#a1a1aa" strokeWidth="1.4" strokeLinecap="round" />
       </g>
       <text x={42} y={31} className={MONO} fontSize="12" fill="#a1a1aa" textDecoration="line-through">
-        80c per hour, shortcut method
+        Sheet · Mixed_v7_FINAL
       </text>
       <text x={42} y={49} className={MONO} fontSize="10" fill="#a1a1aa">
-        ended 30 June 2022
+        last edit unknown
       </text>
-      {/* grounded answer */}
+      {/* locked heat */}
       <rect x={2} y={78} width={296} height={54} rx="9" fill="#ffffff" stroke="#ffd9c4" strokeWidth="1" />
       <g>
         <circle cx={24} cy={105} r="8" fill="#fa520f" />
         <path d="M 20.5 105 l 2.5 2.8 l 4.5 -5.4" stroke="#ffffff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
       </g>
       <text x={42} y={101} className={MONO} fontSize="12" fill="#3f3f46">
-        70c per hour, fixed rate
+        Mixed 500 · heat locked
       </text>
       <text x={42} y={119} className={MONO} fontSize="10" fill="#c2410c">
-        2025-26 · PCG 2023/1
+        trim checked · seats filled
       </text>
     </svg>
   );
 }
 
-/** ABN — the payslip that withheld for you vs the invoice that doesn't. */
+/** Memory — yesterday's heat forgotten vs a saved lineup. */
 export function AbnGraphic({ className = "h-auto w-full max-w-[300px]" }: { className?: string }) {
   return (
     <svg viewBox="0 0 300 150" className={className} fill="none" aria-hidden="true">
-      {/* payslip */}
+      {/* forgotten */}
       <rect x={2} y={10} width={138} height={128} rx="9" fill="#f4f4f5" stroke="#d4d4d8" strokeWidth="1" />
-      <text x={16} y={34} className={MONO} fontSize="10" fill="#a1a1aa">PAYSLIP</text>
+      <text x={16} y={34} className={MONO} fontSize="10" fill="#a1a1aa">YESTERDAY</text>
       <line x1={16} y1={46} x2={126} y2={46} stroke="#e4e4e7" strokeWidth="1" />
       <line x1={16} y1={64} x2={110} y2={64} stroke="#d4d4d8" strokeWidth="1" />
       <line x1={16} y1={80} x2={118} y2={80} stroke="#d4d4d8" strokeWidth="1" />
-      <text x={16} y={110} className={MONO} fontSize="10" fill="#52525b">tax withheld</text>
+      <text x={16} y={110} className={MONO} fontSize="10" fill="#52525b">who sat where</text>
       <g>
         <circle cx={118} cy={106} r="7" fill="none" stroke="#a1a1aa" strokeWidth="1" />
-        <path d="M 115 106 l 2.2 2.4 l 4 -4.8" stroke="#a1a1aa" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M 115 103 l 6 6 M 121 103 l -6 6" stroke="#a1a1aa" strokeWidth="1.4" strokeLinecap="round" />
       </g>
-      {/* invoice */}
+      {/* saved */}
       <rect x={160} y={10} width={138} height={128} rx="9" fill="#ffffff" stroke="#ffd9c4" strokeWidth="1" />
-      <text x={174} y={34} className={MONO} fontSize="10" fill="#a1a1aa">INVOICE</text>
+      <text x={174} y={34} className={MONO} fontSize="10" fill="#a1a1aa">SAVED HEAT</text>
       <line x1={174} y1={46} x2={284} y2={46} stroke="#e4e4e7" strokeWidth="1" />
-      <text x={174} y={68} className={MONO} fontSize="12" fill="#3f3f46">$4,400</text>
+      <text x={174} y={68} className={MONO} fontSize="12" fill="#3f3f46">Open 200</text>
       <line x1={174} y1={80} x2={276} y2={80} stroke="#e4e4e7" strokeWidth="1" />
-      <text x={174} y={110} className={MONO} fontSize="10" fill="#52525b">tax withheld</text>
-      <text x={284} y={110} textAnchor="end" className={MONO} fontSize="12" fill="#fa520f">$0</text>
+      <text x={174} y={110} className={MONO} fontSize="10" fill="#52525b">lineup kept</text>
+      <text x={284} y={110} textAnchor="end" className={MONO} fontSize="12" fill="#fa520f">✓</text>
     </svg>
   );
 }
 
-/** Depreciation — the laptop, its price, and what comes off this year. */
+/** Crew weights — totals that drive trim. */
 export function DepreciationGraphic({ className = "h-auto w-full max-w-[300px]" }: { className?: string }) {
   return (
     <svg viewBox="0 0 300 164" className={className} fill="none" aria-hidden="true">
-      {/* laptop */}
+      {/* boat outline */}
       <rect x={105} y={10} width={90} height={58} rx="6" fill="#f4f4f5" stroke="#d4d4d8" strokeWidth="1" />
       <rect x={112} y={17} width={76} height={44} rx="3" fill="#ffffff" stroke="#e4e4e7" strokeWidth="1" />
       <rect x={92} y={70} width={116} height={6} rx="3" fill="#e4e4e7" />
-      {/* price tag */}
+      {/* weight tag */}
       <rect x={176} y={2} width={62} height={22} rx="11" fill="#ffffff" stroke="#ffd9c4" strokeWidth="1" />
       <text x={207} y={16.5} textAnchor="middle" className={MONO} fontSize="11" fill="#c2410c">
-        $2,899
+        1,420 kg
       </text>
       {/* arrow down */}
       <line x1={150} y1={86} x2={150} y2={108} stroke="#fa520f" strokeWidth="1.5" />
       <path d="M 145 104 L 150 110.5 L 155 104" stroke="#fa520f" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
       {/* outcome */}
       <text x={150} y={132} textAnchor="middle" className={MONO} fontSize="13" fill="#3f3f46">
-        $2,319 written off in year one
+        Trim: slightly bow-light
       </text>
       <text x={150} y={152} textAnchor="middle" className={MONO} fontSize="10.5" fill="#a1a1aa">
-        80% business use · under the $20,000 threshold
+        move two seats aft before race
       </text>
     </svg>
   );
