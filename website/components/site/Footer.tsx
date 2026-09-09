@@ -41,7 +41,6 @@ export function Footer() {
             >
               <div className="flex flex-col gap-3.5">
                 <p className="eyebrow">Product</p>
-                <Link className="footer-link" href="/install">Get started</Link>
                 <Link className="footer-link" href="/docs">Documentation</Link>
                 <a className="footer-link" href={GITHUB} target="_blank" rel="noopener noreferrer">
                   GitHub
@@ -50,7 +49,6 @@ export function Footer() {
               </div>
               <div className="flex flex-col gap-3.5">
                 <p className="eyebrow">Company</p>
-                <Link className="footer-link" href="/guides">Guides</Link>
                 <Link className="footer-link" href="/about">About</Link>
                 <Link className="footer-link" href="/privacy">Privacy</Link>
                 <Link className="footer-link" href="/terms">Terms</Link>

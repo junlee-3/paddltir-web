@@ -8,8 +8,7 @@
 ## Docs
 
 - [llms-full.txt](https://paddltir-web.vercel.app/llms-full.txt): product copy and main pages as a single markdown file
-- [Get started](https://paddltir-web.vercel.app/install): open the app and sign in
-- [Guides](https://paddltir-web.vercel.app/guides): reference guides — how to seat a standard boat (/guides/ai-agent-tax-deductions) and how to run multiple heats (/guides/can-ai-do-my-bas)
+- [Docs](https://paddltir-web.vercel.app/docs): feature reference — lineups, rosters, trim and balance
 - [About](https://paddltir-web.vercel.app/about): who builds Paddltir and why
 - [FAQ](https://paddltir-web.vercel.app/faq): rosters, crewlists, trim, privacy, and getting started
 - [Compare](https://paddltir-web.vercel.app/compare): paper roster vs spreadsheet vs Paddltir

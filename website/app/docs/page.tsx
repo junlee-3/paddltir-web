@@ -13,10 +13,10 @@ export const metadata: Metadata = {
 };
 
 /* ---------------------------------------------------------------------------
-   /docs — the tool reference. Install lives on /install; this page answers
-   the question that follows the pitch: what can you actually do once
-   you're in the app? Each group is an editorial row (label, narrative beat,
-   description) beside its card grid, echoing the homepage corpus section.
+   /docs — the tool reference. Answers the question that follows the pitch:
+   what can you actually do once you're in the app? Each group is an
+   editorial row (label, narrative beat, description) beside its card grid,
+   echoing the homepage corpus section.
 --------------------------------------------------------------------------- */
 
 const GROUPS: {

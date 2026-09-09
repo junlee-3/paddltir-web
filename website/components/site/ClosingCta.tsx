@@ -4,7 +4,7 @@ import { GitHubIcon } from "./GitHubIcon";
 /* ---------------------------------------------------------------------------
    The site-wide closing CTA (homepage pattern): full-bleed glow section that
    melts into the footer card below. Rendered as the last element before the
-   footer on the homepage, /docs, /faq, /compare and guides.
+   footer on the homepage, /docs, /faq, and /compare.
 --------------------------------------------------------------------------- */
 
 export function ClosingCta() {

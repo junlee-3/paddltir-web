@@ -25,13 +25,13 @@ clipboards, shared spreadsheets, and last-minute texts on the pontoon.
 - **Trim and balance** — fore-aft trim, side weight, and empty-seat checks before launch
 - **Copy between heats** — start from a seated boat and adjust for the next race
 
-## Get started (https://paddltir-web.vercel.app/install)
+## Open the app
 
 1. Open https://paddltir-web.vercel.app/app in your browser
 2. Sign in with email or Google — your account is created on first visit
 3. Add paddlers to a roster, create a crewlist, seat your first boat
 
-No install required. Works on desktop and mobile browsers.
+Works on desktop and mobile browsers. Feature reference: https://paddltir-web.vercel.app/docs
 
 ## FAQ
 
@@ -60,18 +60,6 @@ Your account, paddlers, and crewlists belong to you. See the privacy page for
 what we store.
 
 Full FAQ: https://paddltir-web.vercel.app/faq
-
-## Reference guides (https://paddltir-web.vercel.app/guides)
-
-How do you seat a standard boat?
-(https://paddltir-web.vercel.app/guides/ai-agent-tax-deductions):
-left, right, drummer, sweep — a practical order of operations for filling a
-standard dragon boat without leaving balance to chance.
-
-How do you run multiple heats?
-(https://paddltir-web.vercel.app/guides/can-ai-do-my-bas):
-open, mixed, women's — keep separate lineups for each heat so one change
-doesn't wipe the next race.
 
 ## About (https://paddltir-web.vercel.app/about)
 

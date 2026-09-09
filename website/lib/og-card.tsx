@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 /**
- * Shared OG-card renderer for the homepage and guides: the hero-card look
+ * Shared OG-card renderer for marketing pages: the hero-card look
  * (warm paper + vermillion glow bleeding from the upper left), logo row,
  * big Switzer title. Callers (per-route opengraph-image.tsx, edge runtime)
  * pass their copy in.

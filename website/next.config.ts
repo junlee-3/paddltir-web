@@ -94,8 +94,6 @@ const NOINDEX_PATHS = [
   "/llms.txt",
   "/llms-full.txt",
   "/opengraph-image",
-  // Per-guide OG cards (each guide folder has an opengraph-image.tsx).
-  "/guides/:slug/opengraph-image",
 ];
 
 const nextConfig: NextConfig = {
@@ -144,6 +142,11 @@ const nextConfig: NextConfig = {
       { source: "/blog", destination: "/about", permanent: true },
       { source: "/blog/:path*", destination: "/about", permanent: true },
       { source: "/feed.xml", destination: "/about", permanent: true },
+      // Retired Get started (/install) and Guides — source kept in website/_archived.
+      { source: "/install", destination: "/app", permanent: true },
+      { source: "/install/:path*", destination: "/app", permanent: true },
+      { source: "/guides", destination: "/docs", permanent: true },
+      { source: "/guides/:path*", destination: "/docs", permanent: true },
     ];
   },
   // Vite SPA deep links are rewritten in middleware.ts so /app/assets/* is
