@@ -1,4 +1,4 @@
-# ato-mcp — full site content for LLMs
+# Australian Tax MCP (ato-mcp) — full site content for LLMs
 
 > The Australian tax knowledge base for AI agents: an MCP (Model Context Protocol)
 > service giving cited retrieval over 34,500+ ATO documents, the income tax and
@@ -42,6 +42,8 @@ sign-in, no token to copy.
   config snippet per client
 - Stdio-only clients: the open-source npm package proxies the hosted server —
   `npx -y ato-mcp` (Node 22+); first run opens your browser to sign in
+- The npm client records 100,000+ downloads a month (a registry count that
+  includes mirrors and CI, so treat it as reach, not a user count)
 
 ## The 13 tools (https://ato-mcp.com.au/docs)
 
@@ -134,6 +136,70 @@ client step by step.
 
 Full FAQ: https://ato-mcp.com.au/faq
 
+## Reference guides (https://ato-mcp.com.au/guides)
+
+Question-shaped references with direct, cited answers:
+
+Can AI find your tax deductions? (https://ato-mcp.com.au/guides/ai-agent-tax-deductions):
+what a connected agent can do for a sole trader in 2025-26: cited deduction
+categories, the records to keep, and the honest limits of what an agent can
+and can't do.
+
+Can AI do your BAS? (https://ato-mcp.com.au/guides/can-ai-do-my-bas): what an
+agent prepares and what you still lodge: the labels that apply, the evidence
+to gather for each, and the due dates, all cited.
+
+## Blog (https://ato-mcp.com.au/blog)
+
+Six guides to doing your own tax with a connected agent, each showing a
+realistic session, a worked example with real 2025-26 rates, and the
+questions that usually follow.
+
+Find your deductions (https://ato-mcp.com.au/blog/what-can-you-actually-claim): as a
+sole trader you can generally deduct expenses you incur to earn your
+business income: home office running costs, business travel, tools and
+equipment, phone and internet, insurance, professional fees. The
+deduction_discovery tool walks a 59-category map built from ATO guidance,
+matched to your saved profile, confidence-rated, with ATO focus areas
+flagged first and every category cited.
+
+Prepare your BAS (https://ato-mcp.com.au/blog/its-bas-time-again): a business activity
+statement reports GST and related obligations. Most small businesses use
+Simpler BAS (three labels: G1 total sales, 1A GST on sales, 1B GST credits
+on purchases); quarterly statements are due 28 October, 28 February, 28
+April and 28 July. The bas_prep_checklist tool builds a checklist for your
+reporting period: which labels apply, what to gather, the gotchas, and the
+ATO page behind every line. It prepares; you lodge.
+
+Write off equipment (https://ato-mcp.com.au/blog/so-you-bought-a-laptop-in-the-eofy-sales): for
+small businesses (aggregated turnover under $10 million), assets costing
+less than $20,000 can be deducted in full for 2025-26 under the instant
+asset write-off (per asset); assets at or over the threshold enter the
+small business pool (15% first year, 30% after). The depreciation_helper
+tool computes every eligible method as a deterministic schedule (instant
+write-off, pool, prime cost, diminishing value, capital works) with the
+legal basis attached. A 2026-27 threshold change has been announced but is
+not yet law.
+
+Check your audit risk (https://ato-mcp.com.au/blog/am-i-going-to-get-audited): the
+audit_risk_check tool checks a draft return against the risk patterns the
+ATO publishes (work-related expenses out of line with income, rental
+anomalies, unreported crypto and more), returns a risk band per flag and
+cites the guidance behind each one, before you lodge. It flags; it does
+not judge, and it is not a prediction of audit selection.
+
+Can you trust AI with your tax (https://ato-mcp.com.au/blog/can-you-trust-ai-with-your-tax):
+uncited chatbot answers about Australian tax can be years out of date (the
+80 cents per hour shortcut method ended 30 June 2022; the 2025-26 fixed
+rate is 70 cents per hour under PCG 2023/1). Grounding the same agent in
+the corpus attaches the current source to every claim so you can check it.
+
+Your first year with an ABN (https://ato-mcp.com.au/blog/nobody-withholds-your-tax-anymore):
+nobody withholds tax on ABN income, so three things change: income tax is
+assessed on business profit at lodgment, PAYG instalments usually begin
+after your first return, and GST registration becomes mandatory once
+turnover reaches $75,000. The guide walks each one with the ATO source.
+
 ## Compared with the alternatives (https://ato-mcp.com.au/compare)
 
 Browsing ato.gov.au yourself: the answers exist but span thousands of pages,
@@ -150,19 +216,11 @@ ato-mcp is designed, built and run by William Laverty, an Australian software
 developer (https://github.com/william-laverty). It is a small, independent
 product: no invented testimonials, no made-up user counts, and the client code
 is public so you can check both. It is not affiliated with, endorsed by, or
-operated by the Australian Taxation Office. Contact: GitHub issues for product
+operated by the Australian Taxation Office. A note on the name: an unrelated
+MCP package by another developer (an ATO statistics server) also appears as
+ato-mcp in some directories; this site, api.ato-mcp.com.au and the npm
+package ato-mcp are the Australian tax knowledge base described here. Contact: GitHub issues for product
 questions, privacy@ato-mcp.com.au for privacy and data requests.
-
-## Latest update (2026-07-04): The new ato-mcp
-
-https://ato-mcp.com.au/blogs/the-new-ato-mcp
-
-The biggest release yet: sign in with your browser (the token flow is gone), a
-personal tax-facts layer so your agent understands your situation, and a rebuilt
-corpus — 34,564 documents (up from ~29,900), 286,638 passages (+37% in one
-release), rulings coverage more than doubled to 4,937, the ITAA 1936 and GST Act
-added alongside the ITAA 1997, and 64,217 citation links tying it all together,
-with measurably better search.
 
 ## Policies
 

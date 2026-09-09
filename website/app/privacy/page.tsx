@@ -7,7 +7,7 @@ import { breadcrumbJsonLd } from "@/lib/breadcrumbs";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "How ato-mcp handles your data: exactly what's stored (generated from the database schema), what's never stored — queries and results — and how deletion works.",
+    "How ato-mcp handles your data: exactly what's stored (generated from the database schema), what's never stored — queries and results — and deletion.",
   alternates: { canonical: "/privacy" },
 };
 
@@ -51,7 +51,7 @@ const fieldDescriptions: Record<string, string> = {
 };
 
 const eventTypes = [
-  "Magic-link email sign-in",
+  "Email sign-in (one-time code)",
   "Tax facts created or updated",
   "Account deleted",
   "MCP connection detected",
@@ -70,18 +70,15 @@ const linkCls =
 
 export default function PrivacyPage() {
   return (
-    <main className="mx-auto min-h-screen max-w-3xl px-5 pb-24 pt-14">
+    <main className="mx-auto min-h-screen max-w-5xl px-5 pb-24 pt-20">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(privacyJsonLd) }}
       />
-      <div className="space-y-10">
+      <div className="mx-auto max-w-3xl space-y-10">
         <div className="space-y-3">
-          <Link href="/" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-            ← Home
-          </Link>
           <h1 className="text-3xl font-normal tracking-tight1 text-zinc-900">Privacy Policy</h1>
-          <p className="text-sm text-zinc-400">Last updated: 26 May 2026</p>
+          <p className="text-sm text-zinc-500">Last updated: 26 May 2026</p>
         </div>
 
         <section className="space-y-4">
@@ -192,7 +189,7 @@ export default function PrivacyPage() {
           </p>
         </section>
 
-        <div className="border-t border-zinc-100 pt-6 text-xs text-zinc-400">
+        <div className="border-t border-zinc-100 pt-6 text-xs text-zinc-500">
           <Link href="/terms" className="transition-colors hover:text-zinc-900">
             Terms of Service
           </Link>

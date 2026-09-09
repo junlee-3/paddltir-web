@@ -1,11 +1,7 @@
 import Link from "next/link";
+import { CurrentYear } from "./CurrentYear";
 
 const GITHUB = "https://github.com/william-laverty/ato-mcp";
-const NPM = "https://www.npmjs.com/package/ato-mcp";
-
-// MCP hosts ato-mcp connects to — shown as neutral pills in the brand group,
-// mirroring pluck's "Works with your agent" chip row.
-const AGENTS = ["Claude", "ChatGPT", "Cursor", "Codex", "Gemini CLI", "VS Code", "Any MCP host"];
 
 function Mark({ size = 26 }: { size?: number }) {
   return (
@@ -36,7 +32,7 @@ export function Footer() {
               <div className="flex items-center gap-2.5">
                 <Mark size={26} />
                 <span className="text-[17px] font-medium tracking-tight1 text-zinc-900">
-                  ato-mcp
+                  Australian Tax MCP
                 </span>
               </div>
               <p className="mt-5 text-[14.5px] leading-relaxed text-zinc-500">
@@ -47,65 +43,40 @@ export function Footer() {
                 and GST Acts and 4,900+ public rulings. The client is open
                 source, so you can read exactly what runs on your machine.
               </p>
-              <p className="mt-4 text-xs leading-relaxed text-zinc-400">
+              <p className="mt-4 text-xs leading-relaxed text-zinc-500">
                 Information infrastructure, not tax advice. Verify material
                 decisions with a registered tax agent.
               </p>
-              <div className="mt-6">
-                <p className="eyebrow mb-3">Works with your agent</p>
-                <div className="flex flex-wrap gap-2">
-                  {AGENTS.map((a) => (
-                    <span
-                      key={a}
-                      className="inline-flex items-center rounded-full border border-zinc-200 bg-white px-3 py-1 text-xs text-zinc-600"
-                    >
-                      {a}
-                    </span>
-                  ))}
-                </div>
-              </div>
             </div>
 
             {/* Link grid */}
             <nav
-              className="grid grid-cols-2 gap-x-10 gap-y-10 sm:grid-cols-3 lg:gap-x-16"
+              className="grid grid-cols-2 gap-x-10 gap-y-10 lg:gap-x-16"
               aria-label="Footer"
             >
               <div className="flex flex-col gap-3.5">
                 <p className="eyebrow">Product</p>
-                <Link className="footer-link" href="/docs">Documentation</Link>
                 <Link className="footer-link" href="/install">Get started</Link>
-                <Link className="footer-link" href="/compare">Compare</Link>
-                <Link className="footer-link" href="/faq">FAQ</Link>
-                <Link className="footer-link" href="/blogs">What&apos;s new</Link>
-              </div>
-              <div className="flex flex-col gap-3.5">
-                <p className="eyebrow">Open source</p>
+                <Link className="footer-link" href="/docs">Documentation</Link>
                 <a className="footer-link" href={GITHUB} target="_blank" rel="noopener noreferrer">
                   GitHub
                 </a>
-                <a className="footer-link" href={NPM} target="_blank" rel="noopener noreferrer">
-                  npm
-                </a>
-                <a className="footer-link" href={`${GITHUB}/releases`} target="_blank" rel="noopener noreferrer">
-                  Releases
-                </a>
+                <Link className="footer-link" href="/faq">FAQ</Link>
               </div>
               <div className="flex flex-col gap-3.5">
                 <p className="eyebrow">Company</p>
+                <Link className="footer-link" href="/blog">Blog</Link>
+                <Link className="footer-link" href="/guides">Guides</Link>
                 <Link className="footer-link" href="/about">About</Link>
                 <Link className="footer-link" href="/privacy">Privacy</Link>
                 <Link className="footer-link" href="/terms">Terms</Link>
-                <a className="footer-link" href={`${GITHUB}/blob/main/SECURITY.md`} target="_blank" rel="noopener noreferrer">
-                  Security
-                </a>
               </div>
             </nav>
           </div>
 
           {/* Bottom bar */}
-          <div className="mt-14 flex flex-col gap-4 border-t border-zinc-200 pt-7 text-[13px] text-zinc-400 sm:flex-row sm:items-center sm:justify-between">
-            <p>© {new Date().getFullYear()} William Laverty · client code AGPL-3.0</p>
+          <div className="mt-14 flex flex-col gap-4 border-t border-zinc-200 pt-7 text-[13px] text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
+            <p>© <CurrentYear /> William Laverty</p>
             <p>ATO content remains subject to ATO publication terms.</p>
           </div>
         </div>

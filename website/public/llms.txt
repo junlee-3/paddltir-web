@@ -1,4 +1,4 @@
-# ato-mcp
+# Australian Tax MCP (ato-mcp)
 
 > The Australian tax knowledge base for AI agents: an MCP (Model Context Protocol)
 > service giving cited retrieval over 34,500+ ATO documents, the income tax and
@@ -14,6 +14,8 @@
 - [llms-full.txt](https://ato-mcp.com.au/llms-full.txt): the full site content as a single markdown file
 - [Install](https://ato-mcp.com.au/install): one-line install for Claude Code, Codex, Gemini CLI, Cursor, VS Code, Claude.ai, ChatGPT and any MCP client
 - [Documentation](https://ato-mcp.com.au/docs): install, connect to Claude Code / any MCP host, all 13 tools
+- [Guides](https://ato-mcp.com.au/guides): reference guides with direct, cited answers: can AI find your tax deductions (/guides/ai-agent-tax-deductions) and can AI do your BAS (/guides/can-ai-do-my-bas)
+- [Blog](https://ato-mcp.com.au/blog): sole trader deductions (/blog/what-can-you-actually-claim), BAS preparation (/blog/its-bas-time-again), equipment write-offs (/blog/so-you-bought-a-laptop-in-the-eofy-sales), audit-risk checks (/blog/am-i-going-to-get-audited), AI answer reliability (/blog/can-you-trust-ai-with-your-tax) and first-year ABN basics (/blog/nobody-withholds-your-tax-anymore) with an AI agent, cited
 - [FAQ](https://ato-mcp.com.au/faq): common questions (is it tax advice, what does it store, which agents work)
 - [Compare](https://ato-mcp.com.au/compare): ato-mcp vs browsing ato.gov.au vs asking a chatbot alone
 - [About](https://ato-mcp.com.au/about): who builds ato-mcp, trust signals, contact
@@ -25,8 +27,14 @@
 - Remote MCP endpoint: https://api.ato-mcp.com.au/mcp (streamable HTTP, OAuth — your browser opens to sign in with email or Google)
 - Claude Code: `claude mcp add --scope user --transport http ato https://api.ato-mcp.com.au/mcp`
 - Stdio-only clients: npm package ato-mcp (Node 22+) proxies the hosted server — `npx -y ato-mcp`; first run opens your browser to sign in
+- The npm client records 100,000+ downloads a month (registry count; includes mirrors and CI)
 
 ## Policies
 
 - [Privacy](https://ato-mcp.com.au/privacy): generated from the database schema; never stores queries, tool names or results
 - [Terms](https://ato-mcp.com.au/terms)
+
+## Optional
+
+- [Changelog](https://github.com/william-laverty/ato-mcp/blob/main/CHANGELOG.md): release history for the open-source npm client
+- [Glama listing](https://glama.ai/mcp/servers/william-laverty/ato-mcp): MCP directory page for this server

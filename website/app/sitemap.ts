@@ -1,18 +1,19 @@
 import type { MetadataRoute } from "next";
-import { BLOG_POSTS } from "./blogs/posts";
+import { BLOG_POSTS } from "./blog/posts";
+import { GUIDES } from "./guides/guides";
 
 const SITE = "https://ato-mcp.com.au";
 
 // Bump a date only when that page's content meaningfully changes.
 // Stamping build time on every deploy makes Google ignore lastmod entirely.
 const LAST_MODIFIED = {
-  home: "2026-07-09",
-  docs: "2026-07-09",
-  install: "2026-07-09",
-  faq: "2026-07-09",
-  compare: "2026-07-09",
-  about: "2026-07-09",
-  blogs: "2026-07-09",
+  home: "2026-07-23",
+  docs: "2026-07-23",
+  install: "2026-07-23",
+  faq: "2026-07-23",
+  compare: "2026-07-23",
+  about: "2026-07-23",
+  blog: "2026-08-04",
   privacy: "2026-05-26",
   terms: "2026-05-26",
 } as const;
@@ -26,9 +27,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE}/faq`, lastModified: LAST_MODIFIED.faq, changeFrequency: "monthly", priority: 0.7 },
     { url: `${SITE}/compare`, lastModified: LAST_MODIFIED.compare, changeFrequency: "monthly", priority: 0.7 },
     { url: `${SITE}/about`, lastModified: LAST_MODIFIED.about, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${SITE}/blogs`, lastModified: LAST_MODIFIED.blogs, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${SITE}/blog`, lastModified: LAST_MODIFIED.blog, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${SITE}/guides`, lastModified: "2026-08-19", changeFrequency: "monthly", priority: 0.7 },
+    ...GUIDES.map((guide) => ({
+      url: `${SITE}/guides/${guide.slug}`,
+      lastModified: guide.date,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
     ...BLOG_POSTS.map((post) => ({
-      url: `${SITE}/blogs/${post.slug}`,
+      url: `${SITE}/blog/${post.slug}`,
       lastModified: post.date,
       changeFrequency: "yearly" as const,
       priority: 0.6,

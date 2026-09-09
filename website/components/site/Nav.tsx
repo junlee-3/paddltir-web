@@ -3,20 +3,20 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { trackEvent } from "@/lib/analytics";
 const LINKS = [
   { href: "/docs", label: "Docs" },
-  { href: "/blogs", label: "Blog" },
+  { href: "/blog", label: "Blog" },
   { href: "/faq", label: "FAQ" },
 ];
 
 const SCROLL_THRESHOLD = 50;
 
-// Initial fixed-header offset while the home announcement bar is visible
-// (heynox value). Deliberately less than the bar's 52px: with the header's
-// 20px unscrolled padding the pill rests just 8px inside the hero card's top
-// edge, and rides up 1:1 with the page (top = max(0, 40 − scrollY)) until it
-// pins — where the padding morph takes over as the scrolled state.
-const NAV_INITIAL_TOP = 40;
+// Initial fixed-header offset on the home page (lg+): the pill rests 10px
+// lower than its pinned position and rides up 1:1 with the page
+// (top = max(0, 10 − scrollY)) until it pins, where the padding morph takes
+// over as the scrolled state.
+const NAV_INITIAL_TOP = 10;
 
 function Mark({ size = 20 }: { size?: number }) {
   return (
@@ -51,17 +51,12 @@ export function Nav() {
   const isHome = pathname === "/";
 
   // One scroll owner for the header (heynox pattern): the pill morph and the
-  // announcement-bar offset are computed in the same rAF batch. While the
-  // home-page announcement bar is visible the fixed header starts below it
-  // and slides up with the page (top = max(0, bar − scrollY)) until it pins
-  // to the viewport top; pages (and breakpoints) without the bar sit at 0.
+  // home offset are computed in the same rAF batch. On the home page at lg+
+  // the fixed header starts NAV_INITIAL_TOP below the window and slides up
+  // with the page (top = max(0, offset − scrollY)) until it pins to the
+  // viewport top; other pages (and mobile) sit at 0.
   useEffect(() => {
     let raf = 0;
-    let announcement: Element | null = null;
-
-    const refreshTargets = () => {
-      announcement = document.querySelector(".announcement");
-    };
 
     const compute = () => {
       raf = 0;
@@ -72,31 +67,24 @@ export function Nav() {
       }
       const el = headerRef.current;
       if (!el) return;
-      // getClientRects is empty when the bar is display:none (mobile) or not
-      // rendered (non-home pages), so the header falls back to the top.
-      const announcementVisible =
-        !!announcement && announcement.getClientRects().length > 0;
-      el.style.top = announcementVisible
+      const offsetActive =
+        isHome && window.matchMedia("(min-width: 1024px)").matches;
+      el.style.top = offsetActive
         ? `${Math.max(0, NAV_INITIAL_TOP - window.scrollY)}px`
         : "0px";
     };
     const schedule = () => {
       if (!raf) raf = requestAnimationFrame(compute);
     };
-    const handleResize = () => {
-      refreshTargets();
-      schedule();
-    };
-    refreshTargets();
     compute();
     window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", schedule);
     return () => {
       window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", schedule);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, [pathname]);
+  }, [pathname, isHome]);
 
   useEffect(() => {
     if (!open) return;
@@ -107,14 +95,15 @@ export function Nav() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  const pillPainted = scrolled || open;
+  // Pill chrome is always painted; scroll still drives the width morph.
+  const pillPainted = true;
 
   return (
     <header
       ref={headerRef}
-      // Pre-hydration position: below the announcement bar on the home page
-      // at lg+ (where the bar renders), at the top everywhere else. After
-      // mount the scroll handler owns `top` via an inline style.
+      // Pre-hydration position: offset down on the home page at lg+, at the
+      // top everywhere else. After mount the scroll handler owns `top` via
+      // an inline style.
       style={
         {
           "--nav-initial-top": isHome ? `${NAV_INITIAL_TOP}px` : "0px",
@@ -126,13 +115,20 @@ export function Nav() {
       className={[
         "fixed inset-x-0 top-0 z-50 px-6 transition-[padding] duration-500 ease-out lg:top-[var(--nav-initial-top,0px)]",
         scrolled ? "py-3" : "py-5",
-        "max-md:!px-4 max-md:!pt-4 max-md:!pb-0",
+        // Mobile: 24px outer padding = the card's 12px inset + 12px breathing
+        // room, so the pill floats consistently inside the glass container.
+        "max-md:!px-6 max-md:!pt-6 max-md:!pb-0",
       ].join(" ")}
     >
       <div
         className={[
           "mx-auto transition-[max-width] duration-[550ms] ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[max-width]",
-          scrolled ? "max-w-[760px]" : "max-w-6xl",
+          // Resting width tracks the hero content edge: card inset (12px) +
+          // hero px clamp, minus the pill's internal left offset (pl-3 +
+          // logo px-2 = 20px) so the logo mark sits flush on the headline.
+          scrolled
+            ? "max-w-[760px]"
+            : "max-w-6xl md:max-w-[calc(100vw_+_16px_-_2*clamp(24px,7vw,88px))]",
         ].join(" ")}
       >
         {/* Nav pill — logo | links | CTA. Transparent at top, glass on scroll. */}
@@ -140,7 +136,7 @@ export function Nav() {
           aria-label="Main"
           className={[
             "grid grid-cols-[1fr_auto_1fr] items-center rounded-full border py-2 pl-3 pr-2 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-[400ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
-            "max-md:flex max-md:flex-col max-md:items-stretch max-md:gap-0 max-md:rounded-2xl max-md:px-3 max-md:py-1.5",
+            "max-md:flex max-md:flex-col max-md:items-stretch max-md:gap-0 max-md:rounded-[24px] max-md:px-3 max-md:py-1.5",
             pillPainted
               ? "border-black/[0.06] bg-white/80 shadow-[0_14px_40px_-18px_rgba(24,24,27,0.18),inset_0_1px_0_rgba(255,255,255,0.7)] backdrop-blur-[20px] backdrop-saturate-150"
               : "border-transparent bg-transparent max-md:border-black/[0.06] max-md:bg-white/80 max-md:shadow-[0_14px_40px_-18px_rgba(24,24,27,0.18),inset_0_1px_0_rgba(255,255,255,0.7)] max-md:backdrop-blur-[20px] max-md:backdrop-saturate-150",
@@ -152,10 +148,10 @@ export function Nav() {
             <Link
               href="/"
               className="flex items-center gap-2 justify-self-start px-2 py-1 text-[15px] font-medium tracking-tight1 text-zinc-900 max-md:px-0"
-              aria-label="ato-mcp home"
+              aria-label="Australian Tax MCP home"
             >
               <Mark />
-              ato-mcp
+              Australian Tax MCP
             </Link>
 
             {/* Centre — links */}
@@ -175,6 +171,7 @@ export function Nav() {
             <div className="flex items-center gap-1 justify-self-end">
               <a
                 href="/app"
+                onClick={() => trackEvent("connect_cta_clicked", { location: "nav" })}
                 className="btn btn-primary px-4 py-2 text-[13px] max-md:hidden"
               >
                 Open App
@@ -227,7 +224,10 @@ export function Nav() {
                 ))}
                 <a
                   href="/app"
-                  onClick={() => setOpen(false)}
+                  onClick={() => {
+                    trackEvent("connect_cta_clicked", { location: "nav_mobile" });
+                    setOpen(false);
+                  }}
                   tabIndex={open ? 0 : -1}
                   className="btn btn-primary mb-1.5 mt-2 px-4 py-2.5 text-sm"
                 >

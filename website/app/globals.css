@@ -14,8 +14,15 @@
 }
 
 html {
-  scroll-behavior: smooth;
   background-color: #ffffff;
+}
+
+/* Native smooth anchor scrolling only while Lenis isn't mounted (no JS,
+   reduced motion). Lenis holds the `lenis` class on <html> whenever it's
+   driving the scroll; it sets scrollTop every frame, and CSS smoothing on
+   top of those writes would ease each one and judder. */
+html:not(.lenis) {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -60,14 +67,55 @@ body {
   .hero-card {
     @apply relative overflow-hidden rounded-[24px] border border-black/5 bg-[#fcfbf9] shadow-[0_1px_2px_rgba(0,0,0,0.04),0_24px_60px_-28px_rgba(0,0,0,0.12)];
   }
-  /* Subtle warm vermillion glow bleeding from the upper-left (decorative). */
-  .hero-glow {
-    @apply pointer-events-none absolute inset-0;
-    background: radial-gradient(
-      60% 55% at 12% 22%,
-      rgba(250, 82, 15, 0.07) 0%,
-      transparent 60%
+  /* --- Glass hero card (preview) ----------------------------------------
+     The whole hero card reads as a pane of glass with the landscape behind
+     it: hairline glass border + deeper float shadow on the card, and an
+     overlay (rendered above the image, below content) carrying the specular
+     rim highlights and a glossy sheen sweep from the top-left. */
+  .glass-hero {
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    /* Elegant float: a tight contact line plus two long, low-alpha diffuse
+       layers (zinc ink, never pure black) so the pane hovers softly instead
+       of casting a hard dark drop. */
+    box-shadow:
+      0 1px 2px rgba(24, 24, 27, 0.04),
+      0 12px 28px -14px rgba(24, 24, 27, 0.08),
+      0 36px 72px -28px rgba(24, 24, 27, 0.12);
+  }
+  /* liquidGlass layer stack (over the in-card image, under the content):
+     effect = light frost + Chromium refraction via #glass-distortion,
+     tint = faint white wash, shine = specular rims + corner sheen. */
+  .glass-hero-effect {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    -webkit-backdrop-filter: blur(5px) saturate(132%) brightness(1.08);
+    backdrop-filter: blur(5px) saturate(132%) brightness(1.08);
+    filter: url(#glass-distortion);
+    isolation: isolate;
+  }
+  .glass-hero-tint {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.24);
+  }
+  .glass-hero-shine {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    background: linear-gradient(
+      115deg,
+      rgba(255, 255, 255, 0.26) 0%,
+      rgba(255, 255, 255, 0) 42%
     );
+    box-shadow:
+      inset 2px 2px 1.5px 0 rgba(255, 255, 255, 0.65),
+      inset -1.5px -1.5px 1.5px 1px rgba(255, 255, 255, 0.6);
   }
 
   /* --- Closing CTA atmosphere ------------------------------------------
@@ -107,36 +155,7 @@ body {
 
   /* --- Micro label ------------------------------------------------------ */
   .eyebrow {
-    @apply font-mono text-[0.6875rem] font-normal uppercase tracking-[0.08em] text-zinc-400;
-  }
-
-  /* --- Accent thread: the page signature (faint vermillion rail) --------- */
-  .accent-thread {
-    @apply pointer-events-none absolute top-0 w-px;
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      rgba(250, 82, 15, 0.28) 12%,
-      rgba(250, 82, 15, 0.28) 88%,
-      transparent 100%
-    );
-  }
-  .accent-node {
-    @apply absolute left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-brand;
-  }
-
-  /* --- Window chrome for the scroll-demo mockups (flat hairline) --------- */
-  .win-chrome {
-    @apply flex items-center gap-1.5 border-b border-zinc-200 bg-zinc-50 px-3 py-2;
-  }
-  .win-dot {
-    @apply h-2.5 w-2.5 rounded-full border border-zinc-300 bg-white;
-  }
-
-  /* --- Magnetic button base (JS translates via --mx/--my on desktop) ----- */
-  .mag-btn {
-    transform: translate(var(--mx, 0), var(--my, 0));
-    transition: transform 0.2s var(--ease-out);
+    @apply font-mono text-[0.6875rem] font-normal uppercase tracking-[0.08em] text-zinc-500;
   }
 
   /* --- Forms ------------------------------------------------------------ */
@@ -144,7 +163,7 @@ body {
     @apply mb-1 block text-[13px] font-medium text-zinc-900;
   }
   .input {
-    @apply block w-full rounded-[10px] border border-zinc-300 bg-white px-3 py-2 text-[15px] text-zinc-900 placeholder-zinc-400 outline-none transition-shadow focus:border-zinc-900 focus:ring-2 focus:ring-zinc-900/10;
+    @apply block w-full rounded-[10px] border border-zinc-300 bg-white px-3 py-2 text-[15px] text-zinc-900 placeholder-zinc-500 outline-none transition-shadow focus:border-zinc-900 focus:ring-2 focus:ring-zinc-900/20;
   }
 
   /* --- Badges ------------------------------------------------------------ */
@@ -153,6 +172,15 @@ body {
   }
   .badge-accent {
     @apply inline-flex items-center rounded-full bg-brand-50 px-2.5 py-0.5 font-mono text-[0.625rem] uppercase tracking-[0.05em] text-brand-text;
+  }
+}
+
+/* --- Glass hero, mobile overrides ------------------------------------------
+   The card nearly fills the screen, so the float shadow reads as a dark
+   smudge — a single hairline contact shadow, nothing more. */
+@media (max-width: 1023px) {
+  .glass-hero {
+    box-shadow: 0 1px 3px rgba(24, 24, 27, 0.03);
   }
 }
 
@@ -231,7 +259,8 @@ body {
 
 /* --- Reduced motion -------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
-  html {
+  /* Match the specificity of the html:not(.lenis) rule above. */
+  html:not(.lenis) {
     scroll-behavior: auto;
   }
   .reveal,
@@ -244,8 +273,5 @@ body {
     background-image: none;
     color: #52525b;
     -webkit-text-fill-color: currentColor;
-  }
-  .mag-btn {
-    transform: none !important;
   }
 }

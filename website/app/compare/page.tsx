@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { breadcrumbJsonLd } from "@/lib/breadcrumbs";
+import { ClosingCta } from "@/components/site/ClosingCta";
 
 export const metadata: Metadata = {
-  title: "Compare: your agent with and without ato-mcp",
+  title: "Three ways to answer a tax question",
   description:
     "Three ways to answer an Australian tax question: browse ato.gov.au yourself, ask a chatbot on its own, or ask your agent with ato-mcp connected. An honest comparison.",
   alternates: { canonical: "/compare" },
@@ -54,14 +55,14 @@ const ROWS: { label: string; ato: string; alone: string; mcp: string }[] = [
 
 export default function ComparePage() {
   return (
-    <main className="mx-auto min-h-screen max-w-5xl px-5 pb-24 pt-14">
+    <>
+    <main className="mx-auto min-h-screen max-w-5xl px-5 pb-24 pt-20">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(pageJsonLd) }}
       />
 
-      <p className="eyebrow">Compare</p>
-      <h1 className="mt-3 max-w-2xl text-[clamp(2rem,4vw,2.75rem)] font-normal leading-[1.08] tracking-tight2 text-zinc-900">
+      <h1 className="max-w-2xl text-[clamp(2rem,4vw,2.75rem)] font-normal leading-[1.08] tracking-tight2 text-zinc-900">
         Three ways to answer a tax question
       </h1>
       <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-zinc-500">
@@ -75,7 +76,7 @@ export default function ComparePage() {
         <table className="w-full min-w-[640px] border-collapse text-left text-sm">
           <thead>
             <tr className="border-b border-zinc-200">
-              <th scope="col" className="w-[18%] py-3 pr-4 font-medium text-zinc-400"></th>
+              <th scope="col" className="w-[18%] py-3 pr-4 font-medium text-zinc-500"></th>
               <th scope="col" className="w-[27%] py-3 pr-4 font-medium text-zinc-900">
                 Browsing ato.gov.au yourself
               </th>
@@ -147,18 +148,8 @@ export default function ComparePage() {
         </section>
       </div>
 
-      {/* ----------------------------------------------- CTA */}
-      <div className="mt-14 max-w-3xl border-t border-zinc-100 pt-10 text-center">
-        <p className="text-[15px] text-zinc-500">
-          One line to connect, sign in with your browser.
-        </p>
-        <a
-          href="/app"
-          className="btn btn-primary mt-5 inline-block px-7 py-3 text-sm"
-        >
-          Open App
-        </a>
-      </div>
     </main>
+    <ClosingCta />
+    </>
   );
 }

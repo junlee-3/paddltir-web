@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { breadcrumbJsonLd } from "@/lib/breadcrumbs";
+import { personJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "About: who builds ato-mcp and why",
+  title: "About: who builds it and why",
   description:
-    "ato-mcp is an independent Australian project: an MCP server giving AI agents cited answers from 34,500+ ATO documents. Who builds it, why it exists, and how to reach us.",
+    "ato-mcp is an independent Australian project: an MCP server giving AI agents cited answers from 34,500+ ATO documents. Who builds it and why it exists.",
   alternates: { canonical: "/about" },
 };
 
@@ -20,28 +21,21 @@ const pageJsonLd = {
       name: "About ato-mcp",
       mainEntity: { "@id": `${SITE}/#org` },
     },
-    {
-      "@type": "Person",
-      name: "William Laverty",
-      url: "https://github.com/william-laverty",
-      jobTitle: "Software developer",
-      worksFor: { "@id": `${SITE}/#org` },
-    },
+    personJsonLd(),
     breadcrumbJsonLd([{ name: "About", path: "/about" }]),
   ],
 };
 
 export default function AboutPage() {
   return (
-    <main className="mx-auto min-h-screen max-w-3xl px-5 pb-24 pt-14">
+    <main className="mx-auto min-h-screen max-w-5xl px-5 pb-24 pt-20">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(pageJsonLd) }}
       />
 
-      <div className="space-y-10">
+      <div className="mx-auto max-w-3xl space-y-10">
         <div className="space-y-3">
-          <p className="eyebrow">About</p>
           <h1 className="text-3xl font-normal tracking-tight1 text-zinc-900">
             About ato-mcp
           </h1>
@@ -88,7 +82,9 @@ export default function AboutPage() {
             , an Australian software developer. It is a small, independent
             product, not a company with a sales team, and the site doesn&apos;t
             pretend otherwise: no invented testimonials, no made-up user
-            counts. The corpus numbers on this site are real and the{" "}
+            counts. The npm client records over 100,000 downloads a month (a
+            registry count that includes mirrors and CI, so treat it as reach,
+            not a user count). The corpus numbers on this site are real and the{" "}
             <a
               href="https://github.com/william-laverty/ato-mcp"
               target="_blank"
@@ -148,6 +144,20 @@ export default function AboutPage() {
             ato-mcp is an independent service. It is not affiliated with,
             endorsed by, or operated by the Australian Taxation Office. ATO
             content remains subject to ATO publication terms.
+          </p>
+          <p className="text-[15px] leading-relaxed text-zinc-700">
+            A note on the name: an unrelated MCP package by another developer
+            (an ATO statistics server) also appears as ato-mcp in some
+            directories. This site, api.ato-mcp.com.au and the npm package{" "}
+            <a
+              href="https://www.npmjs.com/package/ato-mcp"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-zinc-900 underline decoration-zinc-300 underline-offset-2 hover:decoration-zinc-900"
+            >
+              ato-mcp
+            </a>{" "}
+            are the Australian tax knowledge base described here.
           </p>
         </section>
 

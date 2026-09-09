@@ -29,7 +29,19 @@ const csp = [
   "form-action 'self'",
   "frame-ancestors 'none'",
   "object-src 'none'",
-  ["img-src 'self' data:", "https://*.google-analytics.com", "https://*.googletagmanager.com"].join(" "),
+  // img-src carries gtag's image-beacon fallback AND the Google Signals
+  // audience beacons, which hit www.google.com/ads/ga-audiences plus the
+  // visitor's country domain (www.google.com.au for AU) and *.g.doubleclick.net.
+  // Without those three, every page logs a CSP violation to the console the
+  // moment Signals fires (it cost the site its Lighthouse best-practices score).
+  [
+    "img-src 'self' data:",
+    "https://*.google-analytics.com",
+    "https://*.googletagmanager.com",
+    "https://*.g.doubleclick.net",
+    "https://*.google.com",
+    "https://*.google.com.au",
+  ].join(" "),
   "font-src 'self'",
   "style-src 'self' 'unsafe-inline'",
   "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://va.vercel-scripts.com",
@@ -56,6 +68,37 @@ const securityHeaders = [
   { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
 ];
 
+// MCP clients are sometimes pointed at the website domain instead of the API.
+// Vercel analytics shows probes against these transport paths; 308 (method-
+// preserving, so POST survives) sends them to the real endpoint instead of a
+// 404. None of these collide with site routes.
+const MCP_PROBE_PATHS = [
+  "/mcp",
+  "/mcp/:path*",
+  "/sse",
+  "/api/mcp",
+  "/api/sse",
+  "/v1/mcp",
+  "/jsonrpc",
+  "/rpc",
+  "/messages",
+  "/stream",
+  "/events",
+];
+
+// Crawlable (not robots-blocked) but never indexable — see headers() below.
+const NOINDEX_PATHS = [
+  "/account",
+  "/account/:path*",
+  "/llms.txt",
+  "/llms-full.txt",
+  "/feed.xml",
+  "/opengraph-image",
+  // Per-post/guide OG cards (each post folder has an opengraph-image.tsx).
+  "/blog/:slug/opengraph-image",
+  "/guides/:slug/opengraph-image",
+];
+
 const nextConfig: NextConfig = {
   // transpile local stub (file:./vendor/ato-mcp-shared)
   transpilePackages: ["@ato-mcp/shared"],
@@ -66,7 +109,42 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   async headers() {
-    return [{ source: "/(.*)", headers: securityHeaders }];
+    return [
+      { source: "/(.*)", headers: securityHeaders },
+      // Advertise the MCP endpoint to agents fetching any page (RFC 8288).
+      // On-brand for a product whose customers are AI agents.
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "Link",
+            value: '<https://api.ato-mcp.com.au/mcp>; rel="service-desc"; title="Australian Tax MCP endpoint"',
+          },
+        ],
+      },
+      // Explicit noindex for things Google crawls but must never index: the
+      // auth-gated account area (anonymous crawlers get its 307 → /onboard;
+      // the header rides on that response too) and non-page assets (the OG
+      // card image and the llms.txt files, which are for agents, not SERPs).
+      // Without this, Search Console parks them under warning states
+      // ("Blocked by robots.txt" / "Crawled - currently not indexed").
+      ...NOINDEX_PATHS.map((source) => ({
+        source,
+        headers: [{ key: "X-Robots-Tag", value: "noindex" }],
+      })),
+    ];
+  },
+  async redirects() {
+    return [
+      ...MCP_PROBE_PATHS.map((source) => ({
+        source,
+        destination: "https://api.ato-mcp.com.au/mcp",
+        permanent: true,
+      })),
+      // The pre-2026-08-04 /blogs path (and its the-new-ato-mcp post) is
+      // retired with no redirect: a 404 is the signal that drops the old
+      // URLs from Google's index.
+    ];
   },
   // Vite SPA under /app — filesystem (assets) wins; missing paths → index.html
   async rewrites() {
