@@ -10,7 +10,7 @@
 - [llms-full.txt](https://paddltir-web.vercel.app/llms-full.txt): product copy and main pages as a single markdown file
 - [Get started](https://paddltir-web.vercel.app/install): open the app and sign in
 - [Guides](https://paddltir-web.vercel.app/guides): reference guides — how to seat a standard boat (/guides/ai-agent-tax-deductions) and how to run multiple heats (/guides/can-ai-do-my-bas)
-- [Blog](https://paddltir-web.vercel.app/blog): race-day stories — seating a crew (/blog/what-can-you-actually-claim), regatta prep (/blog/its-bas-time-again), weight and trim (/blog/so-you-bought-a-laptop-in-the-eofy-sales), lineup balance (/blog/am-i-going-to-get-audited), spreadsheets vs a crew tool (/blog/can-you-trust-ai-with-your-tax), and heat records (/blog/nobody-withholds-your-tax-anymore)
+- [About](https://paddltir-web.vercel.app/about): who builds Paddltir and why
 - [FAQ](https://paddltir-web.vercel.app/faq): rosters, crewlists, trim, privacy, and getting started
 - [Compare](https://paddltir-web.vercel.app/compare): paper roster vs spreadsheet vs Paddltir
 - [GitHub](https://github.com/junlee-3/paddltir-web): marketing site source

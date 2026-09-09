@@ -171,12 +171,6 @@ export default function RootLayout({
             metadata.alternates.types, which page-level `alternates` exports
             would shallow-merge away. */}
         <link rel="alternate" type="text/plain" href="/llms.txt" />
-        <link
-          rel="alternate"
-          type="application/rss+xml"
-          title="Paddltir blog"
-          href="/feed.xml"
-        />
         {/* Warm the connection gtag.js will use once it loads at idle. */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         {/* Skip link: first tab stop, visually hidden until focused. */}

@@ -92,10 +92,8 @@ const NOINDEX_PATHS = [
   "/account/:path*",
   "/llms.txt",
   "/llms-full.txt",
-  "/feed.xml",
   "/opengraph-image",
-  // Per-post/guide OG cards (each post folder has an opengraph-image.tsx).
-  "/blog/:slug/opengraph-image",
+  // Per-guide OG cards (each guide folder has an opengraph-image.tsx).
   "/guides/:slug/opengraph-image",
 ];
 
@@ -141,9 +139,10 @@ const nextConfig: NextConfig = {
         destination: "https://paddltir-web.vercel.app/app",
         permanent: true,
       })),
-      // The pre-2026-08-04 /blogs path (and its the-new-Paddltir post) is
-      // retired with no redirect: a 404 is the signal that drops the old
-      // URLs from Google's index.
+      // Retired blog → About (About took Blog's nav slot).
+      { source: "/blog", destination: "/about", permanent: true },
+      { source: "/blog/:path*", destination: "/about", permanent: true },
+      { source: "/feed.xml", destination: "/about", permanent: true },
     ];
   },
   // Vite SPA under /app — filesystem (assets) wins; missing paths → index.html

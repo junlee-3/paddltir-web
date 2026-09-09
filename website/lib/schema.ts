@@ -9,9 +9,9 @@ export const SITE = "https://paddltir-web.vercel.app";
 export const ORG_ID = `${SITE}/#org`;
 export const PERSON_ID = `${SITE}/about#jun`;
 
-/** Compact author reference for BlogPosting/TechArticle nodes: keeps each
- *  page self-contained (type + name resolve locally) while the shared @id
- *  lets parsers merge it with the full node on /about. */
+/** Compact author reference for article nodes: keeps each page self-contained
+ *  (type + name resolve locally) while the shared @id lets parsers merge it
+ *  with the full node on /about. */
 export function personRef() {
   return {
     "@type": "Person",

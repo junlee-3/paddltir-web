@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 /* ---------------------------------------------------------------------------
-   /guides/can-ai-do-my-bas — a reference guide (not a blog story): direct
+   /guides/can-ai-do-my-bas — a reference guide: direct
    answers under question-form headings, a heat-by-heat workflow table.
    Targets "dragon boat multiple heats race day" queries.
 --------------------------------------------------------------------------- */
@@ -211,11 +211,7 @@ export default function CanAiDoMyBasPage() {
 
           <section className="space-y-3 border-t border-zinc-100 pt-8">
             <p className="text-sm text-zinc-500">
-              Related reading:{" "}
-              <Link href="/blog/its-bas-time-again" className={linkCls}>
-                It&apos;s race weekend again
-              </Link>{" "}
-              and{" "}
+              Related:{" "}
               <Link href="/guides/ai-agent-tax-deductions" className={linkCls}>
                 How do you seat a standard boat?
               </Link>

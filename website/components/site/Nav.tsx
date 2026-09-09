@@ -6,7 +6,7 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { trackEvent } from "@/lib/analytics";
 const LINKS = [
   { href: "/docs", label: "Docs" },
-  { href: "/blog", label: "Blog" },
+  { href: "/about", label: "About" },
   { href: "/faq", label: "FAQ" },
 ];
 

@@ -65,7 +65,6 @@ export function Footer() {
               </div>
               <div className="flex flex-col gap-3.5">
                 <p className="eyebrow">Company</p>
-                <Link className="footer-link" href="/blog">Blog</Link>
                 <Link className="footer-link" href="/guides">Guides</Link>
                 <Link className="footer-link" href="/about">About</Link>
                 <Link className="footer-link" href="/privacy">Privacy</Link>

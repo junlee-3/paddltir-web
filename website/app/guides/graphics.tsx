@@ -1,7 +1,6 @@
 /* ---------------------------------------------------------------------------
-   Post graphics, shared by the /blog index cards and the posts themselves.
-   Each states its post's one idea concretely (real labels, real figures) in
-   the Clinical system: hairline zinc, mono labels, vermillion as the accent.
+   Guide card graphics. Each states one idea concretely (real labels, real
+   figures) in the Clinical system: hairline zinc, mono labels, vermillion accent.
 --------------------------------------------------------------------------- */
 
 const MONO = "font-mono";

@@ -73,25 +73,10 @@ How do you run multiple heats?
 open, mixed, women's — keep separate lineups for each heat so one change
 doesn't wipe the next race.
 
-## Blog (https://paddltir-web.vercel.app/blog)
+## About (https://paddltir-web.vercel.app/about)
 
-Who belongs in which seat? (/blog/what-can-you-actually-claim): race morning,
-ten paddlers looking at you, and the boat still empty.
-
-It's race weekend again (/blog/its-bas-time-again): every regatta, the same
-scramble — who's in, who's scratched, which heat needs a sweep.
-
-So you finally weighed the whole crew (/blog/so-you-bought-a-laptop-in-the-eofy-sales):
-how weight and preferred side change who sits where.
-
-Is this lineup going to tip? (/blog/am-i-going-to-get-audited): check balance
-before you load, not after you bury a gunwale.
-
-Can you trust a spreadsheet with your crew? (/blog/can-you-trust-ai-with-your-tax):
-why a dedicated crew tool beats the tab that never quite matches race day.
-
-Nobody remembers who sat where (/blog/nobody-withholds-your-tax-anymore): keep
-a clear record of who raced which heat.
+Paddltir is an independent dragon boat crew management project built by Jun
+Lee. Rosters, crewlists, boat configs, and trim insights in one place.
 
 ## Compare (https://paddltir-web.vercel.app/compare)
 

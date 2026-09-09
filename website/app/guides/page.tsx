@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { GUIDES } from "./guides";
 import { breadcrumbJsonLd } from "@/lib/breadcrumbs";
-import { BasGraphic, DeductionsGraphic } from "@/app/blog/graphics";
+import { BasGraphic, DeductionsGraphic } from "./graphics";
 
 export const metadata: Metadata = {
   title: "Guides: crew seating and race day",
@@ -12,9 +12,8 @@ export const metadata: Metadata = {
 };
 
 /* ---------------------------------------------------------------------------
-   /guides — index of the reference guides. Same quiet-title-plus-card-grid
-   shape as /blog, reusing the matching Clinical graphics. Blog posts are
-   story-shaped; these are question-shaped references, hence the split.
+   /guides — index of the reference guides. Quiet title plus card grid,
+   reusing the matching Clinical graphics.
 --------------------------------------------------------------------------- */
 
 const SITE = "https://paddltir-web.vercel.app";
@@ -94,16 +93,6 @@ export default function GuidesIndexPage() {
           ))}
         </div>
       </section>
-
-      <p className="mt-10 text-sm text-zinc-500">
-        Prefer the stories?{" "}
-        <Link
-          href="/blog"
-          className="text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900"
-        >
-          Read the blog
-        </Link>
-      </p>
     </main>
   );
 }

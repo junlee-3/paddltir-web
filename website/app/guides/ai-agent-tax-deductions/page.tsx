@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 /* ---------------------------------------------------------------------------
-   /guides/ai-agent-tax-deductions — a reference guide (not a blog story):
+   /guides/ai-agent-tax-deductions — a reference guide:
    direct answers under question-form headings, extractable lists. Targets
    "how to seat a dragon boat" queries.
 --------------------------------------------------------------------------- */
@@ -193,15 +193,7 @@ export default function AiAgentTaxDeductionsPage() {
 
           <section className="space-y-3 border-t border-zinc-100 pt-8">
             <p className="text-sm text-zinc-500">
-              Related reading:{" "}
-              <Link href="/blog/what-can-you-actually-claim" className={linkCls}>
-                Who belongs in which seat?
-              </Link>
-              ,{" "}
-              <Link href="/blog/so-you-bought-a-laptop-in-the-eofy-sales" className={linkCls}>
-                So you finally weighed the whole crew
-              </Link>{" "}
-              and{" "}
+              Related:{" "}
               <Link href="/guides/can-ai-do-my-bas" className={linkCls}>
                 How do you run multiple heats?
               </Link>

@@ -1,11 +1,10 @@
 import { ImageResponse } from "next/og";
 
 /**
- * Shared OG-card renderer for the homepage, blog posts and guides: the
- * hero-card look (warm paper + vermillion glow bleeding from the upper
- * left), logo row, big Switzer title. No URL or chip labels.
- * review on #61). Callers (the per-route opengraph-image.tsx files, edge
- * runtime) pass their copy in.
+ * Shared OG-card renderer for the homepage and guides: the hero-card look
+ * (warm paper + vermillion glow bleeding from the upper left), logo row,
+ * big Switzer title. Callers (per-route opengraph-image.tsx, edge runtime)
+ * pass their copy in.
  */
 export const OG_SIZE = { width: 1200, height: 630 };
 export const OG_CONTENT_TYPE = "image/png";
@@ -15,7 +14,7 @@ export async function ogCard({
   title,
   description,
 }: {
-  /** Optional small pill next to the logo: "Blog" or "Guide". */
+  /** Optional small pill next to the logo, e.g. "Guide". */
   badge?: string;
   title: string;
   description: string;

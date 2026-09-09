@@ -1,5 +1,5 @@
 /**
- * Registry of reference guides — the /guides analogue of app/blog/posts.ts.
+ * Registry of reference guides — one entry per guide, used by the index and sitemap.
  */
 export type Guide = {
   slug: string;
