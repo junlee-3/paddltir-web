@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
-
-const SITE = "https://paddltir-web.vercel.app";
+import { SITE_URL as SITE } from "../lib/urls";
 
 // Bump a date only when that page's content meaningfully changes.
 // Stamping build time on every deploy makes Google ignore lastmod entirely.

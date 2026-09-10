@@ -63,7 +63,7 @@ export default function PrivacyPage() {
         <section className="space-y-4">
           <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">1. Overview</h2>
           <p className="text-[15px] leading-relaxed text-zinc-700">
-            paddltir-web.vercel.app (&quot;we&quot;, &quot;our&quot;, &quot;the service&quot;) is a dragon boat
+            paddltir.com (&quot;we&quot;, &quot;our&quot;, &quot;the service&quot;) is a dragon boat
             crew management app. We collect the minimum information needed to
             maintain rosters, crewlists, and lineups for your club.
           </p>

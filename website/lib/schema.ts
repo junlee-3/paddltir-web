@@ -4,7 +4,9 @@
  * AI systems and Google consolidate them instead of seeing fragments.
  */
 
-export const SITE = "https://paddltir-web.vercel.app";
+import { SITE_URL } from "./urls";
+
+export const SITE = SITE_URL;
 
 export const ORG_ID = `${SITE}/#org`;
 export const PERSON_ID = `${SITE}/about#jun`;

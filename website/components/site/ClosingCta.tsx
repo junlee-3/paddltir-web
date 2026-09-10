@@ -1,5 +1,6 @@
 import { BrandMark } from "./BrandMark";
 import { GitHubIcon } from "./GitHubIcon";
+import { APP_URL } from "@/lib/urls";
 
 /* ---------------------------------------------------------------------------
    The site-wide closing CTA (homepage pattern): full-bleed glow section that
@@ -17,7 +18,7 @@ export function ClosingCta() {
         </h2>
         <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
           <a
-            href="/app"
+            href={APP_URL}
             className="btn btn-primary w-full px-7 py-3.5 text-sm sm:w-auto sm:py-3"
           >
             Open App

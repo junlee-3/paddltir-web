@@ -8,7 +8,7 @@ import ErrorBoundary from './components/ErrorBoundary.tsx'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ErrorBoundary>
-      <BrowserRouter basename="/app">
+      <BrowserRouter>
         <App />
       </BrowserRouter>
     </ErrorBoundary>

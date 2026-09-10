@@ -52,7 +52,8 @@ const csp = [
     "https://va.vercel-scripts.com",
     "https://*.supabase.co",
     "wss://*.supabase.co",
-    "https://paddltir-web.vercel.app",
+    "https://paddltir.com",
+    "https://app.paddltir.com",
   ].join(" "),
 ].join("; ");
 
@@ -115,7 +116,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "Link",
-            value: '<https://paddltir-web.vercel.app/app>; rel="service-desc"; title="Paddltir"',
+            value: '<https://app.paddltir.com>; rel="service-desc"; title="Paddltir"',
           },
         ],
       },
@@ -135,22 +136,27 @@ const nextConfig: NextConfig = {
     return [
       ...MCP_PROBE_PATHS.map((source) => ({
         source,
-        destination: "https://paddltir-web.vercel.app/app",
+        destination: "https://app.paddltir.com",
         permanent: true,
       })),
       // Retired blog → About (About took Blog's nav slot).
       { source: "/blog", destination: "/about", permanent: true },
       { source: "/blog/:path*", destination: "/about", permanent: true },
       { source: "/feed.xml", destination: "/about", permanent: true },
+      // Legacy nested app path → dedicated app subdomain.
+      { source: "/app", destination: "https://app.paddltir.com", permanent: true },
+      {
+        source: "/app/:path*",
+        destination: "https://app.paddltir.com/:path*",
+        permanent: true,
+      },
       // Retired Get started (/install) and Guides — source kept in website/_archived.
-      { source: "/install", destination: "/app", permanent: true },
-      { source: "/install/:path*", destination: "/app", permanent: true },
+      { source: "/install", destination: "https://app.paddltir.com", permanent: true },
+      { source: "/install/:path*", destination: "https://app.paddltir.com", permanent: true },
       { source: "/guides", destination: "/docs", permanent: true },
       { source: "/guides/:path*", destination: "/docs", permanent: true },
     ];
   },
-  // Vite SPA deep links are rewritten in middleware.ts so /app/assets/* is
-  // never turned into index.html.
 };
 
 export default nextConfig;

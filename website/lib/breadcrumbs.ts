@@ -1,6 +1,8 @@
 /** BreadcrumbList JSON-LD for the static pages (Google breadcrumb rich results). */
 
-const SITE = "https://paddltir-web.vercel.app";
+import { SITE_URL } from "./urls";
+
+const SITE = SITE_URL;
 
 export function breadcrumbJsonLd(trail: { name: string; path: string }[]) {
   return {

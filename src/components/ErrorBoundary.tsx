@@ -33,7 +33,7 @@ export default class ErrorBoundary extends Component<Props, State> {
               className="px-4 py-2 bg-slate-900 text-white text-sm rounded-sm"
               onClick={() => {
                 this.setState({ error: null });
-                window.location.assign("/app");
+                window.location.assign("/");
               }}
             >
               Back to app home

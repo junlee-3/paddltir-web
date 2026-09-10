@@ -30,7 +30,7 @@ export default function TermsPage() {
         <section className="space-y-4">
           <h2 className="text-lg font-medium tracking-tight1 text-zinc-900">1. Acceptance</h2>
           <p className="text-[15px] leading-relaxed text-zinc-700">
-            By using paddltir-web.vercel.app (&quot;the Service&quot;), you agree to these Terms of
+            By using paddltir.com (&quot;the Service&quot;), you agree to these Terms of
             Service. If you do not agree, do not use the Service.
           </p>
         </section>

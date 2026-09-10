@@ -1,0 +1,8 @@
+# Large local assets / build outputs that must not upload with CLI deploys
+heroVideo1.mov
+dist
+website/.next
+website/node_modules
+node_modules
+.env*.local
+.env.vercel.tmp

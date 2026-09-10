@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ClosingCta } from "../components/site/ClosingCta";
 import { TeamsMarquee } from "../components/site/TeamsMarquee";
 import { HOME_FAQS } from "../lib/faqs";
+import { SITE_URL as SITE, APP_URL } from "../lib/urls";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -67,8 +68,6 @@ const HOW_IT_WORKS = [
 ] as const;
 
 const FAQS = HOME_FAQS;
-
-const SITE = "https://paddltir-web.vercel.app";
 
 const pageJsonLd = {
   "@context": "https://schema.org",
@@ -188,7 +187,7 @@ export default function HomePage() {
                   style={{ "--reveal-delay": "0.24s" } as React.CSSProperties}
                 >
                   <a
-                    href="/app"
+                    href={APP_URL}
                     className="btn w-full max-w-xs bg-white px-7 py-3.5 text-sm text-zinc-900 hover:bg-white/90 sm:w-auto sm:py-3"
                   >
                     Open App

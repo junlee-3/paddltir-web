@@ -36,7 +36,7 @@ const serifAccent = Instrument_Serif({
   display: "swap",
 });
 
-const SITE = "https://paddltir-web.vercel.app";
+import { SITE_URL as SITE } from "../lib/urls";
 
 // Colours the browser chrome (mobile address bar) to match the white site.
 export const viewport: Viewport = {

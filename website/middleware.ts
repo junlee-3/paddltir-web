@@ -1,27 +1,20 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+const APP_URL =
+  process.env.NEXT_PUBLIC_APP_URL ?? "https://app.paddltir.com";
+
 /**
- * Serve the Vite SPA shell for /app routes without swallowing /app/assets/*.
- * Missing hashed JS/CSS must 404 (not return index.html), or browsers parse
- * HTML as a module and the app goes blank after deploys.
+ * Legacy path: the Vite SPA used to live under /app on the marketing host.
+ * Send those URLs to the dedicated app subdomain.
  */
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-
-  if (pathname === "/app" || pathname === "/app/") {
-    const url = request.nextUrl.clone();
-    url.pathname = "/app/index.html";
-    return NextResponse.rewrite(url);
-  }
-
-  if (pathname.startsWith("/app/") && !pathname.startsWith("/app/assets/")) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/app/index.html";
-    return NextResponse.rewrite(url);
-  }
-
-  return NextResponse.next();
+  const dest =
+    pathname === "/app" || pathname === "/app/"
+      ? APP_URL
+      : `${APP_URL}${pathname.replace(/^\/app/, "") || "/"}`;
+  return NextResponse.redirect(dest, 308);
 }
 
 export const config = {

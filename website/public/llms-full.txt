@@ -2,9 +2,9 @@
 
 > Dragon boat crew management software. Configure rosters, build race-day
 > crewlists, seat standard boats, and get trim and balance insights before
-> every heat. Web app: https://paddltir-web.vercel.app/app
+> every heat. Web app: https://app.paddltir.com
 
-Canonical site: https://paddltir-web.vercel.app · Short index: https://paddltir-web.vercel.app/llms.txt
+Canonical site: https://paddltir.com · Short index: https://paddltir.com/llms.txt
 
 ## What Paddltir is
 
@@ -27,11 +27,11 @@ clipboards, shared spreadsheets, and last-minute texts on the pontoon.
 
 ## Open the app
 
-1. Open https://paddltir-web.vercel.app/app in your browser
+1. Open https://app.paddltir.com in your browser
 2. Sign in with email or Google — your account is created on first visit
 3. Add paddlers to a roster, create a crewlist, seat your first boat
 
-Works on desktop and mobile browsers. Feature reference: https://paddltir-web.vercel.app/docs
+Works on desktop and mobile browsers. Feature reference: https://paddltir.com/docs
 
 ## FAQ
 
@@ -59,14 +59,14 @@ can move people forward or aft before you race.
 Your account, paddlers, and crewlists belong to you. See the privacy page for
 what we store.
 
-Full FAQ: https://paddltir-web.vercel.app/faq
+Full FAQ: https://paddltir.com/faq
 
-## About (https://paddltir-web.vercel.app/about)
+## About (https://paddltir.com/about)
 
 Paddltir is an independent dragon boat crew management project built by Jun
 Lee. Rosters, crewlists, boat configs, and trim insights in one place.
 
-## Compare (https://paddltir-web.vercel.app/compare)
+## Compare (https://paddltir.com/compare)
 
 Three ways to build a race-day lineup: paper roster, shared spreadsheet, or
 Paddltir. Paper is fast to start but hard to rebalance. Spreadsheets drift
@@ -75,8 +75,8 @@ trim checks, and scopes changes to the heat you're working on.
 
 ## Policies
 
-- Privacy (https://paddltir-web.vercel.app/privacy): account and crew data handling
-- Terms (https://paddltir-web.vercel.app/terms): service terms
+- Privacy (https://paddltir.com/privacy): account and crew data handling
+- Terms (https://paddltir.com/terms): service terms
 
 Author: Jun Lee (https://github.com/junlee-3)
 GitHub: https://github.com/junlee-3/paddltir-web

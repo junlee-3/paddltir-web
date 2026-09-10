@@ -2,28 +2,28 @@
 
 > Dragon boat crew management for coaches, sweeps, and club organisers.
 > Build rosters, seat boats heat by heat, and check trim and side balance
-> before you push off. Web app at https://paddltir-web.vercel.app/app —
+> before you push off. Web app at https://app.paddltir.com —
 > sign in with email or Google on first visit.
 
 ## Docs
 
-- [llms-full.txt](https://paddltir-web.vercel.app/llms-full.txt): product copy and main pages as a single markdown file
-- [Docs](https://paddltir-web.vercel.app/docs): feature reference — lineups, rosters, trim and balance
-- [About](https://paddltir-web.vercel.app/about): who builds Paddltir and why
-- [FAQ](https://paddltir-web.vercel.app/faq): rosters, crewlists, trim, privacy, and getting started
-- [Compare](https://paddltir-web.vercel.app/compare): paper roster vs spreadsheet vs Paddltir
+- [llms-full.txt](https://paddltir.com/llms-full.txt): product copy and main pages as a single markdown file
+- [Docs](https://paddltir.com/docs): feature reference — lineups, rosters, trim and balance
+- [About](https://paddltir.com/about): who builds Paddltir and why
+- [FAQ](https://paddltir.com/faq): rosters, crewlists, trim, privacy, and getting started
+- [Compare](https://paddltir.com/compare): paper roster vs spreadsheet vs Paddltir
 - [GitHub](https://github.com/junlee-3/paddltir-web): marketing site source
 
 ## App
 
-- Web app: https://paddltir-web.vercel.app/app
+- Web app: https://app.paddltir.com
 - Sign in with email or Google — account created on first visit
 - Works in any modern browser on desktop or mobile
 
 ## Policies
 
-- [Privacy](https://paddltir-web.vercel.app/privacy): what we store about your account and crew data
-- [Terms](https://paddltir-web.vercel.app/terms): including proprietary copyright and licence terms
+- [Privacy](https://paddltir.com/privacy): what we store about your account and crew data
+- [Terms](https://paddltir.com/terms): including proprietary copyright and licence terms
 - [License](https://github.com/junlee-3/paddltir-web/blob/main/LICENSE): proprietary © Jun Lee — public source, all rights reserved
 
 ## Author

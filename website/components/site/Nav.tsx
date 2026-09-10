@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useLenis } from "lenis/react";
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import { trackEvent } from "@/lib/analytics";
+import { APP_URL } from "@/lib/urls";
 import { BrandMark } from "./BrandMark";
 const LINKS = [
   { href: "/about", label: "About" },
@@ -192,7 +193,7 @@ export function Nav() {
             {/* Right — CTA */}
             <div className="flex items-center gap-1 justify-self-end">
               <a
-                href="/app"
+                href={APP_URL}
                 onClick={() => trackEvent("connect_cta_clicked", { location: "nav" })}
                 className="btn btn-primary px-4 py-2 text-[13px] max-md:hidden"
               >
@@ -245,7 +246,7 @@ export function Nav() {
                   </Link>
                 ))}
                 <a
-                  href="/app"
+                  href={APP_URL}
                   onClick={() => {
                     trackEvent("connect_cta_clicked", { location: "nav_mobile" });
                     setOpen(false);

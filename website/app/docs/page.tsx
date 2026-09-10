@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { TOOLS_META } from "../../lib/tools-meta";
 import { breadcrumbJsonLd } from "../../lib/breadcrumbs";
 import { personRef } from "../../lib/schema";
+import { SITE_URL as SITE } from "../../lib/urls";
 import { ClosingCta } from "@/components/site/ClosingCta";
 import { GitHubIcon } from "@/components/site/GitHubIcon";
 
@@ -43,8 +44,6 @@ const GROUPS: {
       "See fore-aft trim, left-right side balance, lineup gaps, and heat comparisons so you confirm lineups with numbers, not guesswork.",
   },
 ];
-
-const SITE = "https://paddltir-web.vercel.app";
 
 const docsJsonLd = {
   "@context": "https://schema.org",
