@@ -3,7 +3,7 @@ import Link from "next/link";
 import { breadcrumbJsonLd } from "@/lib/breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "Terms of Service",
+  title: "Terms",
   description:
     "The terms for using Paddltir: a dragon boat crew management app for rosters, crewlists, and lineups. Independent project, not affiliated with any governing body.",
   alternates: { canonical: "/terms" },

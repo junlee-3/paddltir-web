@@ -5,7 +5,7 @@ import { speakable } from "@/lib/schema";
 import { ClosingCta } from "@/components/site/ClosingCta";
 
 export const metadata: Metadata = {
-  title: "FAQ: common questions",
+  title: "FAQ",
   description:
     "How do rosters, crewlists, and lineups work? What does Paddltir store? Every common question about dragon boat crew management, answered plainly.",
   alternates: { canonical: "/faq" },

@@ -3,7 +3,7 @@ import { breadcrumbJsonLd } from "@/lib/breadcrumbs";
 import { ClosingCta } from "@/components/site/ClosingCta";
 
 export const metadata: Metadata = {
-  title: "Three ways to seat a boat",
+  title: "Compare",
   description:
     "Three ways to build a race-day lineup: paper roster, spreadsheet, or Paddltir. An honest comparison for dragon boat crew managers.",
   alternates: { canonical: "/compare" },

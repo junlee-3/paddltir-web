@@ -50,8 +50,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE),
   applicationName: "Paddltir",
   title: {
-    default: "Paddltir — Dragon boat crew management",
-    template: "%s · Paddltir",
+    default: "Paddltir",
+    template: "Paddltir | %s",
   },
   description:
     "Configure crews, manage rosters and crewlists, and get real insights into trim, balance and lineups before race day.",
@@ -74,13 +74,13 @@ export const metadata: Metadata = {
     locale: "en_AU",
     url: SITE,
     siteName: "Paddltir",
-    title: "Paddltir — Dragon boat crew management",
+    title: "Paddltir",
     description:
       "Configure crews, manage rosters and crewlists, and get real insights into trim, balance and lineups before race day.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Paddltir — Dragon boat crew management",
+    title: "Paddltir",
     description:
       "Configure, manage, and get real insights into your crew before race day.",
   },

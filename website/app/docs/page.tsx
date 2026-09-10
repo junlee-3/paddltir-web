@@ -7,7 +7,7 @@ import { ClosingCta } from "@/components/site/ClosingCta";
 import { GitHubIcon } from "@/components/site/GitHubIcon";
 
 export const metadata: Metadata = {
-  title: "Docs: seat boats, manage rosters, read insights",
+  title: "Docs",
   description:
     "The Paddltir feature reference: lineups, rosters, and trim/balance insights for dragon boat crew management.",
   alternates: { canonical: "/docs" },

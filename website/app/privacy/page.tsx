@@ -3,7 +3,7 @@ import Link from "next/link";
 import { breadcrumbJsonLd } from "@/lib/breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
+  title: "Privacy",
   description:
     "How Paddltir handles your data: what paddler and crew fields we store, what we never store, and how to delete your account.",
   alternates: { canonical: "/privacy" },

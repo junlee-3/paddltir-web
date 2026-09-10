@@ -5,7 +5,7 @@ import { personJsonLd } from "@/lib/schema";
 import { SITE_URL as SITE } from "@/lib/urls";
 
 export const metadata: Metadata = {
-  title: "About: who builds it and why",
+  title: "About",
   description:
     "Paddltir is an independent project for dragon boat crew management: rosters, crewlists, boat configs, and trim insights. Who builds it and why it exists.",
   alternates: { canonical: "/about" },
