@@ -2,16 +2,20 @@ import Image from "next/image";
 
 /**
  * Horizontal logo marquee — grayscale by default, full color on hover.
+ * Two identical rows + translateX(-50%) for a seamless infinite loop.
+ * Each row is repeated wide enough that one half always exceeds the viewport.
  */
 
-const TEAMS = [
-  { name: "Canberra Grammar", src: "/teams/canberra-grammar.png" },
-  { name: "Dragon Boat ACT", src: "/teams/dbact.png" },
-  { name: "Canberra Grammar", src: "/teams/canberra-grammar.png" },
-  { name: "Dragon Boat ACT", src: "/teams/dbact.png" },
+const UNIQUE_TEAMS = [
   { name: "Canberra Grammar", src: "/teams/canberra-grammar.png" },
   { name: "Dragon Boat ACT", src: "/teams/dbact.png" },
 ] as const;
+
+/** Repeats so one LogoRow stays wider than typical ultrawide viewports. */
+const REPEAT = 10;
+const TEAMS = Array.from({ length: UNIQUE_TEAMS.length * REPEAT }, (_, i) =>
+  UNIQUE_TEAMS[i % UNIQUE_TEAMS.length],
+);
 
 const AVATARS = [
   { src: "/about/jun-avatar.jpg", alt: "Jun Lee" },
@@ -33,7 +37,7 @@ function LogoRow({ ariaHidden = false }: { ariaHidden?: boolean }) {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={team.src}
-              alt={team.name}
+              alt={ariaHidden ? "" : team.name}
               className="h-10 w-auto max-w-[160px] object-contain sm:h-12 sm:max-w-[180px]"
               loading="lazy"
               decoding="async"
@@ -69,7 +73,7 @@ export function TeamsMarquee() {
         </h2>
       </div>
 
-      <div className="relative mt-10 sm:mt-12">
+      <div className="relative mt-10 overflow-hidden sm:mt-12">
         <div
           className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-white to-transparent sm:w-24"
           aria-hidden="true"
@@ -78,7 +82,7 @@ export function TeamsMarquee() {
           className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-white to-transparent sm:w-24"
           aria-hidden="true"
         />
-        <div className="team-marquee flex w-max">
+        <div className="team-marquee flex w-max will-change-transform">
           <LogoRow />
           <LogoRow ariaHidden />
         </div>

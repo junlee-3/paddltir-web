@@ -237,7 +237,8 @@ body {
   }
 }
 .team-marquee {
-  animation: teamMarquee 42s linear infinite;
+  /* Duration scaled for a longer duplicated track so px/s stays calm. */
+  animation: teamMarquee 80s linear infinite;
 }
 .team-marquee:hover {
   animation-play-state: paused;
