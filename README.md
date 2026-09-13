@@ -12,6 +12,8 @@ Proprietary © Jun Lee. All rights reserved. Source is public for inspection onl
 - Supabase — Auth, Postgres, Storage
 - Vercel — hosting
 
+Website on nextjs
+
 ## Setup
 
 1. Create a Supabase project and run `supabase/migrations/20260309_init.sql` in the SQL editor.
