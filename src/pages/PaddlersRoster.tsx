@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import { MoreVertical, Pencil, Trash2 } from "lucide-react";
 import {
   defaultPaddlerForm,
@@ -6,8 +6,11 @@ import {
   GENDERS,
   SEAT_PREFERENCES,
   ROLES,
+  formatRoles,
+  type Gender,
   type Paddler,
   type PaddlerFormData,
+  type Role,
 } from "../types/paddler";
 import { getPaddlers, addPaddler, updatePaddler, deletePaddler, deleteAllPaddlers } from "../services/paddlers";
 
@@ -22,6 +25,7 @@ export default function PaddlersRoster({ userId }: PaddlersRosterProps) {
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
   const [form, setForm] = useState<PaddlerFormData>(defaultPaddlerForm);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [genderFilter, setGenderFilter] = useState<Gender | "All">("All");
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -41,6 +45,23 @@ export default function PaddlersRoster({ userId }: PaddlersRosterProps) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [openMenuId]);
 
+  const genderSummary = useMemo(() => {
+    const counts: Record<Gender, number> = {
+      Male: 0,
+      Female: 0,
+      "Non-binary": 0,
+    };
+    for (const p of paddlers) {
+      if (p.gender in counts) counts[p.gender] += 1;
+    }
+    return counts;
+  }, [paddlers]);
+
+  const visiblePaddlers = useMemo(() => {
+    if (genderFilter === "All") return paddlers;
+    return paddlers.filter((p) => p.gender === genderFilter);
+  }, [paddlers, genderFilter]);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -52,6 +73,17 @@ export default function PaddlersRoster({ userId }: PaddlersRosterProps) {
     }
   };
 
+  const toggleRole = (role: Role) => {
+    setForm((prev) => {
+      const has = prev.roles.includes(role);
+      if (has) {
+        const next = prev.roles.filter((r) => r !== role);
+        return { ...prev, roles: next.length > 0 ? next : prev.roles };
+      }
+      return { ...prev, roles: [...prev.roles, role] };
+    });
+  };
+
   const startEdit = (p: Paddler) => {
     setForm({
       name: p.name,
@@ -60,7 +92,7 @@ export default function PaddlersRoster({ userId }: PaddlersRosterProps) {
       preferredSide: p.preferredSide,
       gender: p.gender,
       seatPreference: p.seatPreference,
-      role: p.role,
+      roles: [...p.roles],
     });
     setEditingPaddlerId(p.id ?? null);
     setShowForm(true);
@@ -79,6 +111,10 @@ export default function PaddlersRoster({ userId }: PaddlersRosterProps) {
       alert("Name is required.");
       return;
     }
+    if (form.roles.length === 0) {
+      alert("Select at least one role.");
+      return;
+    }
     setIsSubmitting(true);
     try {
       if (editingPaddlerId) {
@@ -91,7 +127,7 @@ export default function PaddlersRoster({ userId }: PaddlersRosterProps) {
       }
     } catch (err) {
       console.error(err);
-      alert("Failed to save paddler. Check the console and Firestore rules.");
+      alert("Failed to save athlete. Check the console and database rules.");
     } finally {
       setIsSubmitting(false);
     }
@@ -104,7 +140,7 @@ export default function PaddlersRoster({ userId }: PaddlersRosterProps) {
       await deletePaddler(userId, paddlerId);
     } catch (err) {
       console.error(err);
-      alert("Failed to delete paddler.");
+      alert("Failed to delete athlete.");
     }
   };
 
@@ -112,7 +148,7 @@ export default function PaddlersRoster({ userId }: PaddlersRosterProps) {
     if (paddlers.length === 0) return;
     if (
       !confirm(
-        `Delete all ${paddlers.length} paddler${paddlers.length === 1 ? "" : "s"} from the roster? This cannot be undone.`
+        `Delete all ${paddlers.length} athlete${paddlers.length === 1 ? "" : "s"} from the roster? This cannot be undone.`
       )
     )
       return;
@@ -129,7 +165,7 @@ export default function PaddlersRoster({ userId }: PaddlersRosterProps) {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight text-slate-900">Roster</h1>
-          <p className="text-sm text-slate-500 mt-1">Manage your paddlers</p>
+          <p className="text-sm text-slate-500 mt-1">Manage your athletes</p>
         </div>
         <div className="flex flex-wrap gap-3">
           <button
@@ -162,10 +198,40 @@ export default function PaddlersRoster({ userId }: PaddlersRosterProps) {
                 : "bg-slate-900 border-slate-900 text-white hover:bg-slate-800"
             }`}
           >
-            {showForm ? "Cancel" : "Add Paddler"}
+            {showForm ? "Cancel" : "Add Athlete"}
           </button>
         </div>
       </div>
+
+      {paddlers.length > 0 && (
+        <div className="mb-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+          <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-600">
+            {GENDERS.map((g) => (
+              <span key={g}>
+                <span className="font-medium text-slate-900">{genderSummary[g]}</span>{" "}
+                {g}
+              </span>
+            ))}
+          </div>
+          <label className="flex items-center gap-2 text-sm text-slate-600 sm:ml-auto">
+            <span className="text-xs font-medium uppercase tracking-wider text-slate-500">
+              Filter
+            </span>
+            <select
+              value={genderFilter}
+              onChange={(e) => setGenderFilter(e.target.value as Gender | "All")}
+              className="px-2.5 py-1.5 bg-white border border-slate-200 rounded-sm text-sm text-slate-900 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900"
+            >
+              <option value="All">All genders</option>
+              {GENDERS.map((g) => (
+                <option key={g} value={g}>
+                  {g}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+      )}
 
       {showForm && (
         <form
@@ -173,7 +239,7 @@ export default function PaddlersRoster({ userId }: PaddlersRosterProps) {
           className="mb-8 p-6 bg-white border border-slate-200 rounded-sm shadow-sm space-y-5 max-w-2xl"
         >
           <h2 className="text-sm font-semibold tracking-wide uppercase text-slate-900 border-b border-slate-100 pb-3">
-            {editingPaddlerId ? "Edit Paddler" : "New Paddler"}
+            {editingPaddlerId ? "Edit Athlete" : "New Athlete"}
           </h2>
 
           <div>
@@ -283,22 +349,25 @@ export default function PaddlersRoster({ userId }: PaddlersRosterProps) {
               </select>
             </div>
             <div>
-              <label htmlFor="role" className="block text-xs font-medium uppercase tracking-wider text-slate-600 mb-1.5">
-                Role
-              </label>
-              <select
-                id="role"
-                name="role"
-                value={form.role}
-                onChange={handleChange}
-                className="w-full px-3 py-2 bg-white border border-slate-200 rounded-sm text-sm text-slate-900 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900"
-              >
+              <span className="block text-xs font-medium uppercase tracking-wider text-slate-600 mb-1.5">
+                Roles
+              </span>
+              <div className="flex flex-col gap-2 pt-1">
                 {ROLES.map((r) => (
-                  <option key={r} value={r}>
+                  <label
+                    key={r}
+                    className="inline-flex items-center gap-2 text-sm text-slate-700 cursor-pointer"
+                  >
+                    <input
+                      type="checkbox"
+                      checked={form.roles.includes(r)}
+                      onChange={() => toggleRole(r)}
+                      className="rounded border-slate-300 text-slate-900 focus:ring-slate-900"
+                    />
                     {r}
-                  </option>
+                  </label>
                 ))}
-              </select>
+              </div>
             </div>
           </div>
 
@@ -312,7 +381,7 @@ export default function PaddlersRoster({ userId }: PaddlersRosterProps) {
                 ? "Saving..."
                 : editingPaddlerId
                   ? "Save Changes"
-                  : "Add Paddler"}
+                  : "Add Athlete"}
             </button>
           </div>
         </form>
@@ -342,7 +411,7 @@ export default function PaddlersRoster({ userId }: PaddlersRosterProps) {
                   Seat Preference
                 </th>
                 <th className="px-6 py-3 text-xs font-bold text-slate-700 uppercase tracking-wider">
-                  Role
+                  Roles
                 </th>
                 <th className="px-6 py-3 w-14"></th>
               </tr>
@@ -351,11 +420,17 @@ export default function PaddlersRoster({ userId }: PaddlersRosterProps) {
               {paddlers.length === 0 ? (
                 <tr>
                   <td colSpan={8} className="px-6 py-12 text-center text-sm text-slate-500">
-                    No paddlers yet. Click "Add Paddler" to get started.
+                    No athletes yet. Click &quot;Add Athlete&quot; to get started.
+                  </td>
+                </tr>
+              ) : visiblePaddlers.length === 0 ? (
+                <tr>
+                  <td colSpan={8} className="px-6 py-12 text-center text-sm text-slate-500">
+                    No athletes match this gender filter.
                   </td>
                 </tr>
               ) : (
-                paddlers.map((p) => (
+                visiblePaddlers.map((p) => (
                   <tr key={p.id} className="hover:bg-slate-50/50 transition-colors">
                     <td className="px-6 py-4 text-sm font-medium text-slate-900">{p.name}</td>
                     <td className="px-6 py-4 text-sm text-slate-600">{p.weight}</td>
@@ -363,7 +438,7 @@ export default function PaddlersRoster({ userId }: PaddlersRosterProps) {
                     <td className="px-6 py-4 text-sm text-slate-600">{p.preferredSide}</td>
                     <td className="px-6 py-4 text-sm text-slate-600">{p.gender}</td>
                     <td className="px-6 py-4 text-sm text-slate-600">{p.seatPreference}</td>
-                    <td className="px-6 py-4 text-sm text-slate-600">{p.role}</td>
+                    <td className="px-6 py-4 text-sm text-slate-600">{formatRoles(p.roles)}</td>
                     <td className="px-6 py-4 text-right">
                       <div
                         className="relative inline-block text-left"

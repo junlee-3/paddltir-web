@@ -14,7 +14,7 @@ create table if not exists public.paddlers (
   preferred_side text not null default 'Left',
   gender text not null default 'Male',
   seat_preference text not null default 'Stroke',
-  role text not null default 'Paddler',
+  roles text[] not null default array['Paddler']::text[],
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
