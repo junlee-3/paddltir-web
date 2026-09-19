@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Outlet, Link, useLocation } from "react-router-dom";
+import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 import { ClipboardList, Kayak, Camera, Menu, X } from "lucide-react";
 import Cropper from "react-easy-crop";
 import type { Area } from "react-easy-crop";
@@ -100,9 +100,11 @@ function NavLink({
 }
 
 export default function Layout({ user }: LayoutProps) {
+  const navigate = useNavigate();
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
   const [cropImageSrc, setCropImageSrc] = useState<string | null>(null);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
@@ -114,8 +116,17 @@ export default function Layout({ user }: LayoutProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const lastObjectUrlRef = useRef<string | null>(null);
 
-  const handleLogout = () => {
-    void supabase.auth.signOut();
+  const handleLogout = async () => {
+    if (isLoggingOut) return;
+    setIsLoggingOut(true);
+    try {
+      // Local scope clears the browser session immediately and does not wait on
+      // a network revoke (which can hang and leave the user stuck logged in).
+      await supabase.auth.signOut({ scope: "local" });
+    } finally {
+      navigate("/", { replace: true });
+      setIsLoggingOut(false);
+    }
   };
 
   const initials = user.email
@@ -285,11 +296,14 @@ export default function Layout({ user }: LayoutProps) {
           </button>
           <button
             type="button"
-            onClick={handleLogout}
-            className="flex items-center gap-3 px-6 py-3 w-full text-left text-sm text-slate-500 hover:text-slate-900 hover:bg-white/50 border-l-2 border-transparent transition-colors"
+            onClick={() => {
+              void handleLogout();
+            }}
+            disabled={isLoggingOut}
+            className="flex items-center gap-3 px-6 py-3 w-full text-left text-sm text-slate-500 hover:text-slate-900 hover:bg-white/50 border-l-2 border-transparent transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <LogoutIcon />
-            Log out
+            {isLoggingOut ? "Logging out…" : "Log out"}
           </button>
         </div>
       </aside>
