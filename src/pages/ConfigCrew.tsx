@@ -5,6 +5,7 @@ import type { Config, CrewLineup, HeatTabId } from "../types/config";
 import { getLineupRowCount, reservedIdsKey } from "../types/config";
 import type { Paddler } from "../types/paddler";
 import type { Gender, Role } from "../types/paddler";
+import { isBenchEligible } from "../types/paddler";
 import type { Crewlist } from "../types/crewlist";
 import { getConfigById, updateConfig } from "../services/configs";
 import { getPaddlers } from "../services/paddlers";
@@ -131,15 +132,16 @@ function preferredSideAbbrev(side: string): string {
   return "L/R";
 }
 
-function roleAbbrev(role: Role): string {
-  if (role === "Drummer") return "D";
-  if (role === "Sweep") return "S";
-  return "";
+function rolesAbbrev(roles: Role[]): string {
+  const parts: string[] = [];
+  if (roles.includes("Drummer")) parts.push("D");
+  if (roles.includes("Sweep")) parts.push("S");
+  return parts.join("");
 }
 
 export function paddlerToLabel(p: Paddler): string {
   const name = (p.name || "").trim();
-  const role = roleAbbrev(p.role);
+  const role = rolesAbbrev(p.roles);
   const side = preferredSideAbbrev(p.preferredSide);
   const weight = Math.round(p.weight);
   const parts = [name || "——"];
@@ -150,7 +152,7 @@ export function paddlerToLabel(p: Paddler): string {
 
 function PaddlerTileLabel({ paddler }: { paddler: Paddler }) {
   const name = (paddler.name || "").trim() || "——";
-  const role = roleAbbrev(paddler.role);
+  const role = rolesAbbrev(paddler.roles);
   const side = preferredSideAbbrev(paddler.preferredSide);
   const weight = Math.round(paddler.weight);
   return (
@@ -167,9 +169,9 @@ function PaddlerTileLabel({ paddler }: { paddler: Paddler }) {
 }
 
 export function getTileBgClass(gender: Gender): string {
-  return gender === "Male"
-    ? "bg-green-100 border-green-300"
-    : "bg-amber-100 border-amber-300";
+  if (gender === "Male") return "bg-green-100 border-green-300";
+  if (gender === "Female") return "bg-amber-100 border-amber-300";
+  return "bg-teal-100 border-teal-300";
 }
 
 function emptyLineup(size: "small" | "standard"): CrewLineup {
@@ -453,7 +455,7 @@ export default function ConfigCrew({ userId }: ConfigCrewProps) {
     if (!lineup || !config || !lastVacatedSeat) return [];
     if (lastVacatedSeat === "drummer" || lastVacatedSeat === "sweep") return [];
     const candidates = availablePaddlers
-      .filter((p) => p.id && (p.role === "Paddler" || p.role === "Drummer"))
+      .filter((p) => p.id && isBenchEligible(p))
       .map((p) => p.id!);
     if (candidates.length === 0) return [];
     return getReplacementSuggestions(
@@ -567,9 +569,7 @@ export default function ConfigCrew({ userId }: ConfigCrewProps) {
 
   const handleAutoconfig = () => {
     if (!lineup || !config || !lineup.drummerId || !lineup.sweepId) return;
-    const toPlace = availablePaddlers.filter(
-      (p) => p.role === "Paddler" || p.role === "Drummer"
-    );
+    const toPlace = availablePaddlers.filter((p) => isBenchEligible(p));
     const newLineup = runAutoConfig(
       lineup,
       paddlerMap,
@@ -581,9 +581,7 @@ export default function ConfigCrew({ userId }: ConfigCrewProps) {
 
   const handlePlacePreferredSides = () => {
     if (!lineup || !config || !lineup.drummerId || !lineup.sweepId) return;
-    const toPlace = availablePaddlers.filter(
-      (p) => p.role === "Paddler" || p.role === "Drummer"
-    );
+    const toPlace = availablePaddlers.filter((p) => isBenchEligible(p));
     const newLineup = runPlacePreferredSides(
       lineup,
       paddlerMap,

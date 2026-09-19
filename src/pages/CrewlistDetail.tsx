@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import type { Crewlist } from "../types/crewlist";
 import type { Paddler } from "../types/paddler";
+import { formatRoles } from "../types/paddler";
 import type { Config } from "../types/config";
 import { getCrewlistById, updateCrewlist } from "../services/crewlists";
 import { getPaddlers } from "../services/paddlers";
@@ -147,7 +148,7 @@ export default function CrewlistDetail({ userId }: CrewlistDetailProps) {
                   <div>
                     <p className="text-sm font-semibold text-slate-900">{p.name}</p>
                     <p className="text-xs text-slate-500 mt-0.5">
-                      {p.weight} kg · {p.preferredSide} · {p.role}
+                      {p.weight} kg · {p.preferredSide} · {formatRoles(p.roles)}
                     </p>
                   </div>
                   <button
@@ -182,7 +183,7 @@ export default function CrewlistDetail({ userId }: CrewlistDetailProps) {
                   <div>
                     <p className="text-sm font-semibold text-slate-900">{p.name}</p>
                     <p className="text-xs text-slate-500 mt-0.5">
-                      {p.weight} kg · {p.preferredSide} · {p.role}
+                      {p.weight} kg · {p.preferredSide} · {formatRoles(p.roles)}
                     </p>
                   </div>
                   <button

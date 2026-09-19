@@ -1,5 +1,10 @@
 import { supabase } from "../supabase";
-import type { Paddler, PaddlerFormData } from "../types/paddler";
+import {
+  normalizeRoles,
+  type Paddler,
+  type PaddlerFormData,
+  type Role,
+} from "../types/paddler";
 
 export type Unsubscribe = () => void;
 
@@ -12,7 +17,9 @@ type PaddlerRow = {
   preferred_side: string;
   gender: string;
   seat_preference: string;
-  role: string;
+  /** Legacy single-role column (pre-migration). */
+  role?: string | null;
+  roles?: string[] | null;
   created_at: string;
 };
 
@@ -25,7 +32,7 @@ function mapRow(row: PaddlerRow): Omit<Paddler, "powerRatio"> {
     preferredSide: (row.preferred_side as Paddler["preferredSide"]) ?? "Left",
     gender: (row.gender as Paddler["gender"]) ?? "Male",
     seatPreference: (row.seat_preference as Paddler["seatPreference"]) ?? "Stroke",
-    role: (row.role as Paddler["role"]) ?? "Paddler",
+    roles: normalizeRoles(row.roles ?? row.role),
     createdAt: row.created_at,
   };
 }
@@ -89,6 +96,7 @@ export function getPaddlers(
 }
 
 export async function addPaddler(userId: string, paddler: PaddlerFormData): Promise<string> {
+  const roles: Role[] = normalizeRoles(paddler.roles);
   const { data, error } = await supabase
     .from("paddlers")
     .insert({
@@ -99,7 +107,7 @@ export async function addPaddler(userId: string, paddler: PaddlerFormData): Prom
       preferred_side: paddler.preferredSide,
       gender: paddler.gender,
       seat_preference: paddler.seatPreference,
-      role: paddler.role,
+      roles,
     })
     .select("id")
     .single();
@@ -120,7 +128,7 @@ export async function updatePaddler(
   if (updates.preferredSide !== undefined) payload.preferred_side = updates.preferredSide;
   if (updates.gender !== undefined) payload.gender = updates.gender;
   if (updates.seatPreference !== undefined) payload.seat_preference = updates.seatPreference;
-  if (updates.role !== undefined) payload.role = updates.role;
+  if (updates.roles !== undefined) payload.roles = normalizeRoles(updates.roles);
 
   const { error } = await supabase
     .from("paddlers")

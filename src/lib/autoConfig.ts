@@ -2,6 +2,7 @@ import type { Config, CrewLineup } from "../types/config";
 import { getLineupRowCount } from "../types/config";
 import type { Paddler } from "../types/paddler";
 import type { PreferredSide, SeatPreference } from "../types/paddler";
+import { isBenchEligible } from "../types/paddler";
 
 /**
  * Bench mapping from configAlgorithm.py (standard 10 benches):
@@ -313,9 +314,7 @@ export function runPlacePreferredSides(
   const n = getLineupRowCount(config.size);
   const maxSeats = n * 2;
 
-  let toPlace = availablePaddlers.filter(
-    (p) => p.id && (p.role === "Paddler" || p.role === "Drummer")
-  );
+  let toPlace = availablePaddlers.filter((p) => p.id && isBenchEligible(p));
   if (toPlace.length > maxSeats) {
     toPlace = preSelectTopN(toPlace, maxSeats);
   }
@@ -361,9 +360,7 @@ export function runAutoConfig(
   const n = getLineupRowCount(config.size);
   const maxSeats = n * 2;
 
-  let toPlace = availablePaddlers.filter(
-    (p) => p.id && (p.role === "Paddler" || p.role === "Drummer")
-  );
+  let toPlace = availablePaddlers.filter((p) => p.id && isBenchEligible(p));
   if (toPlace.length > maxSeats) {
     toPlace = preSelectTopN(toPlace, maxSeats);
   }

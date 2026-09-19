@@ -22,7 +22,7 @@ export default function Home({ user }: HomeProps) {
           </div>
           <h2 className="text-lg font-medium text-slate-900 mb-1">Team Roster</h2>
           <p className="text-sm text-slate-500 mb-6 flex-1">
-            Manage your paddlers, their details, and performance metrics in a centralized table.
+            Manage your athletes, their details, and performance metrics in a centralized table.
           </p>
           <Link
             to="/roster"
