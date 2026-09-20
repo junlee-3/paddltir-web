@@ -1,6 +1,6 @@
 # Paddltir
 
-Dragon boat crew management — rosters, crewlists, and boat configs.
+Dragon boat crew management — rosters, crewlists, and boat configs
 
 ## License
 
