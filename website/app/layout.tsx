@@ -43,8 +43,9 @@ export const viewport: Viewport = {
   themeColor: "#ffffff",
 };
 
-// Google Analytics 4 (gtag.js) measurement ID.
-const GA_MEASUREMENT_ID = "G-1DFRLLC2CR";
+// Own GA4 measurement ID only — never hardcode another property's ID.
+// Set NEXT_PUBLIC_GA_ID in the deploy env when this site should send to GA.
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID?.trim() || "";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
@@ -145,25 +146,28 @@ export default function RootLayout({
   return (
     <html lang="en-AU" className={`${sans.variable} ${mono.variable} ${serifAccent.variable}`}>
       <body className="min-h-screen bg-white font-sans text-zinc-900 antialiased">
-        {/* Google tag (gtag.js). lazyOnload, not afterInteractive: the
-            afterInteractive strategy makes Next preload the 190 KB gtag.js in
-            <head>, where it competes with first paint on throttled mobile
-            connections (Lighthouse mobile ~73 with the preload, ~96 without).
-            Deferring to browser idle costs nothing measurable in GA data —
-            page_view still fires on every load — and takes the script out of
-            the critical path entirely. */}
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          strategy="lazyOnload"
-        />
-        <Script id="google-analytics" strategy="lazyOnload">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}');
-          `}
-        </Script>
+        {/* Google tag (gtag.js) — only when NEXT_PUBLIC_GA_ID is set for this
+            site. lazyOnload, not afterInteractive: afterInteractive preloads the
+            190 KB gtag.js in <head>, competing with first paint on throttled
+            mobile (Lighthouse mobile ~73 with the preload, ~96 without).
+            Deferring to idle still fires page_view on every load. */}
+        {GA_MEASUREMENT_ID ? (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+              strategy="lazyOnload"
+            />
+            <Script id="google-analytics" strategy="lazyOnload">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_MEASUREMENT_ID}');
+              `}
+            </Script>
+            <link rel="preconnect" href="https://www.googletagmanager.com" />
+          </>
+        ) : null}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
@@ -172,8 +176,6 @@ export default function RootLayout({
             metadata.alternates.types, which page-level `alternates` exports
             would shallow-merge away. */}
         <link rel="alternate" type="text/plain" href="/llms.txt" />
-        {/* Warm the connection gtag.js will use once it loads at idle. */}
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
         {/* Skip link: first tab stop, visually hidden until focused. */}
         <a
           href="#content"
